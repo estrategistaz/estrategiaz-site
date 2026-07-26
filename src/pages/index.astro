@@ -1,43 +1,154 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
 ---
 
-<html lang="pt-BR">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="description" content="EstrategiaZ: consultoria estratégica para oficinas mecânicas que buscam organização, crescimento e melhores resultados." />
-		<title>EstrategiaZ | Consultoria Estratégica para Oficinas</title>
-	</head>
+<BaseLayout
+    title="EstrategiaZ"
+    description="Consultoria estratégica para empresas">
 
-	<body>
-		<header>
-			<h1>EstrategiaZ</h1>
-			<p>Consultoria estratégica para oficinas mecânicas</p>
-		</header>
+    <Header />
 
-		<main>
-			<section>
-				<h2>Transforme sua oficina em uma empresa mais organizada e lucrativa</h2>
+    <main class="hero container">
 
-				<p>
-					Um programa estratégico para donos de oficinas que querem melhorar
-					processos, vendas e gestão.
-				</p>
+    <div class="hero-content">
 
-				<a href="#">
-					Solicitar diagnóstico
-				</a>
-			</section>
+        <span class="tag">
+            Plataforma de Estratégia Empresarial
+        </span>
 
-			<section>
-				<h2>Como funciona</h2>
+        <h1>
+            A maior biblioteca brasileira sobre Estratégia.
+        </h1>
 
-				<ul>
-					<li>Diagnóstico dos principais gargalos</li>
-					<li>Plano estratégico personalizado</li>
-					<li>Acompanhamento da implementação</li>
-				</ul>
-			</section>
-		</main>
-	</body>
-</html>	
+        <p>
+
+            Autores, livros, frameworks, conceitos,
+            ferramentas e casos empresariais organizados
+            em uma única plataforma.
+
+        </p>
+
+        <div class="buttons">
+
+            <a class="primary" href="#">
+                Explorar Conteúdo
+            </a>
+
+            <a class="secondary" href="#">
+                Conhecer o Projeto
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+<style>
+
+.hero{
+
+    min-height:75vh;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.hero-content{
+
+    max-width:720px;
+
+}
+
+.tag{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    border-radius:999px;
+
+    font-weight:600;
+
+    margin-bottom:20px;
+
+}
+
+.hero h1{
+
+    font-size:4rem;
+
+    line-height:1.1;
+
+    margin-bottom:24px;
+
+}
+
+.hero p{
+
+    font-size:1.25rem;
+
+    color:#475569;
+
+    margin-bottom:40px;
+
+}
+
+.buttons{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.primary{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:16px 28px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+}
+
+.secondary{
+
+    border:2px solid #2563eb;
+
+    color:#2563eb;
+
+    padding:16px 28px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+}
+
+.primary:hover{
+
+    background:#1d4ed8;
+
+}
+
+.secondary:hover{
+
+    background:#eff6ff;
+
+}
+
+</style>
+
+</BaseLayout>
