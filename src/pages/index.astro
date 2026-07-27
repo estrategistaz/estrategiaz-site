@@ -1,13 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Header from "../components/Header.astro";
+
 ---
 
 <BaseLayout
     title="EstrategiaZ"
     description="Consultoria estratégica para empresas">
 
-    <Header />
 
     <main class="hero container">
 
@@ -44,7 +43,87 @@ import Header from "../components/Header.astro";
     </div>
 
 </main>
+<section class="categorias container">
 
+    <h2>Nossa Biblioteca Estratégica</h2>
+
+    <div class="grid">
+
+    <a class="card" href="/autores">
+        <span>👤</span>
+        <h3>Autores</h3>
+        <p>Os maiores pensadores da estratégia.</p>
+    </a>
+
+    <a class="card" href="/conceitos">
+        <span>🧠</span>
+        <h3>Conceitos</h3>
+        <p>Termos fundamentais para gestão.</p>
+    </a>
+
+    <a class="card" href="/frameworks">
+        <span>📈</span>
+        <h3>Frameworks</h3>
+        <p>Modelos estratégicos utilizados no mercado.</p>
+    </a>
+
+    <a class="card" href="/livros">
+        <span>📚</span>
+        <h3>Livros</h3>
+        <p>As obras mais importantes da administração.</p>
+    </a>
+
+    <a class="card" href="/empresas">
+        <span>🏢</span>
+        <h3>Empresas</h3>
+        <p>Casos reais de organizações e negócios.</p>
+    </a>
+
+    <a class="card" href="/ferramentas">
+        <span>🛠</span>
+        <h3>Ferramentas</h3>
+        <p>Instrumentos para apoiar a gestão.</p>
+    </a>
+
+    <a class="card" href="/metodologias">
+        <span>🧭</span>
+        <h3>Metodologias</h3>
+        <p>Abordagens estruturadas para implementação.</p>
+    </a>
+
+    <a class="card" href="/tecnicas">
+        <span>🎯</span>
+        <h3>Técnicas</h3>
+        <p>Métodos práticos para análise e execução.</p>
+    </a>
+
+    <a class="card" href="/casos">
+        <span>📄</span>
+        <h3>Casos</h3>
+        <p>Estudos de caso nacionais e internacionais.</p>
+    </a>
+
+    <a class="card" href="/pesquisas">
+        <span>🔬</span>
+        <h3>Pesquisas</h3>
+        <p>Produção científica sobre estratégia e gestão.</p>
+    </a>
+
+    <a class="card" href="/modelos">
+        <span>📋</span>
+        <h3>Modelos</h3>
+        <p>Templates e documentos prontos para aplicação.</p>
+    </a>
+
+    <a class="card" href="/inteligencia-artificial">
+        <span>🤖</span>
+        <h3>Inteligência Artificial</h3>
+        <p>IA aplicada à estratégia, gestão e inovação.</p>
+    </a>
+
+</div>
+
+</section>
 <style>
 
 .hero{
@@ -148,7 +227,71 @@ import Header from "../components/Header.astro";
     background:#eff6ff;
 
 }
+.categorias{
 
+    padding:90px 0;
+
+}
+
+.categorias h2{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+    font-size:2.3rem;
+
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:28px;
+
+}
+
+.card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 40px rgba(0,0,0,.10);
+
+}
+
+.card span{
+
+    font-size:2rem;
+
+}
+
+.card h3{
+
+    margin:20px 0 12px;
+
+}
+
+.card p{
+
+    color:#64748b;
+
+}
 </style>
 
 </BaseLayout>

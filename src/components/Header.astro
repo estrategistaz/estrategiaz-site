@@ -1,51 +1,95 @@
 <header class="header">
-  <div class="logo">
-    <a href="/">EstrategiaZ</a>
-  </div>
 
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/autores">Autores</a></li>
-      <li><a href="/conceitos">Conceitos</a></li>
-      <li><a href="/frameworks">Frameworks</a></li>
-      <li><a href="/livros">Livros</a></li>
-      <li><a href="/casos">Casos</a></li>
-    </ul>
-  </nav>
+    <div class="container nav">
+
+        <a href="/" class="logo">
+    Estrategia<span>Z</span>
+        </a>
+
+        <nav>
+
+            <a href="/">Início</a>
+
+            <a href="/biblioteca">Biblioteca</a>
+
+            <a href="/consultoria">Consultoria</a>
+
+            <a href="/artigos">Artigos</a>
+
+        </nav>
+
+    </div>
+
 </header>
 
 <style>
+
 .header{
+
+    background:white;
+
+    border-bottom:1px solid #e5e7eb;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+}
+
+.nav{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
-    padding:18px 40px;
-    border-bottom:1px solid #ddd;
+
+    padding:18px 0;
+
 }
 
-.logo a{
-    font-size:1.6rem;
-    font-weight:bold;
+.logo{
+
+    font-size:1.8rem;
+
+    font-weight:700;
+
     text-decoration:none;
-    color:#111;
+
+    color:#0f172a;
+
 }
 
-nav ul{
+.logo span{
+
+    color:#2563eb;
+
+}
+
+nav{
+
     display:flex;
-    gap:24px;
-    list-style:none;
-    margin:0;
-    padding:0;
+
+    gap:35px;
+
 }
 
 nav a{
+
     text-decoration:none;
-    color:#444;
+
+    color:#475569;
+
     font-weight:500;
+
 }
 
 nav a:hover{
-    color:#0070f3;
+
+    color:#2563eb;
+
 }
+
 </style>
