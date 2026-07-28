@@ -49,10 +49,21 @@ img{
 
 .container{
 
+    width:100%;
     max-width:1200px;
+    margin:0 auto;
+    padding:0 20px;
 
-    margin:auto;
+}
+html,
+body{
 
-    padding:0 32px;
+    width:100%;
+    overflow-x:hidden;
+
+}
+*{
+
+    box-sizing:border-box;
 
 }

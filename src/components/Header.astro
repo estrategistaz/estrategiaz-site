@@ -3,10 +3,10 @@
     <div class="container nav">
 
         <a href="/" class="logo">
-    Estrategia<span>Z</span>
+            Estrategia<span>Z</span>
         </a>
 
-        <nav>
+        <nav class="menu">
 
             <a href="/">Início</a>
 
@@ -27,13 +27,9 @@
 .header{
 
     background:white;
-
     border-bottom:1px solid #e5e7eb;
-
     position:sticky;
-
     top:0;
-
     z-index:100;
 
 }
@@ -41,11 +37,8 @@
 .nav{
 
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     padding:18px 0;
 
 }
@@ -53,11 +46,8 @@
 .logo{
 
     font-size:1.8rem;
-
     font-weight:700;
-
     text-decoration:none;
-
     color:#0f172a;
 
 }
@@ -68,27 +58,86 @@
 
 }
 
-nav{
+.menu{
 
     display:flex;
-
     gap:35px;
 
 }
 
-nav a{
+.menu a{
 
     text-decoration:none;
-
     color:#475569;
-
     font-weight:500;
+    transition:.25s;
 
 }
 
-nav a:hover{
+.menu a:hover{
 
     color:#2563eb;
+
+}
+
+/* =======================
+   TABLET
+======================= */
+
+@media (max-width:900px){
+
+    .nav{
+
+        flex-direction:column;
+        gap:18px;
+
+    }
+
+    .menu{
+
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:20px;
+
+    }
+
+}
+
+/* =======================
+   CELULAR
+======================= */
+
+@media (max-width:600px){
+
+    .logo{
+
+        font-size:2rem;
+
+    }
+
+    .menu{
+
+        width:100%;
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
+
+    }
+
+    .menu a{
+
+        text-align:center;
+        padding:12px;
+        border-radius:10px;
+        background:#f8fafc;
+
+    }
+
+    .menu a:hover{
+
+        background:#dbeafe;
+
+    }
 
 }
 

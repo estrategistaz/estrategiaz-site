@@ -251,6 +251,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     gap:28px;
 
+    width:100%;
+
 }
 
 .card{
@@ -292,6 +294,80 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     color:#64748b;
 
 }
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width:768px){
+
+    .hero{
+
+        min-height:auto;
+        padding:40px 0;
+
+    }
+
+    .hero-content{
+
+        width:100%;
+        padding:0 8px;
+
+    }
+
+    .hero h1{
+
+        font-size:2.2rem;
+        line-height:1.2;
+        margin-bottom:20px;
+
+    }
+
+    .hero p{
+
+        font-size:1rem;
+        margin-bottom:30px;
+
+    }
+
+    .buttons{
+
+        display:flex;
+        flex-direction:column;
+        gap:16px;
+        width:100%;
+
+    }
+
+    .primary,
+    .secondary{
+
+        display:block;
+        width:100%;
+        text-align:center;
+        padding:16px;
+
+    }
+
+    .categorias{
+
+        padding:60px 0;
+
+    }
+
+    .grid{
+
+        grid-template-columns:1fr;
+        gap:20px;
+
+    }
+
+    .card{
+
+        padding:24px;
+
+    }
+
+}   
 </style>
 
 </BaseLayout>
