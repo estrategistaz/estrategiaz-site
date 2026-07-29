@@ -1,5 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const autores = await getCollection("autores");
 ---
 
 <BaseLayout
@@ -11,12 +14,85 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 <h1>Autores</h1>
 
 <p>
-
-Aqui você encontrará os principais autores da estratégia,
-administração, inovação e liderança.
-
+Grandes pensadores da estratégia empresarial.
 </p>
 
+<div class="grid">
+
+{autores.map((autor) => (
+
+    <a
+        class="card"
+        href={`/autores/${autor.id}`}
+    >
+
+        <h2>{autor.data.title}</h2>
+
+        <p>{autor.data.universidade}</p>
+
+        <small>{autor.data.pais}</small>
+
+    </a>
+
+))}
+
+</div>
+
 </section>
+
+<style>
+
+.grid{
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;
+    margin-top:40px;
+
+}
+
+.card{
+
+    display:block;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.10);
+
+}
+
+.card h2{
+
+    margin-bottom:10px;
+
+}
+
+.card p{
+
+    color:#64748b;
+
+}
+
+.card small{
+
+    color:#94a3b8;
+
+}
+
+</style>
 
 </BaseLayout>

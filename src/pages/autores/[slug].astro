@@ -1,0 +1,41 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const autores = await getCollection("autores");
+
+  return autores.map((autor) => ({
+    params: {
+      slug: autor.id
+    },
+    props: {
+      autor
+    }
+  }));
+}
+
+const { autor } = Astro.props;
+
+const { Content } = await render(autor);
+---
+
+<BaseLayout title={autor.data.title}>
+
+<section class="container" style="padding:80px 0;">
+
+<h1>{autor.data.title}</h1>
+
+<p><strong>País:</strong> {autor.data.pais}</p>
+
+<p><strong>Nascimento:</strong> {autor.data.nascimento}</p>
+
+<p><strong>Universidade:</strong> {autor.data.universidade}</p>
+
+<hr>
+
+<Content />
+
+</section>
+
+</BaseLayout>

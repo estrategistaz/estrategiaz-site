@@ -1,0 +1,9 @@
+---
+import { getCollection } from "astro:content";
+
+const autores = await getCollection("autores");
+---
+
+<h1>Total de autores: {autores.length}</h1>
+
+<pre>{JSON.stringify(autores, null, 2)}</pre>

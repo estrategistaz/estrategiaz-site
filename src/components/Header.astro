@@ -5,8 +5,12 @@
         <a href="/" class="logo">
             Estrategia<span>Z</span>
         </a>
+<button class="menu-toggle" id="menu-toggle">
+    ☰
+</button>
 
-        <nav class="menu">
+
+        <nav class="menu" id="menu">
 
             <a href="/">Início</a>
 
@@ -80,23 +84,33 @@
 
 }
 
+.menu-toggle{
+
+    display:none;
+
+    background:none;
+
+    border:none;
+
+    cursor:pointer;
+
+    font-size:2rem;
+
+    color:#0f172a;
+
+    padding:8px;
+
+    line-height:1;
+
+}
 /* =======================
    TABLET
 ======================= */
 
 @media (max-width:900px){
 
-    .nav{
-
-        flex-direction:column;
-        gap:18px;
-
-    }
-
     .menu{
 
-        flex-wrap:wrap;
-        justify-content:center;
         gap:20px;
 
     }
@@ -109,6 +123,16 @@
 
 @media (max-width:600px){
 
+    .nav{
+
+        flex-direction:row;
+
+        justify-content:space-between;
+
+        align-items:center;
+
+    }
+
     .logo{
 
         font-size:2rem;
@@ -117,28 +141,57 @@
 
     .menu{
 
-        width:100%;
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
-        gap:12px;
+    display:none;
 
-    }
+    position:absolute;
 
-    .menu a{
+    top:75px;
 
-        text-align:center;
-        padding:12px;
-        border-radius:10px;
-        background:#f8fafc;
+    left:0;
 
-    }
+    width:100%;
 
-    .menu a:hover{
+    background:white;
 
-        background:#dbeafe;
+    flex-direction:column;
+
+    padding:20px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+.menu.active{
+
+    display:flex;
+
+}
+
+    .menu-toggle{
+
+        display:block;
 
     }
 
 }
 
 </style>
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const botao = document.getElementById("menu-toggle");
+    const menu = document.getElementById("menu");
+
+    if (botao && menu) {
+
+        botao.addEventListener("click", () => {
+
+            menu.classList.toggle("active");
+
+        });
+
+    }
+
+});
+
+</script>
