@@ -5,7 +5,8 @@ pais: Áustria
 
 nascimento: 1909
 
-universidade: Claremont Graduate University
+universidade: 
+- Claremont Graduate University
 
 area:
   - Administração
