@@ -1,22 +1,72 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const frameworks = await getCollection("frameworks");
 ---
 
 <BaseLayout
-    title="Autores | EstrategiaZ"
-    description="Grandes pensadores da estratégia empresarial">
+    title="Frameworks | EstratégiaZ"
+    description="Frameworks estratégicos para analisar, diagnosticar e transformar empresas."
+>
 
-<section class="container">
+    <h1>Frameworks Estratégicos</h1>
 
-<h1>Autores</h1>
+    <p>
+        Modelos utilizados para analisar, diagnosticar e transformar empresas.
+    </p>
 
-<p>
+    <div class="grid">
 
-Aqui você encontrará os principais autores da estratégia,
-administração, inovação e liderança.
+        {frameworks.map((framework) => (
 
-</p>
+            <a
+                class="card"
+                href={`/frameworks/${framework.id}`}
+            >
 
-</section>
+                <h2>{framework.data.title}</h2>
+
+                {framework.data.criador && (
+                    <p>
+                        <strong>Criador:</strong> {framework.data.criador}
+                    </p>
+                )}
+
+                {framework.data.ano && (
+                    <p>
+                        <strong>Ano:</strong> {framework.data.ano}
+                    </p>
+                )}
+
+                {framework.data.categoria && (
+                    <p>
+                        <strong>Categoria:</strong> {framework.data.categoria}
+                    </p>
+                )}
+
+                {framework.data.score !== undefined && (
+                    <p>
+                        ⭐ <strong>EstratégiaZ:</strong> {framework.data.score}/10
+                    </p>
+                )}
+
+                {framework.data.aplicabilidade && (
+                    <p>
+                        <strong>Aplicabilidade:</strong> {framework.data.aplicabilidade}
+                    </p>
+                )}
+
+                {framework.data.facilidade && (
+                    <p>
+                        <strong>Facilidade:</strong> {framework.data.facilidade}
+                    </p>
+                )}
+
+            </a>
+
+        ))}
+
+    </div>
 
 </BaseLayout>

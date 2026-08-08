@@ -1,22 +1,66 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const livros = await getCollection("livros");
 ---
 
 <BaseLayout
-    title="Autores | EstrategiaZ"
-    description="Grandes pensadores da estratégia empresarial">
+    title="Livros | EstratégiaZ"
+    description="Livros fundamentais para estratégia, gestão, liderança e negócios."
+>
 
-<section class="container">
+    <h1>Biblioteca Estratégica</h1>
 
-<h1>Autores</h1>
+    <p>
+        Livros fundamentais para estratégia, gestão, liderança e negócios.
+    </p>
 
-<p>
+    <div class="grid">
 
-Aqui você encontrará os principais autores da estratégia,
-administração, inovação e liderança.
+        {livros.map((livro) => (
 
-</p>
+            <a
+                class="card"
+                href={`/livros/${livro.id}`}
+            >
 
-</section>
+                <h2>{livro.data.title}</h2>
+
+                {livro.data.autor && (
+                    <p>
+                        <strong>Autor:</strong> {livro.data.autor}
+                    </p>
+                )}
+
+                {livro.data.ano && (
+                    <p>
+                        <strong>Ano:</strong> {livro.data.ano}
+                    </p>
+                )}
+
+                {livro.data.editora && (
+                    <p>
+                        <strong>Editora:</strong> {livro.data.editora}
+                    </p>
+                )}
+
+                {livro.data.score !== undefined && (
+                    <p>
+                        ⭐ <strong>EstratégiaZ:</strong> {livro.data.score}/10
+                    </p>
+                )}
+
+                {livro.data.aplicabilidade && (
+                    <p>
+                        <strong>Aplicabilidade:</strong> {livro.data.aplicabilidade}
+                    </p>
+                )}
+
+            </a>
+
+        ))}
+
+    </div>
 
 </BaseLayout>

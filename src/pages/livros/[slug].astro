@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const livros = await getCollection("livros");
+
+  return livros.map((livro) => ({
+    params: {
+      slug: livro.id,
+    },
+    props: {
+      livro,
+    },
+  }));
+}
+
+const { livro } = Astro.props;
+const { Content } = await livro.render();
+---
+
+<BaseLayout
+  title={`${livro.data.title} | EstratégiaZ`}
+  description={`Análise EstratégiaZ do livro ${livro.data.title}.`}
+>
+
+  <article>
+
+    <header>
+      <span>📚 Livro</span>
+
+      <h1>{livro.data.title}</h1>
+
+      {livro.data.autor && (
+        <p>
+          <strong>Autor:</strong> {livro.data.autor}
+        </p>
+      )}
+
+      {livro.data.ano && (
+        <p>
+          <strong>Ano:</strong> {livro.data.ano}
+        </p>
+      )}
+
+      {livro.data.editora && (
+        <p>
+          <strong>Editora:</strong> {livro.data.editora}
+        </p>
+      )}
+
+      {livro.data.score !== undefined && (
+        <div class="score">
+          ⭐ EstratégiaZ: {livro.data.score}/10
+        </div>
+      )}
+
+    </header>
+
+    <hr />
+
+    <Content />
+
+  </article>
+
+</BaseLayout>

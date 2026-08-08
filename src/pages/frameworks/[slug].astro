@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const frameworks = await getCollection("frameworks");
+
+  return frameworks.map((framework) => ({
+    params: {
+      slug: framework.id,
+    },
+    props: {
+      framework,
+    },
+  }));
+}
+
+const { framework } = Astro.props;
+const { Content } = await framework.render();
+---
+
+<BaseLayout
+  title={`${framework.data.title} | EstratégiaZ`}
+  description={`Análise EstratégiaZ do framework ${framework.data.title}.`}
+>
+
+  <article>
+
+    <header>
+
+      <span>🧩 Framework</span>
+
+      <h1>{framework.data.title}</h1>
+
+      {framework.data.criador && (
+        <p>
+          <strong>Criador:</strong> {framework.data.criador}
+        </p>
+      )}
+
+      {framework.data.ano && (
+        <p>
+          <strong>Ano:</strong> {framework.data.ano}
+        </p>
+      )}
+
+      {framework.data.categoria && (
+        <p>
+          <strong>Categoria:</strong> {framework.data.categoria}
+        </p>
+      )}
+
+      {framework.data.score !== undefined && (
+        <div class="score">
+          ⭐ EstratégiaZ: {framework.data.score}/10
+        </div>
+      )}
+
+    </header>
+
+    <hr />
+
+    <Content />
+
+  </article>
+
+</BaseLayout>
