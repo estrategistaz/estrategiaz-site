@@ -1,66 +1,85 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const livros = await getCollection("livros");
+    const livros = await getCollection("livros");
 
-  return livros.map((livro) => ({
-    params: {
-      slug: livro.id,
-    },
-    props: {
-      livro,
-    },
-  }));
+    return livros.map((livro) => ({
+        params: {
+            slug: livro.id,
+        },
+        props: {
+            livro,
+        },
+    }));
 }
 
 const { livro } = Astro.props;
-const { Content } = await livro.render();
+const { Content } = await render(livro);
 ---
 
 <BaseLayout
-  title={`${livro.data.title} | EstratégiaZ`}
-  description={`Análise EstratégiaZ do livro ${livro.data.title}.`}
+    title={`${livro.data.title} | EstratégiaZ`}
+    description={`Análise EstratégiaZ do livro ${livro.data.title}.`}
 >
 
-  <article>
+    <article class="content">
 
-    <header>
-      <span>📚 Livro</span>
+        <header>
 
-      <h1>{livro.data.title}</h1>
+            <span>📚 Livro</span>
 
-      {livro.data.autor && (
-        <p>
-          <strong>Autor:</strong> {livro.data.autor}
-        </p>
-      )}
+            <h1>{livro.data.title}</h1>
 
-      {livro.data.ano && (
-        <p>
-          <strong>Ano:</strong> {livro.data.ano}
-        </p>
-      )}
+            {livro.data.autor && (
+                <p>
+                    <strong>Autor:</strong> {livro.data.autor}
+                </p>
+            )}
 
-      {livro.data.editora && (
-        <p>
-          <strong>Editora:</strong> {livro.data.editora}
-        </p>
-      )}
+            {livro.data.ano && (
+                <p>
+                    <strong>Ano:</strong> {livro.data.ano}
+                </p>
+            )}
 
-      {livro.data.score !== undefined && (
-        <div class="score">
-          ⭐ EstratégiaZ: {livro.data.score}/10
-        </div>
-      )}
+            {livro.data.editora && (
+                <p>
+                    <strong>Editora:</strong> {livro.data.editora}
+                </p>
+            )}
 
-    </header>
+            {livro.data.score !== undefined && (
+                <div class="score">
+                    ⭐ EstratégiaZ: {livro.data.score}/10
+                </div>
+            )}
 
-    <hr />
+            {livro.data.relevancia && (
+                <p>
+                    <strong>Relevância:</strong> {livro.data.relevancia}
+                </p>
+            )}
 
-    <Content />
+            {livro.data.aplicabilidade && (
+                <p>
+                    <strong>Aplicabilidade:</strong> {livro.data.aplicabilidade}
+                </p>
+            )}
 
-  </article>
+            {livro.data.atualidade && (
+                <p>
+                    <strong>Atualidade:</strong> {livro.data.atualidade}
+                </p>
+            )}
+
+        </header>
+
+        <hr />
+
+        <Content />
+
+    </article>
 
 </BaseLayout>

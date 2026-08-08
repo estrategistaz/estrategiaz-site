@@ -1,67 +1,91 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const frameworks = await getCollection("frameworks");
+    const frameworks = await getCollection("frameworks");
 
-  return frameworks.map((framework) => ({
-    params: {
-      slug: framework.id,
-    },
-    props: {
-      framework,
-    },
-  }));
+    return frameworks.map((framework) => ({
+        params: {
+            slug: framework.id,
+        },
+        props: {
+            framework,
+        },
+    }));
 }
 
 const { framework } = Astro.props;
-const { Content } = await framework.render();
+const { Content } = await render(framework);
 ---
 
 <BaseLayout
-  title={`${framework.data.title} | EstratégiaZ`}
-  description={`Análise EstratégiaZ do framework ${framework.data.title}.`}
+    title={framework.data.title}
+    description={`Framework estratégico: ${framework.data.title}`}
 >
 
-  <article>
+    <article class="content">
 
-    <header>
+        <h1>{framework.data.title}</h1>
 
-      <span>🧩 Framework</span>
+        {framework.data.criador && (
+            <p>
+                <strong>Criador:</strong> {framework.data.criador}
+            </p>
+        )}
 
-      <h1>{framework.data.title}</h1>
+        {framework.data.ano && (
+            <p>
+                <strong>Ano:</strong> {framework.data.ano}
+            </p>
+        )}
 
-      {framework.data.criador && (
-        <p>
-          <strong>Criador:</strong> {framework.data.criador}
-        </p>
-      )}
+        {framework.data.categoria && (
+            <p>
+                <strong>Categoria:</strong> {framework.data.categoria}
+            </p>
+        )}
 
-      {framework.data.ano && (
-        <p>
-          <strong>Ano:</strong> {framework.data.ano}
-        </p>
-      )}
+        {framework.data.score !== undefined && (
+            <p>
+                ⭐ <strong>EstratégiaZ:</strong> {framework.data.score}/10
+            </p>
+        )}
 
-      {framework.data.categoria && (
-        <p>
-          <strong>Categoria:</strong> {framework.data.categoria}
-        </p>
-      )}
+        {framework.data.aplicabilidade && (
+            <p>
+                <strong>Aplicabilidade:</strong> {framework.data.aplicabilidade}
+            </p>
+        )}
 
-      {framework.data.score !== undefined && (
-        <div class="score">
-          ⭐ EstratégiaZ: {framework.data.score}/10
-        </div>
-      )}
+        {framework.data.facilidade && (
+            <p>
+                <strong>Facilidade:</strong> {framework.data.facilidade}
+            </p>
+        )}
 
-    </header>
+        {framework.data.profundidade && (
+            <p>
+                <strong>Profundidade:</strong> {framework.data.profundidade}
+            </p>
+        )}
 
-    <hr />
+        {framework.data.custo && (
+            <p>
+                <strong>Custo:</strong> {framework.data.custo}
+            </p>
+        )}
 
-    <Content />
+        {framework.data.tempo_aplicacao && (
+            <p>
+                <strong>Tempo de aplicação:</strong> {framework.data.tempo_aplicacao}
+            </p>
+        )}
 
-  </article>
+        <hr />
+
+        <Content />
+
+    </article>
 
 </BaseLayout>
