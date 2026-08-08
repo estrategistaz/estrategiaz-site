@@ -16,7 +16,13 @@ export async function getStaticPaths() {
 }
 
 const { livro } = Astro.props;
+
 const { Content } = await render(livro);
+
+const score = livro.data.score ?? 0;
+const aplicabilidade = livro.data.aplicabilidade ?? "Não avaliada";
+const relevancia = livro.data.relevancia ?? "Não avaliada";
+const atualidade = livro.data.atualidade ?? "Não avaliada";
 ---
 
 <BaseLayout
@@ -24,11 +30,11 @@ const { Content } = await render(livro);
     description={`Análise EstratégiaZ do livro ${livro.data.title}.`}
 >
 
-    <article class="content">
+<div class="detail-page">
 
-        <header>
+    <div class="detail-header">
 
-            <span>📚 Livro</span>
+        <div class="detail-main">
 
             <h1>{livro.data.title}</h1>
 
@@ -50,36 +56,58 @@ const { Content } = await render(livro);
                 </p>
             )}
 
-            {livro.data.score !== undefined && (
-                <div class="score">
-                    ⭐ EstratégiaZ: {livro.data.score}/10
-                </div>
-            )}
+        </div>
 
-            {livro.data.relevancia && (
-                <p>
-                    <strong>Relevância:</strong> {livro.data.relevancia}
-                </p>
-            )}
+        <div class="score-card">
 
-            {livro.data.aplicabilidade && (
-                <p>
-                    <strong>Aplicabilidade:</strong> {livro.data.aplicabilidade}
-                </p>
-            )}
+            <span class="score-label">
+                ESTRATEGIAZ SCORE
+            </span>
 
-            {livro.data.atualidade && (
-                <p>
-                    <strong>Atualidade:</strong> {livro.data.atualidade}
-                </p>
-            )}
+            <div class="score">
+                {score.toFixed(1)}
+                <span>/10</span>
+            </div>
 
-        </header>
+            <div class="score-stars">
+                ★★★★★
+            </div>
 
-        <hr />
+            <p>
+                Avaliação editorial EstratégiaZ
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="ratings-grid">
+
+        <div class="rating-item">
+            <span>Aplicabilidade</span>
+            <strong>{aplicabilidade}</strong>
+        </div>
+
+        <div class="rating-item">
+            <span>Relevância</span>
+            <strong>{relevancia}</strong>
+        </div>
+
+        <div class="rating-item">
+            <span>Atualidade</span>
+            <strong>{atualidade}</strong>
+        </div>
+
+    </div>
+
+
+    <div class="content">
 
         <Content />
 
-    </article>
+    </div>
+
+</div>
 
 </BaseLayout>

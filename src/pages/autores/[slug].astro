@@ -17,11 +17,15 @@ export async function getStaticPaths() {
 
 const { autor } = Astro.props;
 
-const { Content } = await render(autor);
-
 const score = autor.data.score ?? 0;
-const aplicabilidade = autor.data.aplicabilidade ?? "Não avaliada";
-const implementacao = autor.data.implementacao ?? "Não avaliada";
+
+const aplicabilidade =
+    autor.data.aplicabilidade ?? "Não avaliada";
+
+const implementacao =
+    autor.data.implementacao ?? "Não avaliada";
+
+const { Content } = await render(autor);
 ---
 
 <BaseLayout title={autor.data.title}>

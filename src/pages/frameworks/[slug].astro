@@ -16,76 +16,111 @@ export async function getStaticPaths() {
 }
 
 const { framework } = Astro.props;
+
 const { Content } = await render(framework);
+
+const score = framework.data.score ?? 0;
+const aplicabilidade = framework.data.aplicabilidade ?? "Não avaliada";
+const facilidade = framework.data.facilidade ?? "Não avaliada";
+const profundidade = framework.data.profundidade ?? "Não avaliada";
+const custo = framework.data.custo ?? "Não avaliado";
+const tempoAplicacao = framework.data.tempo_aplicacao ?? "Não avaliado";
 ---
 
 <BaseLayout
-    title={framework.data.title}
+    title={`${framework.data.title} | EstratégiaZ`}
     description={`Framework estratégico: ${framework.data.title}`}
 >
 
-    <article class="content">
+<div class="detail-page">
 
-        <h1>{framework.data.title}</h1>
+    <div class="detail-header">
 
-        {framework.data.criador && (
+        <div class="detail-main">
+
+            <h1>{framework.data.title}</h1>
+
+            {framework.data.criador && (
+                <p>
+                    <strong>Criador:</strong> {framework.data.criador}
+                </p>
+            )}
+
+            {framework.data.ano && (
+                <p>
+                    <strong>Ano:</strong> {framework.data.ano}
+                </p>
+            )}
+
+            {framework.data.categoria && (
+                <p>
+                    <strong>Categoria:</strong> {framework.data.categoria}
+                </p>
+            )}
+
+        </div>
+
+
+        <div class="score-card">
+
+            <span class="score-label">
+                ESTRATEGIAZ SCORE
+            </span>
+
+            <div class="score">
+                {score.toFixed(1)}
+                <span>/10</span>
+            </div>
+
+            <div class="score-stars">
+                ★★★★★
+            </div>
+
             <p>
-                <strong>Criador:</strong> {framework.data.criador}
+                Avaliação editorial EstratégiaZ
             </p>
-        )}
 
-        {framework.data.ano && (
-            <p>
-                <strong>Ano:</strong> {framework.data.ano}
-            </p>
-        )}
+        </div>
 
-        {framework.data.categoria && (
-            <p>
-                <strong>Categoria:</strong> {framework.data.categoria}
-            </p>
-        )}
+    </div>
 
-        {framework.data.score !== undefined && (
-            <p>
-                ⭐ <strong>EstratégiaZ:</strong> {framework.data.score}/10
-            </p>
-        )}
 
-        {framework.data.aplicabilidade && (
-            <p>
-                <strong>Aplicabilidade:</strong> {framework.data.aplicabilidade}
-            </p>
-        )}
+    <div class="ratings-grid">
 
-        {framework.data.facilidade && (
-            <p>
-                <strong>Facilidade:</strong> {framework.data.facilidade}
-            </p>
-        )}
+        <div class="rating-item">
+            <span>Aplicabilidade</span>
+            <strong>{aplicabilidade}</strong>
+        </div>
 
-        {framework.data.profundidade && (
-            <p>
-                <strong>Profundidade:</strong> {framework.data.profundidade}
-            </p>
-        )}
+        <div class="rating-item">
+            <span>Facilidade de aplicação</span>
+            <strong>{facilidade}</strong>
+        </div>
 
-        {framework.data.custo && (
-            <p>
-                <strong>Custo:</strong> {framework.data.custo}
-            </p>
-        )}
+        <div class="rating-item">
+            <span>Profundidade</span>
+            <strong>{profundidade}</strong>
+        </div>
 
-        {framework.data.tempo_aplicacao && (
-            <p>
-                <strong>Tempo de aplicação:</strong> {framework.data.tempo_aplicacao}
-            </p>
-        )}
+        <div class="rating-item">
+            <span>Custo</span>
+            <strong>{custo}</strong>
+        </div>
 
-        <hr />
+        <div class="rating-item">
+            <span>Tempo de aplicação</span>
+            <strong>{tempoAplicacao}</strong>
+        </div>
+
+    </div>
+
+
+    <div class="content">
 
         <Content />
 
-    </article>
+    </div>
+
+</div>
 
 </BaseLayout>

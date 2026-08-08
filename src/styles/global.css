@@ -1,69 +1,360 @@
-:root{
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
 
-    --primary:#2563eb;
-    --primary-dark:#1d4ed8;
+  --text: #1e293b;
+  --text-light: #64748b;
 
-    --text:#1e293b;
+  --background: #f8fafc;
+  --white: #ffffff;
 
-    --background:#f8fafc;
+  --border: #e2e8f0;
 
-    --white:#ffffff;
-
-    --border:#e2e8f0;
-
-    --max-width:1200px;
-
+  --max-width: 1200px;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body{
-
-    font-family:Inter,Arial,sans-serif;
-
-    background:var(--background);
-
-    color:var(--text);
-
-    line-height:1.7;
-
-}
-
-a{
-
-    text-decoration:none;
-
-    color:inherit;
-
-}
-
-img{
-
-    max-width:100%;
-
-}
-
-.container{
-
-    width:100%;
-    max-width:1200px;
-    margin:0 auto;
-    padding:0 20px;
-
-}
 html,
-body{
-
-    width:100%;
-    overflow-x:hidden;
-
+body {
+  width: 100%;
+  overflow-x: hidden;
 }
-*{
 
-    box-sizing:border-box;
+body {
+  font-family: Inter, Arial, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* =========================
+   ÁREA PRINCIPAL
+========================= */
+
+main {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+/* =========================
+   TÍTULOS
+========================= */
+
+main > h1 {
+  font-size: 42px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+main > p {
+  color: var(--text-light);
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+/* =========================
+   GRID DOS CARDS
+========================= */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  width: 100%;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+  display: block;
+
+  background: var(--white);
+
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  padding: 30px;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+
+  border-color: #cbd5e1;
+
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
+}
+
+.card h2 {
+  font-size: 24px;
+  line-height: 1.3;
+  margin-bottom: 18px;
+
+  color: var(--text);
+}
+
+.card p {
+  margin-bottom: 8px;
+  color: #475569;
+}
+
+.card strong {
+  color: var(--text);
+}
+
+.card small {
+  color: var(--text-light);
+}
+
+/* =========================
+   SCORE
+========================= */
+
+.card .score {
+  margin-top: 18px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: var(--primary);
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  main {
+    padding: 45px 25px;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  main {
+    padding: 35px 20px;
+  }
+
+  main > h1 {
+    font-size: 34px;
+  }
+}
+/* =========================
+   PÁGINAS INTERNAS
+========================= */
+
+.detail-page {
+  width: 100%;
+}
+
+.detail-header {
+  display: grid;
+  grid-template-columns: 1fr 255px;
+  gap: 40px;
+  align-items: start;
+}
+
+.detail-main h1 {
+  font-size: 48px;
+  line-height: 1.15;
+  margin-bottom: 35px;
+}
+
+.detail-main p {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.score-card {
+  background: var(--white);
+
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  padding: 28px 24px;
+
+  text-align: center;
+
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+
+.score-label {
+  display: block;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  color: #64748b;
+
+  margin-bottom: 20px;
+}
+
+.score-card .score {
+  font-size: 58px;
+  line-height: 1;
+
+  font-weight: 800;
+
+  color: var(--primary);
+
+  margin-bottom: 18px;
+}
+
+.score-card .score span {
+  font-size: 20px;
+  color: #64748b;
+}
+
+.score-stars {
+  font-size: 22px;
+  letter-spacing: 3px;
+
+  color: #f59e0b;
+
+  margin-bottom: 14px;
+}
+
+.score-card p {
+  font-size: 14px;
+  color: #64748b;
+}
+
+
+/* =========================
+   CRITÉRIOS DE AVALIAÇÃO
+========================= */
+
+.ratings-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 20px;
+
+  margin-top: 45px;
+  margin-bottom: 50px;
+}
+
+.rating-item {
+  background: var(--white);
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  padding: 22px 24px;
+}
+
+.rating-item span {
+  display: block;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  margin-bottom: 8px;
+}
+
+.rating-item strong {
+  font-size: 20px;
+
+  color: var(--text);
+}
+
+
+/* =========================
+   CONTEÚDO DA NOTA
+========================= */
+
+.detail-page .content {
+  max-width: 900px;
+
+  margin-top: 30px;
+}
+
+.detail-page .content h2 {
+  font-size: 30px;
+
+  margin-top: 45px;
+  margin-bottom: 15px;
+}
+
+.detail-page .content h3 {
+  font-size: 24px;
+
+  margin-top: 35px;
+  margin-bottom: 12px;
+}
+
+.detail-page .content p {
+  margin-bottom: 18px;
+}
+
+.detail-page .content ul {
+  margin-left: 25px;
+
+  margin-bottom: 20px;
+}
+
+.detail-page .content li {
+  margin-bottom: 8px;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 800px) {
+
+  .detail-header {
+    grid-template-columns: 1fr;
+  }
+
+  .score-card {
+    max-width: 320px;
+  }
+
+  .ratings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-main h1 {
+    font-size: 38px;
+  }
 
 }
