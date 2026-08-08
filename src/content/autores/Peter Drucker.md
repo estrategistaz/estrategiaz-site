@@ -1,28 +1,23 @@
 ---
 title: Peter Drucker
-
+tipo: autor
 pais: Áustria
-
 nascimento: 1909
 
-universidade: 
-- Claremont Graduate University
+universidade:
+  - Universidade de Hamburgo
+  - Universidade de Frankfurt
 
 area:
   - Administração
   - Gestão
-
-tags:
-  - Administração
-  - Gestão
+  - Estratégia
+  - Liderança
+  - Inovação
+  - Organizações
+  - Economia
+  - Sociedade
+score: 9.1
+aplicabilidade: Alta
+implementacao: Alta
 ---
-# Peter Drucker
-
-Peter Drucker é considerado o pai da administração moderna.
-
-## Principais contribuições
-
-- Administração por Objetivos
-- Gestão do Conhecimento
-- Inovação
-- Empreendedorismo
