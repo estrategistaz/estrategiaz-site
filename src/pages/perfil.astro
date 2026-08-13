@@ -1,0 +1,322 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Complete seu perfil | Estrategiaz"
+  description="Complete seu perfil de avaliador no Estrategiaz."
+>
+
+  <section class="perfil-page">
+
+    <div class="perfil-card">
+
+      <div class="perfil-brand">
+        ESTRATEGIAZ
+      </div>
+
+      <span class="perfil-kicker">
+        COMUNIDADE
+      </span>
+
+      <h1>Complete seu perfil</h1>
+
+      <p class="perfil-intro">
+        Antes de participar das avaliações, queremos conhecer um pouco
+        sobre o seu perfil.
+      </p>
+
+      <form id="perfil-form">
+
+        <div class="form-group">
+          <label for="cidade">Cidade</label>
+
+          <input
+            type="text"
+            id="cidade"
+            placeholder="Ex.: Balneário Camboriú"
+            autocomplete="address-level2"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+
+          <label for="segmento">
+            Você atua como
+          </label>
+
+          <select id="segmento" required>
+
+            <option value="">
+              Selecione
+            </option>
+
+            <option value="Professor de gestão">
+              Professor de gestão
+            </option>
+
+            <option value="Gestor">
+              Gestor
+            </option>
+
+            <option value="Empresário">
+              Empresário
+            </option>
+
+            <option value="Profissional">
+              Profissional
+            </option>
+
+            <option value="Estudante">
+              Estudante
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="formacao">
+            Grau de formação
+          </label>
+
+          <select id="formacao" required>
+
+            <option value="">
+              Selecione
+            </option>
+
+            <option value="Pós-graduado">
+              Pós-graduado
+            </option>
+
+            <option value="Graduado">
+              Graduado
+            </option>
+
+            <option value="Ensino médio">
+              Ensino médio
+            </option>
+
+            <option value="Ensino fundamental">
+              Ensino fundamental
+            </option>
+
+          </select>
+
+        </div>
+
+        <button
+          type="submit"
+          class="perfil-button"
+        >
+          Salvar e continuar
+        </button>
+
+      </form>
+
+      <p
+        id="mensagem"
+        class="perfil-message"
+      ></p>
+
+    </div>
+
+  </section>
+
+</BaseLayout>
+
+<script>
+  import { supabase } from "../lib/supabase.js";
+
+  const form = document.querySelector("#perfil-form");
+  const mensagem = document.querySelector("#mensagem");
+
+  if (
+    form instanceof HTMLFormElement &&
+    mensagem instanceof HTMLElement
+  ) {
+
+    form.addEventListener("submit", async (event) => {
+
+      event.preventDefault();
+
+      const cidadeElement =
+        document.querySelector("#cidade");
+
+      const segmentoElement =
+        document.querySelector("#segmento");
+
+      const formacaoElement =
+        document.querySelector("#formacao");
+
+      if (
+        !(cidadeElement instanceof HTMLInputElement) ||
+        !(segmentoElement instanceof HTMLSelectElement) ||
+        !(formacaoElement instanceof HTMLSelectElement)
+      ) {
+        mensagem.textContent =
+          "Não foi possível ler os campos.";
+        return;
+      }
+
+      mensagem.textContent =
+        "Salvando seu perfil...";
+
+      const {
+        data: {
+          user
+        }
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+
+        window.location.href =
+          "/login";
+
+        return;
+      }
+
+      const { error } =
+        await supabase
+          .from("perfis")
+          .upsert({
+            user_id: user.id,
+            nome: user.user_metadata?.nome ?? "",
+            email: user.email ?? "",
+            cidade: cidadeElement.value.trim(),
+            segmento: segmentoElement.value,
+            formacao: formacaoElement.value,
+            tipo_usuario: "avaliador"
+          });
+
+      if (error) {
+
+        console.error(error);
+
+        mensagem.textContent =
+          "Não foi possível salvar seu perfil.";
+
+        return;
+      }
+
+      mensagem.textContent =
+        "Perfil salvo. Bem-vindo à comunidade Estrategiaz!";
+
+      setTimeout(() => {
+
+        window.location.href =
+          "/autores";
+
+      }, 800);
+
+    });
+
+  }
+</script>
+
+<style>
+
+.perfil-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 20px;
+}
+
+.perfil-card {
+  width: 100%;
+  max-width: 460px;
+}
+
+.perfil-brand {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  margin-bottom: 36px;
+  color: #0f172a;
+}
+
+.perfil-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #64748b;
+}
+
+.perfil-card h1 {
+  margin: 10px 0;
+  font-size: 34px;
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.perfil-intro {
+  margin: 0 0 32px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: white;
+  color: #0f172a;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #64748b;
+  box-shadow:
+    0 0 0 3px rgba(100, 116, 139, 0.12);
+}
+
+.perfil-button {
+  width: 100%;
+  height: 46px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: #0f172a;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.perfil-button:hover {
+  opacity: 0.9;
+}
+
+.perfil-message {
+  min-height: 24px;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #475569;
+}
+
+</style>

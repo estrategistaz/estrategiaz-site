@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Confirmando acesso | Estrategiaz"
+  description="Confirmando seu acesso ao Estrategiaz."
+>
+
+  <div class="auth-page">
+
+    <div class="auth-card">
+
+      <div class="auth-brand">
+        ESTRATEGIAZ
+      </div>
+
+      <h1>Confirmando seu acesso</h1>
+
+      <p
+        id="mensagem"
+        class="auth-message"
+      >
+        Aguarde um instante...
+      </p>
+
+    </div>
+
+  </div>
+
+  <script>
+    import { supabase } from "../lib/supabase.js";
+
+    const mensagem =
+      document.querySelector("#mensagem");
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const redirect =
+      params.get("redirect") || "/autores";
+
+    const verificarSessao =
+      async () => {
+
+        const {
+          data,
+          error
+        } = await supabase.auth.getSession();
+
+        if (error) {
+
+          console.error(error);
+
+          if (mensagem) {
+            mensagem.textContent =
+              "Não foi possível confirmar seu acesso.";
+          }
+
+          return;
+        }
+
+        if (data.session) {
+
+          window.location.href =
+            redirect;
+
+          return;
+        }
+
+        if (mensagem) {
+          mensagem.textContent =
+            "Sua confirmação foi concluída. Faça login para continuar.";
+        }
+
+        setTimeout(() => {
+
+          window.location.href =
+            `/login?redirect=${encodeURIComponent(redirect)}`;
+
+        }, 1500);
+
+      };
+
+    verificarSessao();
+  </script>
+
+</BaseLayout>

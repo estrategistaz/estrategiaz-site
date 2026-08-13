@@ -358,3 +358,186 @@ main > p {
   }
 
 }
+
+.community-rating {
+  margin: 40px 0;
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--white);
+}
+
+.community-rating h2 {
+  margin-bottom: 10px;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 6px;
+  margin: 20px 0 10px;
+}
+
+.rating-stars button {
+  border: none;
+  background: transparent;
+  font-size: 34px;
+  cursor: pointer;
+  color: #cbd5e1;
+  transition: transform 0.15s ease;
+}
+
+.rating-stars button:hover {
+  transform: scale(1.15);
+  color: #f59e0b;
+}
+
+.rating-stars button.selected {
+  color: #f59e0b;
+}
+/* =========================================
+   AUTENTICAÇÃO — ESTRATEGIAZ
+   ========================================= */
+
+.auth-page {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 20px;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 430px;
+  padding: 42px;
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 18px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+}
+
+.auth-brand {
+  margin-bottom: 28px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #111111;
+}
+
+.auth-card h1 {
+  margin: 0 0 10px;
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: #111111;
+}
+
+.auth-intro {
+  margin: 0 0 30px;
+  color: #6b6b6b;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.form-group input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #111111;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group input:focus {
+  border-color: #999999;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+}
+
+.auth-button {
+  width: 100%;
+  margin-top: 4px;
+  padding: 13px 18px;
+  border: 0;
+  border-radius: 9px;
+  background: #111111;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.auth-button:hover {
+  background: #2a2a2a;
+}
+
+.auth-button:active {
+  transform: translateY(1px);
+}
+
+.auth-message {
+  min-height: 22px;
+  margin: 18px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555555;
+}
+
+.auth-footer {
+  margin: 28px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid #eeeeee;
+  text-align: center;
+  font-size: 14px;
+  color: #777777;
+}
+
+.auth-footer a {
+  color: #111111;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+
+  .auth-page {
+    padding: 40px 16px;
+  }
+
+  .auth-card {
+    padding: 30px 24px;
+    border-radius: 14px;
+  }
+
+  .auth-card h1 {
+    font-size: 28px;
+  }
+
+}

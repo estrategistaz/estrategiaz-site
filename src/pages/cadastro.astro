@@ -1,0 +1,203 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Criar conta | Estrategiaz"
+  description="Crie sua conta gratuitamente no Estrategiaz."
+>
+
+  <div class="auth-page">
+
+    <div class="auth-card">
+
+      <div class="auth-brand">
+        ESTRATEGIAZ
+      </div>
+
+      <h1>Criar sua conta</h1>
+
+      <p class="auth-intro">
+        Participe das avaliações da comunidade Estrategiaz.
+      </p>
+
+      <form id="cadastro-form">
+
+        <div class="form-group">
+          <label for="nome">
+            Nome
+          </label>
+
+          <input
+            type="text"
+            id="nome"
+            autocomplete="name"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            E-mail
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            autocomplete="email"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="senha">
+            Senha
+          </label>
+
+          <input
+            type="password"
+            id="senha"
+            autocomplete="new-password"
+            minlength="6"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="auth-button"
+        >
+          Criar conta
+        </button>
+
+      </form>
+
+      <p
+        id="mensagem"
+        class="auth-message"
+      ></p>
+
+      <p class="auth-footer">
+        Já possui uma conta?
+        <a href="/login">Entrar</a>
+      </p>
+
+    </div>
+
+  </div>
+
+  <script>
+    import { supabase } from "../lib/supabase.js";
+
+    const form =
+      document.querySelector("#cadastro-form");
+
+    const mensagem =
+      document.querySelector("#mensagem");
+
+    if (!(form instanceof HTMLFormElement)) {
+      throw new Error(
+        "Formulário de cadastro não encontrado."
+      );
+    }
+
+    if (!(mensagem instanceof HTMLElement)) {
+      throw new Error(
+        "Mensagem de cadastro não encontrada."
+      );
+    }
+
+    form.addEventListener("submit", async (event) => {
+
+      event.preventDefault();
+
+      const nomeInput =
+        document.querySelector("#nome");
+
+      const emailInput =
+        document.querySelector("#email");
+
+      const senhaInput =
+        document.querySelector("#senha");
+
+      if (!(nomeInput instanceof HTMLInputElement)) {
+        return;
+      }
+
+      if (!(emailInput instanceof HTMLInputElement)) {
+        return;
+      }
+
+      if (!(senhaInput instanceof HTMLInputElement)) {
+        return;
+      }
+
+      const nome =
+        nomeInput.value.trim();
+
+      const email =
+        emailInput.value.trim();
+
+      const senha =
+        senhaInput.value;
+
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
+
+      const redirect =
+        params.get("redirect") || "/autores";
+
+      const callbackUrl =
+        `${window.location.origin}/auth-callback?redirect=${encodeURIComponent(redirect)}`;
+
+      mensagem.textContent =
+        "Criando sua conta...";
+
+      const { data, error } =
+        await supabase.auth.signUp({
+
+          email,
+
+          password: senha,
+
+          options: {
+
+            emailRedirectTo:
+              callbackUrl,
+
+            data: {
+              nome
+            }
+
+          }
+
+        });
+
+      if (error) {
+
+        console.error(error);
+
+        mensagem.textContent =
+          error.message;
+
+        return;
+      }
+
+      if (!data.session) {
+
+        mensagem.textContent =
+          "Conta criada. Verifique seu e-mail para confirmar o cadastro.";
+
+        return;
+      }
+
+      window.location.href =
+        redirect;
+
+    });
+
+  </script>
+
+</BaseLayout>
