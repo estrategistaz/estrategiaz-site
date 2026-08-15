@@ -38,6 +38,7 @@ const { Content } = await render(autor);
     <div class="autor-header">
 
       <!-- INFORMAÇÕES DO AUTOR -->
+
       <div class="autor-main">
 
         <h1>{autor.data.title}</h1>
@@ -72,6 +73,7 @@ const { Content } = await render(autor);
 
 
       <!-- ESTRATEGIAZ SCORE -->
+
       <div class="score-card">
 
         <span class="score-label">
@@ -95,176 +97,229 @@ const { Content } = await render(autor);
 
 
       <!-- AVALIAÇÃO DA COMUNIDADE -->
-<section
-  class="community-rating"
-  id="rating-area"
->
 
-  <div class="community-heading">
-
-    <span class="community-eyebrow">
-      AVALIAÇÃO DA COMUNIDADE
-    </span>
-
-    <h2>
-      O que você acha deste autor?
-    </h2>
-
-    <p>
-      Avalie o trabalho de {autor.data.title} e
-      compartilhe sua experiência com outros profissionais.
-    </p>
-
-  </div>
-
-
-  <div
-    id="rating-stars"
-    data-conteudo-id={autor.id}
-    class="rating-stars"
-  >
-
-    <button
-      type="button"
-      data-rating="1"
-      aria-label="Avaliar com 1 estrela"
-    >
-      ★
-    </button>
-
-    <button
-      type="button"
-      data-rating="2"
-      aria-label="Avaliar com 2 estrelas"
-    >
-      ★
-    </button>
-
-    <button
-      type="button"
-      data-rating="3"
-      aria-label="Avaliar com 3 estrelas"
-    >
-      ★
-    </button>
-
-    <button
-      type="button"
-      data-rating="4"
-      aria-label="Avaliar com 4 estrelas"
-    >
-      ★
-    </button>
-
-    <button
-      type="button"
-      data-rating="5"
-      aria-label="Avaliar com 5 estrelas"
-    >
-      ★
-    </button>
-
-  </div>
-
-
-  <p
-    id="rating-hint"
-    class="rating-hint"
-  >
-    Selecione uma nota de 1 a 5.
-  </p>
-
-
-  <div
-    id="rating-message"
-    class="rating-message"
-    aria-live="polite"
-  ></div>
-
-
-  <!-- ÁREA QUE APARECE DEPOIS DA AVALIAÇÃO -->
-
-  <div
-    id="comment-area"
-    class="comment-area"
-    hidden
-  >
-
-    <div class="review-user">
-
-      <div
-        class="review-avatar"
-        id="review-avatar"
+      <section
+        class="community-rating"
+        id="rating-area"
       >
-        E
-      </div>
 
-      <div class="review-user-info">
+        <div class="community-heading">
 
-        <strong id="review-user-name">
-          Avaliando como você
-        </strong>
+          <span class="community-eyebrow">
+            AVALIAÇÃO DA COMUNIDADE
+          </span>
 
-        <span>
-          Sua opinião ajuda a comunidade Estrategiaz.
-        </span>
+          <h2>
+            O que você acha deste autor?
+          </h2>
 
-      </div>
+          <p>
+            Avalie o trabalho de {autor.data.title}
+            e compartilhe sua experiência com outros profissionais.
+          </p>
 
-    </div>
-
-
-    <label for="comentario">
-      Compartilhe sua opinião
-    </label>
+        </div>
 
 
-    <textarea
-      id="comentario"
-      maxlength="1000"
-      placeholder="O que você acha do trabalho deste autor? Conte sua experiência, aplicação prática ou principal aprendizado..."
-    ></textarea>
+        <!-- MÉDIA DA COMUNIDADE -->
+
+        <div
+          class="community-result"
+          id="community-result"
+        >
+
+          <div
+            class="community-average-stars"
+            id="community-average-stars"
+          >
+            ☆☆☆☆☆
+          </div>
+
+          <div class="community-average-info">
+
+            <strong id="community-average">
+              —
+            </strong>
+
+            <span>
+              /5
+            </span>
+
+          </div>
+
+          <p id="community-count">
+            Ainda não há avaliações.
+          </p>
+
+        </div>
 
 
-    <div class="comment-footer">
+        <!-- ESTRELAS PARA O USUÁRIO -->
 
-      <span id="comment-counter">
-        0/1000
-      </span>
+        <div
+          id="rating-stars"
+          data-conteudo-id={autor.id}
+          class="rating-stars"
+        >
 
-      <button
-        type="button"
-        id="comment-button"
-      >
-        Publicar comentário
-      </button>
+          <button
+            type="button"
+            data-rating="1"
+            aria-label="Avaliar com 1 estrela"
+          >
+            ★
+          </button>
 
-    </div>
+          <button
+            type="button"
+            data-rating="2"
+            aria-label="Avaliar com 2 estrelas"
+          >
+            ★
+          </button>
 
-  </div>
+          <button
+            type="button"
+            data-rating="3"
+            aria-label="Avaliar com 3 estrelas"
+          >
+            ★
+          </button>
 
-</section>
+          <button
+            type="button"
+            data-rating="4"
+            aria-label="Avaliar com 4 estrelas"
+          >
+            ★
+          </button>
+
+          <button
+            type="button"
+            data-rating="5"
+            aria-label="Avaliar com 5 estrelas"
+          >
+            ★
+          </button>
+
+        </div>
+
+
+        <p
+          id="rating-hint"
+          class="rating-hint"
+        >
+          Selecione uma nota de 1 a 5.
+        </p>
+
+
+        <div
+          id="rating-message"
+          class="rating-message"
+          aria-live="polite"
+        ></div>
+
+
+        <!-- ÁREA DO COMENTÁRIO -->
+
+        <div
+          id="comment-area"
+          class="comment-area"
+          hidden
+        >
+
+          <div class="review-user">
+
+            <div
+              class="review-avatar"
+              id="review-avatar"
+            >
+              E
+            </div>
+
+            <div class="review-user-info">
+
+              <strong id="review-user-name">
+                Avaliando como você
+              </strong>
+
+              <span>
+                Sua opinião ajuda a comunidade Estrategiaz.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <label for="comentario">
+            Compartilhe sua opinião
+          </label>
+
+
+          <textarea
+            id="comentario"
+            maxlength="1000"
+            placeholder="O que você acha do trabalho deste autor? Conte sua experiência, aplicação prática ou principal aprendizado..."
+          ></textarea>
+
+
+          <div class="comment-footer">
+
+            <span id="comment-counter">
+              0/1000
+            </span>
+
+            <button
+              type="button"
+              id="comment-button"
+            >
+              Publicar comentário
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
 
     </div>
 
 
     <!-- AVALIAÇÕES EDITORIAIS -->
+
     <div class="rating-grid">
 
       <div class="rating-item">
-        <span>Aplicabilidade</span>
-        <strong>{aplicabilidade}</strong>
+
+        <span>
+          Aplicabilidade
+        </span>
+
+        <strong>
+          {aplicabilidade}
+        </strong>
+
       </div>
 
+
       <div class="rating-item">
-        <span>Implementação</span>
-        <strong>{implementacao}</strong>
+
+        <span>
+          Implementação
+        </span>
+
+        <strong>
+          {implementacao}
+        </strong>
+
       </div>
 
     </div>
 
 
     <!-- CONTEÚDO DO AUTOR -->
+
     <article class="autor-content">
 
       <Content />
@@ -275,403 +330,882 @@ const { Content } = await render(autor);
 
 
   <script>
-  import { supabase } from "../../lib/supabase.js";
+    import { supabase } from "../../lib/supabase.js";
 
-  const stars =
-    document.querySelectorAll("#rating-stars button");
 
-  const ratingContainer =
-    document.querySelector("#rating-stars");
+    /*
+     * ELEMENTOS DA PÁGINA
+     */
 
-  const message =
-    document.querySelector("#rating-message");
-
-  const hint =
-    document.querySelector("#rating-hint");
-
-  const commentArea =
-    document.querySelector("#comment-area");
-
-  const commentInput =
-    document.querySelector("#comentario");
-
-  const commentButton =
-    document.querySelector("#comment-button");
-
-  const commentCounter =
-    document.querySelector("#comment-counter");
-
-  const userName =
-    document.querySelector("#review-user-name");
-
-  const avatar =
-    document.querySelector("#review-avatar");
-
-  if (
-    !(ratingContainer instanceof HTMLElement) ||
-    !(message instanceof HTMLElement) ||
-    !(hint instanceof HTMLElement) ||
-    !(commentArea instanceof HTMLElement) ||
-    !(commentInput instanceof HTMLTextAreaElement) ||
-    !(commentButton instanceof HTMLButtonElement) ||
-    !(commentCounter instanceof HTMLElement) ||
-    !(userName instanceof HTMLElement) ||
-    !(avatar instanceof HTMLElement)
-  ) {
-    throw new Error(
-      "Elementos da avaliação não encontrados."
-    );
-  }
-
-  const conteudoTipo = "autor";
-
-  const conteudoId =
-    ratingContainer.dataset.conteudoId;
-
-  if (!conteudoId) {
-    throw new Error(
-      "ID do autor não encontrado."
-    );
-  }
-
-  function pintarEstrelas(nota) {
-
-    stars.forEach((button) => {
-
-      const valor =
-        Number(button.getAttribute("data-rating"));
-
-      button.classList.toggle(
-        "selected",
-        valor <= nota
+    const stars =
+      document.querySelectorAll<HTMLButtonElement>(
+        "#rating-stars button"
       );
 
-    });
 
-  }
+    const ratingContainer =
+      document.querySelector("#rating-stars");
 
-  async function carregarAvaliacao() {
 
-    const {
-      data: {
-        user
-      }
-    } = await supabase.auth.getUser();
+    const message =
+      document.querySelector("#rating-message");
 
-    if (!user) {
-      return;
+
+    const hint =
+      document.querySelector("#rating-hint");
+
+
+    const commentArea =
+      document.querySelector("#comment-area");
+
+
+    const commentInput =
+      document.querySelector("#comentario");
+
+
+    const commentButton =
+      document.querySelector("#comment-button");
+
+
+    const commentCounter =
+      document.querySelector("#comment-counter");
+
+
+    const userName =
+      document.querySelector("#review-user-name");
+
+
+    const avatar =
+      document.querySelector("#review-avatar");
+
+
+    const communityAverage =
+      document.querySelector("#community-average");
+
+
+    const communityCount =
+      document.querySelector("#community-count");
+
+
+    const communityAverageStars =
+      document.querySelector(
+        "#community-average-stars"
+      );
+
+
+    /*
+     * VERIFICAÇÕES
+     */
+
+    if (
+      !(ratingContainer instanceof HTMLElement) ||
+      !(message instanceof HTMLElement) ||
+      !(hint instanceof HTMLElement) ||
+      !(commentArea instanceof HTMLElement) ||
+      !(commentInput instanceof HTMLTextAreaElement) ||
+      !(commentButton instanceof HTMLButtonElement) ||
+      !(commentCounter instanceof HTMLElement) ||
+      !(userName instanceof HTMLElement) ||
+      !(avatar instanceof HTMLElement) ||
+      !(communityAverage instanceof HTMLElement) ||
+      !(communityCount instanceof HTMLElement) ||
+      !(communityAverageStars instanceof HTMLElement)
+    ) {
+      throw new Error(
+        "Elementos da avaliação não encontrados."
+      );
     }
 
-    const {
-      data: avaliacao,
-      error
-    } = await supabase
-      .from("avaliacoes")
-      .select("nota, comentario")
-      .eq("user_id", user.id)
-      .eq("conteudo_tipo", conteudoTipo)
-      .eq("conteudo_id", conteudoId)
-      .maybeSingle();
 
-    if (error) {
+    /*
+     * DADOS DO CONTEÚDO
+     */
 
-      console.error(
-        "Erro ao carregar avaliação:",
+    const conteudoTipo = "autor";
+
+
+    const conteudoId =
+      ratingContainer.dataset.conteudoId;
+
+
+    if (!conteudoId) {
+
+      throw new Error(
+        "ID do autor não encontrado."
+      );
+
+    }
+
+
+    /*
+     * PINTA AS ESTRELAS DO USUÁRIO
+     */
+
+    function pintarEstrelas(
+      nota: number
+    ) {
+
+      stars.forEach(
+        (button) => {
+
+          const valor =
+            Number(
+              button.getAttribute(
+                "data-rating"
+              )
+            );
+
+          button.classList.toggle(
+            "selected",
+            valor <= nota
+          );
+
+        }
+      );
+
+    }
+
+
+    /*
+     * CARREGA A MÉDIA DA COMUNIDADE
+     */
+
+    async function carregarMediaComunidade() {
+
+      const {
+        data,
         error
-      );
+            } = await supabase
+        .from("avaliacoes")
+        .select("nota")
+        .eq(
+          "conteudo_tipo",
+          "autor"
+        )
+        .eq(
+          "conteudo_id",
+          conteudoId
+        );
 
-      return;
-    }
 
-    if (!avaliacao) {
-      return;
-    }
+      if (error) {
 
-    pintarEstrelas(avaliacao.nota);
+        console.error(
+          "Erro ao carregar média da comunidade:",
+          error
+        );
 
-    hint.textContent =
-      "Você já avaliou este autor.";
+        communityAverage.textContent =
+          "—";
 
-    message.textContent =
-      `Sua avaliação: ${avaliacao.nota}/5`;
+        communityCount.textContent =
+          "Ainda não há avaliações.";
 
-    commentArea.hidden = false;
+        communityAverageStars.textContent =
+          "☆☆☆☆☆";
 
-    const nome =
-      user.user_metadata?.nome ||
-      user.user_metadata?.full_name ||
-      user.email ||
-      "Avaliador";
-
-    userName.textContent =
-      `Avaliando como ${nome}`;
-
-    avatar.textContent =
-      nome.charAt(0).toUpperCase();
-
-    if (avaliacao.comentario) {
-
-      commentInput.value =
-        avaliacao.comentario;
-
-      commentCounter.textContent =
-        `${avaliacao.comentario.length}/1000`;
-
-      commentButton.textContent =
-        "Atualizar comentário";
-    }
-
-  }
-
-  stars.forEach((star) => {
-
-    star.addEventListener(
-      "click",
-      async () => {
-
-        const nota =
-          Number(
-            star.getAttribute("data-rating")
-          );
-
-        const {
-          data: {
-            user
-          }
-        } = await supabase.auth.getUser();
-
-        if (!user) {
-
-          window.location.href =
-            `/login?redirect=/autores/${conteudoId}`;
-
-          return;
-        }
-
-        stars.forEach((button) => {
-          button.disabled = true;
-        });
-
-        const {
-          data: existente,
-          error: buscaError
-        } = await supabase
-          .from("avaliacoes")
-          .select("id")
-          .eq("user_id", user.id)
-          .eq("conteudo_tipo", conteudoTipo)
-          .eq("conteudo_id", conteudoId)
-          .maybeSingle();
-
-        if (buscaError) {
-
-          console.error(
-            "Erro ao verificar avaliação:",
-            buscaError
-          );
-
-          message.textContent =
-            "Não foi possível verificar sua avaliação.";
-
-          stars.forEach((button) => {
-            button.disabled = false;
-          });
-
-          return;
-        }
-
-        let error;
-
-        if (existente) {
-
-          const resultado =
-            await supabase
-              .from("avaliacoes")
-              .update({
-                nota
-              })
-              .eq("id", existente.id)
-              .eq("user_id", user.id);
-
-          error = resultado.error;
-
-        } else {
-
-          const resultado =
-            await supabase
-              .from("avaliacoes")
-              .insert({
-                user_id: user.id,
-                conteudo_tipo: conteudoTipo,
-                conteudo_id: conteudoId,
-                nota,
-                publicado: false
-              });
-
-          error = resultado.error;
-
-        }
-
-        if (error) {
-
-          console.error(
-            "Erro ao registrar avaliação:",
-            error
-          );
-
-          message.textContent =
-            `Erro ao registrar: ${error.message}`;
-
-          stars.forEach((button) => {
-            button.disabled = false;
-          });
-
-          return;
-        }
-
-        pintarEstrelas(nota);
-
-        hint.textContent =
-          "Você já avaliou este autor.";
-
-        message.textContent =
-          `Sua avaliação: ${nota}/5`;
-
-        commentArea.hidden = false;
-
-        const nome =
-          user.user_metadata?.nome ||
-          user.user_metadata?.full_name ||
-          user.email ||
-          "Avaliador";
-
-        userName.textContent =
-          `Avaliando como ${nome}`;
-
-        avatar.textContent =
-          nome.charAt(0).toUpperCase();
-
-        stars.forEach((button) => {
-          button.disabled = false;
-        });
+        return;
 
       }
-    );
 
-  });
 
-  commentInput.addEventListener(
-    "input",
-    () => {
+      /*
+       * Ainda não existem avaliações.
+       */
 
-      commentCounter.textContent =
-        `${commentInput.value.length}/1000`;
+            if (!data || data.length === 0) {
+
+        communityAverage.textContent =
+          "—";
+
+        communityCount.textContent =
+          "Ainda não há avaliações.";
+
+        communityAverageStars.textContent =
+          "☆☆☆☆☆";
+
+        return;
+
+      }
+
+
+      const quantidade =
+        data.length;
+
+
+      const soma =
+        data.reduce(
+          (
+            total: number,
+            avaliacao: { nota: number }
+          ) =>
+            total + Number(avaliacao.nota),
+          0
+        );
+
+
+      const media =
+        soma / quantidade;
+
+
+      /*
+       * Mostra a média.
+       */
+
+      communityAverage.textContent =
+        media.toFixed(1);
+
+
+      /*
+       * Mostra a quantidade.
+       */
+
+      if (quantidade === 1) {
+
+        communityCount.textContent =
+          "1 avaliação da comunidade.";
+
+      } else {
+
+        communityCount.textContent =
+          `${quantidade} avaliações da comunidade.`;
+
+      }
+
+
+      /*
+       * Calcula as estrelas visuais.
+       *
+       * Exemplo:
+       *
+       * 4.3 → ★★★★☆
+       * 3.6 → ★★★★☆
+       * 2.2 → ★★☆☆☆
+       */
+
+      const estrelasCheias =
+        Math.round(media);
+
+
+      let estrelas =
+        "";
+
+      for (
+        let i = 1;
+        i <= 5;
+        i++
+      ) {
+
+        estrelas +=
+          i <= estrelasCheias
+            ? "★"
+            : "☆";
+
+      }
+
+
+      communityAverageStars.textContent =
+        estrelas;
 
     }
-  );
 
-  commentButton.addEventListener(
-    "click",
-    async () => {
+
+    /*
+     * CARREGA A AVALIAÇÃO DO USUÁRIO
+     */
+
+    async function carregarAvaliacao() {
 
       const {
         data: {
           user
         }
-      } = await supabase.auth.getUser();
+      } =
+        await supabase.auth.getUser();
+
+
+      /*
+       * Usuário ainda não está logado.
+       */
 
       if (!user) {
-        return;
-      }
-
-      const comentario =
-        commentInput.value.trim();
-
-      if (!comentario) {
-
-        message.textContent =
-          "Escreva um comentário antes de publicar.";
 
         return;
+
       }
 
-      commentButton.disabled = true;
-
-      commentButton.textContent =
-        "Publicando...";
 
       const {
         data: avaliacao,
-        error: buscaError
-      } = await supabase
-        .from("avaliacoes")
-        .select("id")
-        .eq("user_id", user.id)
-        .eq("conteudo_tipo", conteudoTipo)
-        .eq("conteudo_id", conteudoId)
-        .maybeSingle();
-
-      if (buscaError || !avaliacao) {
-
-        console.error(
-          "Erro ao encontrar avaliação:",
-          buscaError
-        );
-
-        message.textContent =
-          "Faça sua avaliação antes de publicar um comentário.";
-
-        commentButton.disabled = false;
-        commentButton.textContent =
-          "Publicar comentário";
-
-        return;
-      }
-
-      const {
         error
-      } = await supabase
-        .from("avaliacoes")
-        .update({
-          comentario
-        })
-        .eq("id", avaliacao.id)
-        .eq("user_id", user.id);
+      } =
+        await supabase
+          .from("avaliacoes")
+          .select(
+            "nota, comentario"
+          )
+          .eq(
+            "user_id",
+            user.id
+          )
+          .eq(
+            "conteudo_tipo",
+            conteudoTipo
+          )
+          .eq(
+            "conteudo_id",
+            conteudoId
+          )
+          .maybeSingle();
+
 
       if (error) {
 
         console.error(
-          "Erro ao publicar comentário:",
+          "Erro ao carregar avaliação:",
           error
         );
 
-        message.textContent =
-          `Erro ao publicar: ${error.message}`;
-
-        commentButton.disabled = false;
-        commentButton.textContent =
-          "Publicar comentário";
-
         return;
+
       }
 
+
+      if (!avaliacao) {
+
+        return;
+
+      }
+
+
+      /*
+       * Mostra a avaliação já feita.
+       */
+
+      const notaAnterior =
+        Number(
+          avaliacao.nota
+        );
+
+
+      pintarEstrelas(
+        notaAnterior
+      );
+
+
+      hint.textContent =
+        "Você já avaliou este autor.";
+
+
       message.textContent =
-        "Comentário salvo com sucesso.";
+        `Sua avaliação: ${notaAnterior}/5`;
 
-      commentButton.disabled = false;
 
-      commentButton.textContent =
-        "Atualizar comentário";
+      commentArea.hidden =
+        false;
+
+
+      /*
+       * Nome do usuário.
+       */
+
+      const nome =
+        user.user_metadata?.nome ||
+        user.user_metadata?.full_name ||
+        user.email ||
+        "Avaliador";
+
+
+      userName.textContent =
+        `Avaliando como ${nome}`;
+
+
+      avatar.textContent =
+        nome
+          .charAt(0)
+          .toUpperCase();
+
+
+      /*
+       * Comentário existente.
+       */
+
+      if (avaliacao.comentario) {
+
+        commentInput.value =
+          avaliacao.comentario;
+
+
+        commentCounter.textContent =
+          `${avaliacao.comentario.length}/1000`;
+
+
+        commentButton.textContent =
+          "Atualizar comentário";
+
+      }
 
     }
-  );
 
-  carregarAvaliacao();
-</script>
+
+    /*
+     * CLIQUE NAS ESTRELAS
+     */
+
+    stars.forEach(
+      (star) => {
+
+        star.addEventListener(
+          "click",
+          async () => {
+
+            const nota =
+              Number(
+                star.getAttribute(
+                  "data-rating"
+                )
+              );
+
+
+            const {
+              data: {
+                user
+              }
+            } =
+              await supabase.auth.getUser();
+
+
+            /*
+             * Usuário não logado.
+             *
+             * Vai para o login preservando
+             * o autor.
+             */
+
+            if (!user) {
+
+              window.location.href =
+                `/login?redirect=/autores/${conteudoId}`;
+
+              return;
+
+            }
+
+
+            /*
+             * Desabilita as estrelas
+             * durante o salvamento.
+             */
+
+            stars.forEach(
+              (button) => {
+                button.disabled =
+                  true;
+              }
+            );
+
+
+            message.textContent =
+              "Registrando sua avaliação...";
+
+
+            /*
+             * Verifica se já existe avaliação.
+             */
+
+            const {
+              data: existente,
+              error: buscaError
+            } =
+              await supabase
+                .from("avaliacoes")
+                .select("id")
+                .eq(
+                  "user_id",
+                  user.id
+                )
+                .eq(
+                  "conteudo_tipo",
+                  conteudoTipo
+                )
+                .eq(
+                  "conteudo_id",
+                  conteudoId
+                )
+                .maybeSingle();
+
+
+            if (buscaError) {
+
+              console.error(
+                "Erro ao verificar avaliação:",
+                buscaError
+              );
+
+
+              message.textContent =
+                "Não foi possível verificar sua avaliação.";
+
+
+              stars.forEach(
+                (button) => {
+                  button.disabled =
+                    false;
+                }
+              );
+
+
+              return;
+
+            }
+
+
+            let error;
+
+
+            /*
+             * Se já existe:
+             * atualiza a nota.
+             */
+
+            if (existente) {
+
+              const resultado =
+                await supabase
+                  .from("avaliacoes")
+                  .update({
+                    nota
+                  })
+                  .eq(
+                    "id",
+                    existente.id
+                  )
+                  .eq(
+                    "user_id",
+                    user.id
+                  );
+
+
+              error =
+                resultado.error;
+
+            }
+
+            /*
+             * Se não existe:
+             * cria uma nova avaliação.
+             */
+
+            else {
+
+              const resultado =
+                await supabase
+                  .from("avaliacoes")
+                  .insert({
+                    user_id:
+                      user.id,
+
+                    conteudo_tipo:
+                      conteudoTipo,
+
+                    conteudo_id:
+                      conteudoId,
+
+                    nota,
+
+                    publicado:
+                      false
+                  });
+
+
+              error =
+                resultado.error;
+
+            }
+
+
+            /*
+             * ERRO
+             */
+
+            if (error) {
+
+              console.error(
+                "Erro ao registrar avaliação:",
+                error
+              );
+
+
+              message.textContent =
+                `Erro ao registrar: ${error.message}`;
+
+
+              stars.forEach(
+                (button) => {
+                  button.disabled =
+                    false;
+                }
+              );
+
+
+              return;
+
+            }
+
+
+            /*
+             * SUCESSO
+             */
+
+            pintarEstrelas(
+              nota
+            );
+
+
+            hint.textContent =
+              "Você já avaliou este autor.";
+
+
+            message.textContent =
+              `Sua avaliação: ${nota}/5`;
+
+
+            commentArea.hidden =
+              false;
+
+
+            const nome =
+              user.user_metadata?.nome ||
+              user.user_metadata?.full_name ||
+              user.email ||
+              "Avaliador";
+
+
+            userName.textContent =
+              `Avaliando como ${nome}`;
+
+
+            avatar.textContent =
+              nome
+                .charAt(0)
+                .toUpperCase();
+
+
+            stars.forEach(
+              (button) => {
+                button.disabled =
+                  false;
+              }
+            );
+
+
+            /*
+             * Atualiza a média imediatamente.
+             */
+
+            await carregarMediaComunidade();
+
+          }
+        );
+
+      }
+    );
+
+
+    /*
+     * CONTADOR DO COMENTÁRIO
+     */
+
+    commentInput.addEventListener(
+      "input",
+      () => {
+
+        commentCounter.textContent =
+          `${commentInput.value.length}/1000`;
+
+      }
+    );
+
+
+    /*
+     * PUBLICAR COMENTÁRIO
+     */
+
+    commentButton.addEventListener(
+      "click",
+      async () => {
+
+        const {
+          data: {
+            user
+          }
+        } =
+          await supabase.auth.getUser();
+
+
+        if (!user) {
+
+          return;
+
+        }
+
+
+        const comentario =
+          commentInput.value.trim();
+
+
+        if (!comentario) {
+
+          message.textContent =
+            "Escreva um comentário antes de publicar.";
+
+          return;
+
+        }
+
+
+        commentButton.disabled =
+          true;
+
+
+        commentButton.textContent =
+          "Publicando...";
+
+
+        /*
+         * Busca a avaliação do usuário.
+         */
+
+        const {
+          data: avaliacao,
+          error: buscaError
+        } =
+          await supabase
+            .from("avaliacoes")
+            .select("id")
+            .eq(
+              "user_id",
+              user.id
+            )
+            .eq(
+              "conteudo_tipo",
+              conteudoTipo
+            )
+            .eq(
+              "conteudo_id",
+              conteudoId
+            )
+            .maybeSingle();
+
+
+        if (
+          buscaError ||
+          !avaliacao
+        ) {
+
+          console.error(
+            "Erro ao encontrar avaliação:",
+            buscaError
+          );
+
+
+          message.textContent =
+            "Faça sua avaliação antes de publicar um comentário.";
+
+
+          commentButton.disabled =
+            false;
+
+
+          commentButton.textContent =
+            "Publicar comentário";
+
+
+          return;
+
+        }
+
+
+        /*
+         * Salva o comentário.
+         */
+
+        const {
+          error
+        } =
+          await supabase
+            .from("avaliacoes")
+            .update({
+              comentario
+            })
+            .eq(
+              "id",
+              avaliacao.id
+            )
+            .eq(
+              "user_id",
+              user.id
+            );
+
+
+        if (error) {
+
+          console.error(
+            "Erro ao publicar comentário:",
+            error
+          );
+
+
+          message.textContent =
+            `Erro ao publicar: ${error.message}`;
+
+
+          commentButton.disabled =
+            false;
+
+
+          commentButton.textContent =
+            "Publicar comentário";
+
+
+          return;
+
+        }
+
+
+        message.textContent =
+          "Comentário salvo com sucesso.";
+
+
+        commentButton.disabled =
+          false;
+
+
+        commentButton.textContent =
+          "Atualizar comentário";
+
+      }
+    );
+
+
+    /*
+     * INICIALIZAÇÃO
+     */
+
+    carregarMediaComunidade();
+
+    carregarAvaliacao();
+
+  </script>
+
 </BaseLayout>
 
 
 <style>
+
+/* =========================================
+   PÁGINA DO AUTOR
+   ========================================= */
 
 .autor-page {
   padding: 70px 0 100px;
@@ -680,12 +1214,14 @@ const { Content } = await render(autor);
 
 .autor-header {
   display: grid;
+
   grid-template-columns:
     minmax(0, 1.2fr)
     minmax(220px, 280px)
     minmax(320px, 1fr);
 
   align-items: start;
+
   gap: 40px;
 
   margin-bottom: 35px;
@@ -694,6 +1230,7 @@ const { Content } = await render(autor);
 
 .autor-main h1 {
   font-size: 48px;
+
   line-height: 1.1;
 
   margin: 0 0 25px;
@@ -710,6 +1247,10 @@ const { Content } = await render(autor);
   line-height: 1.6;
 }
 
+
+/* =========================================
+   ESTRATEGIAZ SCORE
+   ========================================= */
 
 .score-card {
   padding: 25px;
@@ -778,64 +1319,176 @@ const { Content } = await render(autor);
 }
 
 
-/* COMUNIDADE */
+/* =========================================
+   AVALIAÇÃO DA COMUNIDADE
+   ========================================= */
 
 .community-rating {
-  padding: 28px;
-
-  background: white;
-
-  border:
-    1px solid #e1e7ef;
-
-  border-radius: 16px;
-
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 30px;
+  border: 1px solid #e2e8f0;
+  border-radius: 22px;
+  background:
+    rgba(255, 255, 255, 0.96);
   box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.04);
+    0 12px 35px
+    rgba(15, 23, 42, 0.06);
+  align-self: start;
+}
+
+
+.community-heading {
+  margin-bottom: 22px;
+}
+
+
+.community-eyebrow {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #64748b;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.6px;
+
+  text-transform: uppercase;
 }
 
 
 .community-rating h2 {
-  margin: 0 0 14px;
-
-  font-size: 27px;
+  margin: 0 0 12px;
 
   color: #102a43;
+
+  font-size: 28px;
+
+  line-height: 1.2;
+
+  font-weight: 750;
 }
 
 
-.community-rating > p {
-  margin: 0 0 20px;
+.community-rating p {
+  margin: 0;
 
-  line-height: 1.6;
+  color: #475569;
 
-  color: #334e68;
+  font-size: 15px;
+
+  line-height: 1.65;
 }
 
 
-/* ESTRELAS */
+/* =========================================
+   RESULTADO DA COMUNIDADE
+   ========================================= */
 
-#rating-stars {
+.community-result {
   display: flex;
 
-  gap: 4px;
+  align-items: center;
 
-  margin-top: 10px;
+  flex-wrap: wrap;
+
+  gap: 10px 14px;
+
+  padding: 18px;
+
+  margin-bottom: 20px;
+
+  border-radius: 14px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
 }
 
 
-#rating-stars button {
-  border: none;
+.community-average-stars {
+  color: #f59e0b;
 
-  background: transparent;
+  font-size: 25px;
+
+  letter-spacing: 2px;
+
+  line-height: 1;
+}
+
+
+.community-average-info {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 3px;
+}
+
+
+.community-average-info strong {
+  color: #102a43;
+
+  font-size: 25px;
+
+  font-weight: 800;
+}
+
+
+.community-average-info span {
+  color: #64748b;
+
+  font-size: 14px;
+}
+
+
+.community-result p {
+  width: 100%;
+
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   ESTRELAS DO USUÁRIO
+   ========================================= */
+
+.rating-stars {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin: 22px 0 8px;
+}
+
+
+.rating-stars button {
+  width: 38px;
+
+  height: 38px;
 
   padding: 0;
 
-  font-size: 30px;
+  border: 0;
 
-  line-height: 1;
+  background: transparent;
 
   color: #cbd5e1;
+
+  font-size: 29px;
+
+  line-height: 1;
 
   cursor: pointer;
 
@@ -845,55 +1498,274 @@ const { Content } = await render(autor);
 }
 
 
-#rating-stars button:hover {
+.rating-stars button:hover {
   color: #f59e0b;
 
-  transform: translateY(-2px);
+  transform:
+    translateY(-2px)
+    scale(1.08);
 }
 
 
-#rating-stars button.selected {
+.rating-stars button.selected {
   color: #f59e0b;
 }
 
 
-#rating-stars button:disabled {
+.rating-stars button:disabled {
   cursor: default;
 }
 
 
-#rating-stars button:disabled:hover {
+.rating-stars button:disabled:hover {
   transform: none;
 }
 
 
-/* TEXTOS DA AVALIAÇÃO */
+/* =========================================
+   MENSAGENS
+   ========================================= */
 
-.rating-instruction {
-  margin-top: 12px !important;
+.rating-hint {
+  margin-top: 4px !important;
 
-  margin-bottom: 4px !important;
+  color: #64748b !important;
 
-  font-size: 13px;
-
-  color: #64748b;
+  font-size: 13px !important;
 }
 
 
 .rating-message {
   min-height: 22px;
 
-  margin-top: 6px !important;
+  margin-top: 8px;
+
+  color: #2563eb;
 
   font-size: 14px;
 
   font-weight: 600;
-
-  color: #2563eb;
 }
 
 
-/* GRID EDITORIAL */
+/* =========================================
+   COMENTÁRIO
+   ========================================= */
+
+.comment-area {
+  margin-top: 24px;
+
+  padding-top: 22px;
+
+  border-top: 1px solid #e2e8f0;
+}
+
+
+.comment-area[hidden] {
+  display: none;
+}
+
+
+.review-user {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 20px;
+}
+
+
+.review-avatar {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex: 0 0 40px;
+
+  width: 40px;
+
+  height: 40px;
+
+  border-radius: 50%;
+
+  background: #eaf1ff;
+
+  color: #2563eb;
+
+  font-size: 16px;
+
+  font-weight: 750;
+}
+
+
+.review-user-info {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+
+.review-user-info strong {
+  color: #102a43;
+
+  font-size: 14px;
+
+  line-height: 1.3;
+}
+
+
+.review-user-info span {
+  color: #64748b;
+
+  font-size: 12px;
+
+  line-height: 1.4;
+}
+
+
+.comment-area label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #102a43;
+
+  font-size: 14px;
+
+  font-weight: 650;
+}
+
+
+.comment-area textarea {
+  display: block;
+
+  width: 100%;
+
+  min-height: 120px;
+
+  box-sizing: border-box;
+
+  resize: vertical;
+
+  padding: 13px 14px;
+
+  border: 1px solid #d8e0ea;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  color: #102a43;
+
+  font-family: inherit;
+
+  font-size: 14px;
+
+  line-height: 1.55;
+
+  outline: none;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+
+.comment-area textarea::placeholder {
+  color: #94a3b8;
+}
+
+
+.comment-area textarea:focus {
+  border-color: #93b4f5;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 4px
+    rgba(37, 99, 235, 0.08);
+}
+
+
+.comment-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 10px;
+}
+
+
+#comment-counter {
+  color: #94a3b8;
+
+  font-size: 12px;
+}
+
+
+#comment-button {
+  border: 0;
+
+  border-radius: 10px;
+
+  padding: 10px 16px;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    transform 0.15s ease,
+    box-shadow 0.18s ease;
+}
+
+
+#comment-button:hover {
+  background: #1d4ed8;
+
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 5px 14px
+    rgba(37, 99, 235, 0.20);
+}
+
+
+#comment-button:disabled {
+  opacity: 0.6;
+
+  cursor: wait;
+
+  transform: none;
+}
+
+
+/* =========================================
+   AVALIAÇÕES EDITORIAIS
+   ========================================= */
 
 .rating-grid {
   display: grid;
@@ -937,7 +1809,9 @@ const { Content } = await render(autor);
 }
 
 
-/* CONTEÚDO */
+/* =========================================
+   CONTEÚDO
+   ========================================= */
 
 .autor-content {
   max-width: 900px;
@@ -968,20 +1842,27 @@ const { Content } = await render(autor);
 }
 
 
-/* RESPONSIVO */
+/* =========================================
+   RESPONSIVO
+   ========================================= */
 
 @media (max-width: 1000px) {
 
   .autor-header {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
   }
+
 
   .autor-main {
-    grid-column: 1 / -1;
+    grid-column:
+      1 / -1;
   }
 
+
   .community-rating {
-    grid-column: 1 / -1;
+    grid-column:
+      1 / -1;
   }
 
 }
@@ -1017,7 +1898,8 @@ const { Content } = await render(autor);
 
 
   .rating-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns:
+      1fr;
   }
 
 
@@ -1025,307 +1907,38 @@ const { Content } = await render(autor);
     font-size: 38px;
   }
 
-}
-/* =========================================
-   AVALIAÇÃO DA COMUNIDADE
-   ========================================= */
-
-.community-rating {
-  width: 100%;
-  box-sizing: border-box;
-  margin-top: 0;
-  padding: 30px;
-  border: 1px solid #e2e8f0;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
-}
-
-.community-heading {
-  margin-bottom: 22px;
-}
-
-.community-eyebrow {
-  display: block;
-  margin-bottom: 8px;
-  color: #64748b;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-}
-
-.community-rating h2 {
-  margin: 0 0 12px;
-  color: #102a43;
-  font-size: 28px;
-  line-height: 1.2;
-  font-weight: 750;
-}
-
-.community-rating p {
-  margin: 0;
-  color: #475569;
-  font-size: 15px;
-  line-height: 1.65;
-}
-
-
-/* =========================================
-   ESTRELAS
-   ========================================= */
-
-.rating-stars {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  margin: 22px 0 8px;
-}
-
-.rating-stars button {
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: #cbd5e1;
-  font-size: 29px;
-  line-height: 1;
-  cursor: pointer;
-  transition:
-    transform 0.15s ease,
-    color 0.15s ease;
-}
-
-.rating-stars button:hover {
-  color: #f59e0b;
-  transform: translateY(-2px) scale(1.08);
-}
-
-.rating-stars button.selected {
-  color: #f59e0b;
-}
-
-.rating-stars button:disabled {
-  cursor: default;
-}
-
-.rating-stars button:disabled:hover {
-  transform: none;
-}
-
-
-/* =========================================
-   MENSAGENS
-   ========================================= */
-
-.rating-hint {
-  margin-top: 4px !important;
-  color: #64748b !important;
-  font-size: 13px !important;
-}
-
-.rating-message {
-  min-height: 22px;
-  margin-top: 8px;
-  color: #2563eb;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-
-/* =========================================
-   ÁREA DO COMENTÁRIO
-   ========================================= */
-
-.comment-area {
-  margin-top: 24px;
-  padding-top: 22px;
-  border-top: 1px solid #e2e8f0;
-}
-
-.comment-area[hidden] {
-  display: none;
-}
-
-.review-user {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.review-avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 40px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #eaf1ff;
-  color: #2563eb;
-  font-size: 16px;
-  font-weight: 750;
-}
-
-.review-user-info {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  min-width: 0;
-}
-
-.review-user-info strong {
-  color: #102a43;
-  font-size: 14px;
-  line-height: 1.3;
-}
-
-.review-user-info span {
-  color: #64748b;
-  font-size: 12px;
-  line-height: 1.4;
-}
-
-
-/* =========================================
-   CAMPO DE TEXTO
-   ========================================= */
-
-.comment-area label {
-  display: block;
-  margin-bottom: 8px;
-  color: #102a43;
-  font-size: 14px;
-  font-weight: 650;
-}
-
-.comment-area textarea {
-  display: block;
-  width: 100%;
-  min-height: 120px;
-  box-sizing: border-box;
-  resize: vertical;
-
-  padding: 13px 14px;
-
-  border: 1px solid #d8e0ea;
-  border-radius: 12px;
-
-  background: #f8fafc;
-  color: #102a43;
-
-  font-family: inherit;
-  font-size: 14px;
-  line-height: 1.55;
-
-  outline: none;
-
-  transition:
-    border-color 0.18s ease,
-    box-shadow 0.18s ease,
-    background 0.18s ease;
-}
-
-.comment-area textarea::placeholder {
-  color: #94a3b8;
-}
-
-.comment-area textarea:focus {
-  border-color: #93b4f5;
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
-}
-
-
-/* =========================================
-   RODAPÉ DO COMENTÁRIO
-   ========================================= */
-
-.comment-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 10px;
-}
-
-#comment-counter {
-  color: #94a3b8;
-  font-size: 12px;
-}
-
-#comment-button {
-  border: 0;
-  border-radius: 10px;
-  padding: 10px 16px;
-
-  background: #2563eb;
-  color: white;
-
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 650;
-
-  cursor: pointer;
-
-  transition:
-    background 0.18s ease,
-    transform 0.15s ease,
-    box-shadow 0.18s ease;
-}
-
-#comment-button:hover {
-  background: #1d4ed8;
-  transform: translateY(-1px);
-  box-shadow: 0 5px 14px rgba(37, 99, 235, 0.20);
-}
-
-#comment-button:disabled {
-  opacity: 0.6;
-  cursor: wait;
-  transform: none;
-}
-
-
-/* =========================================
-   RESPONSIVO
-   ========================================= */
-
-@media (max-width: 900px) {
-
-  .community-rating {
-    margin-top: 25px;
-  }
-
-}
-
-@media (max-width: 700px) {
 
   .community-rating {
     padding: 22px;
+
     border-radius: 18px;
   }
+
 
   .community-rating h2 {
     font-size: 24px;
   }
 
+
   .rating-stars button {
     width: 34px;
+
     height: 34px;
+
     font-size: 27px;
   }
 
+
   .comment-footer {
     align-items: flex-start;
+
     flex-direction: column;
-  } 
+  }
+
 
   #comment-button {
     width: 100%;
-  } 
+  }
 
 }
 

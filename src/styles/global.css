@@ -181,9 +181,13 @@ main > p {
 
 .detail-header {
   display: grid;
-  grid-template-columns: 1fr 255px;
+  grid-template-columns: minmax(0, 1fr) 255px 320px;
   gap: 40px;
   align-items: start;
+}
+
+.detail-header > * {
+  align-self: start;
 }
 
 .detail-main h1 {
