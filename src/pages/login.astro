@@ -57,7 +57,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         </button>
 
       </form>
+            <div class="auth-divider">
+        <span>ou</span>
+      </div>
 
+      <button
+        type="button"
+        id="google-button"
+        class="google-button"
+      >
+        Continuar com Google
+      </button>
       <p
         id="mensagem"
         class="auth-message"
@@ -80,6 +90,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     const mensagem =
       document.querySelector("#mensagem");
+      
+        const googleButton =
+      document.querySelector("#google-button");
 
     if (!(form instanceof HTMLFormElement)) {
       throw new Error(
@@ -90,6 +103,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     if (!(mensagem instanceof HTMLElement)) {
       throw new Error(
         "Mensagem de login não encontrada."
+      );
+    }
+
+        if (!(googleButton instanceof HTMLButtonElement)) {
+      throw new Error(
+        "Botão do Google não encontrado."
       );
     }
 
@@ -151,6 +170,49 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         redirect;
 
     });
+
+        googleButton.addEventListener(
+      "click",
+      async () => {
+
+        const params =
+          new URLSearchParams(
+            window.location.search
+          );
+
+        const redirect =
+          params.get("redirect") || "/autores";
+
+        googleButton.disabled = true;
+
+        mensagem.textContent =
+          "Conectando ao Google...";
+
+        const { error } =
+          await supabase.auth.signInWithOAuth({
+
+            provider: "google",
+
+            options: {
+              redirectTo:
+                `${window.location.origin}/auth-callback?redirect=${encodeURIComponent(redirect)}`
+            }
+
+          });
+
+        if (error) {
+
+          console.error(error);
+
+          googleButton.disabled = false;
+
+          mensagem.textContent =
+            "Não foi possível entrar com o Google.";
+
+        }
+
+      }
+    );
 
   </script>
 

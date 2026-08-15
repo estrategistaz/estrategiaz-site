@@ -497,7 +497,48 @@ main > p {
 .auth-button:hover {
   background: #2a2a2a;
 }
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 22px 0;
+  color: #999999;
+  font-size: 13px;
+}
 
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #eeeeee;
+}
+
+.google-button {
+  width: 100%;
+  padding: 13px 18px;
+  border: 1px solid #dcdcdc;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #222222;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.google-button:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.google-button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
 .auth-button:active {
   transform: translateY(1px);
 }
