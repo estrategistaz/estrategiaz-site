@@ -1,0 +1,226 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Política de Privacidade | Estrategiaz"
+  description="Política de Privacidade da plataforma Estrategiaz."
+>
+
+  <main class="privacy-page">
+
+    <h1>Política de Privacidade</h1>
+
+    <p class="updated">
+      Última atualização: 15 de agosto de 2026
+    </p>
+
+    <h2>1. Sobre o Estrategiaz</h2>
+
+    <p>
+      O Estrategiaz é uma plataforma voltada ao compartilhamento
+      de conhecimentos, conteúdos e avaliações relacionados à
+      estratégia, gestão e negócios.
+    </p>
+
+    <p>
+      Esta Política de Privacidade explica como tratamos as
+      informações dos usuários que utilizam a plataforma.
+    </p>
+
+
+    <h2>2. Informações que coletamos</h2>
+
+    <p>
+      Para permitir o funcionamento da plataforma, podemos coletar
+      informações fornecidas pelo próprio usuário, incluindo:
+    </p>
+
+    <ul>
+      <li>nome;</li>
+      <li>endereço de e-mail;</li>
+      <li>informações de perfil;</li>
+      <li>avaliações realizadas na plataforma;</li>
+      <li>comentários publicados na comunidade.</li>
+    </ul>
+
+    <p>
+      Quando o usuário utiliza o login com Google, algumas
+      informações básicas da conta Google, como nome, endereço de
+      e-mail e imagem de perfil, podem ser disponibilizadas ao
+      Estrategiaz para permitir sua autenticação.
+    </p>
+
+
+    <h2>3. Como utilizamos as informações</h2>
+
+    <p>
+      As informações coletadas podem ser utilizadas para:
+    </p>
+
+    <ul>
+      <li>criar e manter a conta do usuário;</li>
+      <li>permitir o acesso à plataforma;</li>
+      <li>identificar avaliações e comentários realizados pelo usuário;</li>
+      <li>personalizar a experiência na plataforma;</li>
+      <li>melhorar os serviços e funcionalidades do Estrategiaz;</li>
+      <li>garantir a segurança e o funcionamento da plataforma.</li>
+    </ul>
+
+
+    <h2>4. Login com Google</h2>
+
+    <p>
+      O Estrategiaz oferece a possibilidade de autenticação por meio
+      da conta Google. Nesse caso, a autenticação é realizada por
+      meio dos serviços de autenticação do Google e do Supabase.
+    </p>
+
+    <p>
+      O Estrategiaz não recebe nem armazena a senha da conta Google
+      utilizada pelo usuário.
+    </p>
+
+
+    <h2>5. Avaliações e comentários</h2>
+
+    <p>
+      As avaliações realizadas pelos usuários podem ser utilizadas
+      para calcular médias e apresentar informações agregadas sobre
+      autores, livros e frameworks disponíveis na plataforma.
+    </p>
+
+    <p>
+      Comentários publicados pelo usuário poderão ser exibidos
+      publicamente na plataforma, juntamente com as informações de
+      perfil que forem disponibilizadas para essa finalidade.
+    </p>
+
+
+    <h2>6. Serviços de terceiros</h2>
+
+    <p>
+      O Estrategiaz utiliza serviços de terceiros necessários para
+      o funcionamento da plataforma, incluindo serviços de
+      autenticação, armazenamento de dados e hospedagem.
+    </p>
+
+    <p>
+      Entre esses serviços podem estar o Google e o Supabase.
+      Esses serviços possuem suas próprias políticas de privacidade
+      e termos de uso.
+    </p>
+
+
+    <h2>7. Segurança</h2>
+
+    <p>
+      Adotamos medidas técnicas e organizacionais razoáveis para
+      proteger as informações dos usuários contra acesso,
+      alteração, divulgação ou destruição não autorizados.
+    </p>
+
+    <p>
+      Apesar dessas medidas, nenhum sistema eletrônico pode ser
+      considerado completamente seguro.
+    </p>
+
+
+    <h2>8. Direitos do usuário</h2>
+
+    <p>
+      O usuário poderá solicitar informações sobre seus dados,
+      correção de informações incorretas ou exclusão de sua conta,
+      observadas as obrigações legais aplicáveis.
+    </p>
+
+    <p>
+      Para solicitações relacionadas à privacidade, entre em contato
+      pelo e-mail:
+    </p>
+
+    <p>
+      <strong>bc.estrategista@gmail.com</strong>
+    </p>
+
+
+    <h2>9. Alterações nesta política</h2>
+
+    <p>
+      Esta Política de Privacidade poderá ser atualizada
+      periodicamente para refletir mudanças na plataforma,
+      nos serviços utilizados ou nas exigências legais.
+    </p>
+
+    <p>
+      A versão mais recente estará sempre disponível nesta página.
+    </p>
+
+
+    <h2>10. Contato</h2>
+
+    <p>
+      Em caso de dúvidas sobre esta Política de Privacidade ou
+      sobre o tratamento de informações pessoais, entre em contato
+      pelo e-mail:
+    </p>
+
+    <p>
+      <strong>bc.estrategista@gmail.com</strong>
+    </p>
+
+  </main>
+
+</BaseLayout>
+
+<style>
+
+  .privacy-page {
+    max-width: 850px;
+    margin: 0 auto;
+  }
+
+  .privacy-page h1 {
+    font-size: 42px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .privacy-page .updated {
+    color: var(--text-light);
+    margin-bottom: 45px;
+  }
+
+  .privacy-page h2 {
+    font-size: 26px;
+    margin-top: 38px;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .privacy-page p {
+    margin-bottom: 16px;
+    line-height: 1.7;
+  }
+
+  .privacy-page ul {
+    margin: 0 0 20px 25px;
+  }
+
+  .privacy-page li {
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 600px) {
+
+    .privacy-page h1 {
+      font-size: 34px;
+    }
+
+    .privacy-page h2 {
+      font-size: 23px;
+    }
+
+  }
+
+</style>
