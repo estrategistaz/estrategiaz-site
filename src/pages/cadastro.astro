@@ -21,9 +21,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         Participe das avaliações da comunidade Estrategiaz.
       </p>
 
+
+      <!-- =========================================
+           CADASTRO COM E-MAIL
+           ========================================= -->
+
       <form id="cadastro-form">
 
         <div class="form-group">
+
           <label for="nome">
             Nome
           </label>
@@ -34,9 +40,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             autocomplete="name"
             required
           />
+
         </div>
 
+
         <div class="form-group">
+
           <label for="email">
             E-mail
           </label>
@@ -47,9 +56,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             autocomplete="email"
             required
           />
+
         </div>
 
+
         <div class="form-group">
+
           <label for="senha">
             Senha
           </label>
@@ -61,7 +73,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             minlength="6"
             required
           />
+
         </div>
+
 
         <button
           type="submit"
@@ -72,132 +86,528 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       </form>
 
+
+      <!-- =========================================
+           MENSAGEM
+           ========================================= -->
+
       <p
         id="mensagem"
         class="auth-message"
       ></p>
 
+
+      <!-- =========================================
+           DIVISOR
+           ========================================= -->
+
+      <div class="auth-divider">
+        <span>ou</span>
+      </div>
+
+
+      <!-- =========================================
+           GOOGLE
+           ========================================= -->
+
+      <button
+        type="button"
+        id="google-button"
+        class="google-button"
+      >
+
+        <svg
+          class="google-icon"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <path
+            fill="#4285F4"
+            d="M21.35 12.23c0-.79-.07-1.55-.23-2.27H12v4.3h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.14c1.84-1.69 2.91-4.18 2.91-7.42Z"
+          />
+
+          <path
+            fill="#34A853"
+            d="M12 21.75c2.63 0 4.84-.87 6.45-2.35l-3.14-2.45c-.87.58-1.98.92-3.31.92-2.54 0-4.69-1.72-5.46-4.03H3.3v2.53A9.75 9.75 0 0 0 12 21.75Z"
+          />
+
+          <path
+            fill="#FBBC05"
+            d="M6.54 13.84A5.86 5.86 0 0 1 6.23 12c0-.64.11-1.26.31-1.84V7.63H3.3A9.74 9.74 0 0 0 2.25 12c0 1.57.38 3.05 1.05 4.37l3.24-2.53Z"
+          />
+
+          <path
+            fill="#EA4335"
+            d="M12 6.13c1.43 0 2.71.49 3.72 1.45l2.79-2.79C16.84 3.15 14.63 2.25 12 2.25A9.75 9.75 0 0 0 3.3 7.63l3.24 2.53C7.31 7.85 9.46 6.13 12 6.13Z"
+          />
+
+        </svg>
+
+        <span>
+          Continuar com Google
+        </span>
+
+      </button>
+
+
+      <!-- =========================================
+           RODAPÉ
+           ========================================= -->
+
       <p class="auth-footer">
+
         Já possui uma conta?
-        <a href="/login">Entrar</a>
+
+        <a
+          href="/login"
+        >
+          Entrar
+        </a>
+
       </p>
 
     </div>
 
   </div>
 
+
   <script>
+
     import { supabase } from "../lib/supabase.js";
+
+
+    /*
+     * =========================================
+     * ELEMENTOS
+     * =========================================
+     */
 
     const form =
       document.querySelector("#cadastro-form");
 
+
     const mensagem =
       document.querySelector("#mensagem");
 
-    if (!(form instanceof HTMLFormElement)) {
+
+    const googleButton =
+      document.querySelector("#google-button");
+
+
+    /*
+     * =========================================
+     * VALIDAÇÕES
+     * =========================================
+     */
+
+    if (
+      !(form instanceof HTMLFormElement)
+    ) {
+
       throw new Error(
         "Formulário de cadastro não encontrado."
       );
+
     }
 
-    if (!(mensagem instanceof HTMLElement)) {
+
+    if (
+      !(mensagem instanceof HTMLElement)
+    ) {
+
       throw new Error(
         "Mensagem de cadastro não encontrada."
       );
+
     }
 
-    form.addEventListener("submit", async (event) => {
 
-      event.preventDefault();
+    /*
+     * =========================================
+     * CADASTRO COM E-MAIL
+     * =========================================
+     */
 
-      const nomeInput =
-        document.querySelector("#nome");
+    form.addEventListener(
+      "submit",
+      async (event) => {
 
-      const emailInput =
-        document.querySelector("#email");
+        event.preventDefault();
 
-      const senhaInput =
-        document.querySelector("#senha");
 
-      if (!(nomeInput instanceof HTMLInputElement)) {
-        return;
-      }
+        const nomeInput =
+          document.querySelector("#nome");
 
-      if (!(emailInput instanceof HTMLInputElement)) {
-        return;
-      }
 
-      if (!(senhaInput instanceof HTMLInputElement)) {
-        return;
-      }
+        const emailInput =
+          document.querySelector("#email");
 
-      const nome =
-        nomeInput.value.trim();
 
-      const email =
-        emailInput.value.trim();
+        const senhaInput =
+          document.querySelector("#senha");
 
-      const senha =
-        senhaInput.value;
 
-      const params =
-        new URLSearchParams(
-          window.location.search
-        );
+        if (
+          !(nomeInput instanceof HTMLInputElement)
+        ) {
 
-      const redirect =
-        params.get("redirect") || "/autores";
+          return;
 
-      const callbackUrl =
-        `${window.location.origin}/auth-callback?redirect=${encodeURIComponent(redirect)}`;
+        }
 
-      mensagem.textContent =
-        "Criando sua conta...";
 
-      const { data, error } =
-        await supabase.auth.signUp({
+        if (
+          !(emailInput instanceof HTMLInputElement)
+        ) {
 
-          email,
+          return;
 
-          password: senha,
+        }
 
-          options: {
 
-            emailRedirectTo:
-              callbackUrl,
+        if (
+          !(senhaInput instanceof HTMLInputElement)
+        ) {
 
-            data: {
-              nome
+          return;
+
+        }
+
+
+        const nome =
+          nomeInput.value.trim();
+
+
+        const email =
+          emailInput.value.trim();
+
+
+        const senha =
+          senhaInput.value;
+
+
+        /*
+         * Preserva o redirect original.
+         */
+
+        const params =
+          new URLSearchParams(
+            window.location.search
+          );
+
+
+        const redirect =
+          params.get("redirect") ||
+          "/autores";
+
+
+        /*
+         * URL utilizada após confirmação
+         * do e-mail.
+         */
+
+        const callbackUrl =
+          `${window.location.origin}/auth-callback?redirect=${encodeURIComponent(redirect)}`;
+
+
+        mensagem.textContent =
+          "Criando sua conta...";
+
+
+        const {
+          data,
+          error
+        } =
+          await supabase.auth.signUp({
+
+            email,
+
+            password: senha,
+
+            options: {
+
+              emailRedirectTo:
+                callbackUrl,
+
+              data: {
+
+                nome
+
+              }
+
             }
+
+          });
+
+
+        if (error) {
+
+          console.error(error);
+
+
+          mensagem.textContent =
+            error.message;
+
+
+          return;
+
+        }
+
+
+        /*
+         * Se o Supabase exigir confirmação
+         * por e-mail, não há sessão ainda.
+         */
+
+        if (!data.session) {
+
+          mensagem.textContent =
+            "Conta criada. Verifique seu e-mail para confirmar o cadastro.";
+
+          return;
+
+        }
+
+
+        /*
+         * Se a sessão já estiver disponível,
+         * retorna imediatamente ao conteúdo.
+         */
+
+        window.location.href =
+          redirect;
+
+      }
+    );
+
+
+    /*
+     * =========================================
+     * LOGIN / CADASTRO COM GOOGLE
+     * =========================================
+     */
+
+    if (
+      googleButton instanceof HTMLButtonElement
+    ) {
+
+      googleButton.addEventListener(
+        "click",
+        async () => {
+
+          /*
+           * Preserva a página que originou
+           * o cadastro.
+           */
+
+          const params =
+            new URLSearchParams(
+              window.location.search
+            );
+
+
+          const redirect =
+            params.get("redirect") ||
+            "/autores";
+
+
+          /*
+           * Mesmo callback utilizado
+           * pelo cadastro tradicional.
+           */
+
+          const callbackUrl =
+            `${window.location.origin}/auth-callback?redirect=${encodeURIComponent(redirect)}`;
+
+
+          googleButton.disabled =
+            true;
+
+
+          googleButton.classList.add(
+            "loading"
+          );
+
+
+          mensagem.textContent =
+            "Conectando com Google...";
+
+
+          const {
+            error
+          } =
+            await supabase.auth.signInWithOAuth({
+
+              provider: "google",
+
+              options: {
+
+                redirectTo:
+                  callbackUrl
+
+              }
+
+            });
+
+
+          /*
+           * Se houver erro, o usuário
+           * permanece na página.
+           */
+
+          if (error) {
+
+            console.error(
+              "Erro ao entrar com Google:",
+              error
+            );
+
+
+            mensagem.textContent =
+              "Não foi possível continuar com Google. Tente novamente.";
+
+
+            googleButton.disabled =
+              false;
+
+
+            googleButton.classList.remove(
+              "loading"
+            );
 
           }
 
-        });
+        }
+      );
 
-      if (error) {
-
-        console.error(error);
-
-        mensagem.textContent =
-          error.message;
-
-        return;
-      }
-
-      if (!data.session) {
-
-        mensagem.textContent =
-          "Conta criada. Verifique seu e-mail para confirmar o cadastro.";
-
-        return;
-      }
-
-      window.location.href =
-        redirect;
-
-    });
+    }
 
   </script>
+
+
+  <style>
+
+    /* =========================================
+       GOOGLE BUTTON
+       ========================================= */
+
+    .auth-divider {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      margin: 22px 0;
+
+      color: #94a3b8;
+
+      font-size: 12px;
+
+    }
+
+
+    .auth-divider::before,
+    .auth-divider::after {
+
+      content: "";
+
+      flex: 1;
+
+      height: 1px;
+
+      background: #e2e8f0;
+
+    }
+
+
+    .google-button {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 10px;
+
+      width: 100%;
+
+      min-height: 44px;
+
+      padding: 10px 16px;
+
+      border: 1px solid #d1d5db;
+
+      border-radius: 9px;
+
+      background: #ffffff;
+
+      color: #1f2937;
+
+      font-family: inherit;
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+      line-height: 1.2;
+
+      cursor: pointer;
+
+      box-sizing: border-box;
+
+      transition:
+        background .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+
+    }
+
+
+    .google-button:hover {
+
+      background: #f8fafc;
+
+      border-color: #94a3b8;
+
+      box-shadow:
+        0 1px 3px rgba(
+          15,
+          23,
+          42,
+          .08
+        );
+
+    }
+
+
+    .google-button:disabled {
+
+      opacity: .65;
+
+      cursor: default;
+
+    }
+
+
+    .google-button.loading {
+
+      cursor: wait;
+
+    }
+
+
+    .google-icon {
+
+      flex-shrink: 0;
+
+    }
+
+  </style>
 
 </BaseLayout>

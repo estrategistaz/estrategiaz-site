@@ -5,17 +5,35 @@
         <a href="/" class="logo">
             Estrategia<span>Z</span>
         </a>
-<button class="menu-toggle" id="menu-toggle">
-    ☰
-</button>
 
+        <button
+            class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+        >
+            ☰
+        </button>
 
         <nav class="menu" id="menu">
 
             <a href="/">Início</a>
-            <a class="nav-link" href="/autores">Autores</a>
-            <a class="nav-link" href="/livros">Livros</a>
-            <a class="nav-link" href="/frameworks">Frameworks</a>
+
+            <a class="nav-link" href="/autores">
+                Autores
+            </a>
+
+            <a class="nav-link" href="/livros">
+                Livros
+            </a>
+
+            <a class="nav-link" href="/frameworks">
+                Frameworks
+            </a>
+
+            <a class="nav-link nav-sobre" href="/sobre">
+                Sobre
+            </a>
 
         </nav>
 
@@ -23,35 +41,45 @@
 
 </header>
 
+
 <style>
 
 .header{
 
     background:white;
     border-bottom:1px solid #e5e7eb;
+
     position:sticky;
     top:0;
+
     z-index:100;
 
 }
 
+
 .nav{
 
     display:flex;
+
     justify-content:space-between;
     align-items:center;
+
     padding:18px 0;
 
 }
+
 
 .logo{
 
     font-size:1.8rem;
     font-weight:700;
+
     text-decoration:none;
+
     color:#0f172a;
 
 }
+
 
 .logo span{
 
@@ -59,21 +87,30 @@
 
 }
 
+
 .menu{
 
     display:flex;
+
+    align-items:center;
+
     gap:35px;
 
 }
 
+
 .menu a{
 
     text-decoration:none;
+
     color:#475569;
+
     font-weight:500;
+
     transition:.25s;
 
 }
+
 
 .menu a:hover{
 
@@ -81,12 +118,27 @@
 
 }
 
+
+/* =========================
+   SOBRE — DESKTOP
+========================= */
+
+.nav-sobre{
+
+    margin-left:20px;
+
+}
+
+
+/* =========================
+   BOTÃO HAMBURGER
+========================= */
+
 .menu-toggle{
 
     display:none;
 
     background:none;
-
     border:none;
 
     cursor:pointer;
@@ -100,6 +152,8 @@
     line-height:1;
 
 }
+
+
 /* =======================
    TABLET
 ======================= */
@@ -113,6 +167,7 @@
     }
 
 }
+
 
 /* =======================
    CELULAR
@@ -130,38 +185,69 @@
 
     }
 
+
     .logo{
 
         font-size:2rem;
 
     }
 
+
     .menu{
 
-    display:none;
+        display:none;
 
-    position:absolute;
+        position:absolute;
 
-    top:75px;
+        top:75px;
 
-    left:0;
+        left:0;
 
-    width:100%;
+        width:100%;
 
-    background:white;
+        background:white;
 
-    flex-direction:column;
+        flex-direction:column;
 
-    padding:20px;
+        align-items:flex-start;
 
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+        padding:20px;
 
-}
-.menu.active{
+        box-shadow:0 10px 30px rgba(0,0,0,.08);
 
-    display:flex;
+        gap:0;
 
-}
+    }
+
+
+    .menu.active{
+
+        display:flex;
+
+    }
+
+
+    .menu a{
+
+        width:100%;
+
+        padding:14px 0;
+
+    }
+
+
+    /* Sobre continua sendo o último */
+
+    .nav-sobre{
+
+        margin-left:0;
+
+        border-top:1px solid #e5e7eb;
+
+        margin-top:5px;
+
+    }
+
 
     .menu-toggle{
 
@@ -172,18 +258,30 @@
 }
 
 </style>
+
+
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const botao = document.getElementById("menu-toggle");
-    const menu = document.getElementById("menu");
+    const botao =
+        document.getElementById("menu-toggle");
+
+    const menu =
+        document.getElementById("menu");
+
 
     if (botao && menu) {
 
         botao.addEventListener("click", () => {
 
-            menu.classList.toggle("active");
+            const aberto =
+                menu.classList.toggle("active");
+
+            botao.setAttribute(
+                "aria-expanded",
+                String(aberto)
+            );
 
         });
 

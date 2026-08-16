@@ -1,0 +1,147 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+const sobre = await getCollection("sobre");
+
+const pagina = sobre[0];
+
+if (!pagina) {
+  throw new Error("Conteúdo da página Sobre não encontrado.");
+}
+
+const { Content } = await render(pagina);
+---
+
+<BaseLayout
+  title="Sobre | EstratégiaZ"
+  description="Conheça o EstratégiaZ e sua proposta."
+>
+
+  <main class="sobre-page">
+
+    <div class="container">
+
+      <article class="sobre-content">
+
+        <Content />
+
+      </article>
+
+    </div>
+
+  </main>
+
+</BaseLayout>
+
+
+<style>
+
+.sobre-page {
+
+  padding: 70px 0 90px;
+
+}
+
+
+.sobre-content {
+
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  color: #334155;
+
+  line-height: 1.8;
+
+}
+
+
+.sobre-content h1 {
+
+  color: #0f172a;
+
+  font-size: 2.6rem;
+
+  line-height: 1.2;
+
+  margin-bottom: 30px;
+
+}
+
+
+.sobre-content h2 {
+
+  color: #0f172a;
+
+  font-size: 1.7rem;
+
+  margin-top: 45px;
+
+  margin-bottom: 18px;
+
+}
+
+
+.sobre-content h3 {
+
+  color: #0f172a;
+
+  margin-top: 30px;
+
+}
+
+
+.sobre-content p {
+
+  margin-bottom: 20px;
+
+}
+
+
+.sobre-content ul,
+.sobre-content ol {
+
+  margin-bottom: 25px;
+
+  padding-left: 25px;
+
+}
+
+
+.sobre-content li {
+
+  margin-bottom: 8px;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .sobre-page {
+
+    padding: 45px 20px 60px;
+
+  }
+
+
+  .sobre-content h1 {
+
+    font-size: 2.1rem;
+
+  }
+
+
+  .sobre-content h2 {
+
+    font-size: 1.5rem;
+
+  }
+
+}
+
+</style>

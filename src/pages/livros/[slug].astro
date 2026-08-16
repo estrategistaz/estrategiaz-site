@@ -3,16 +3,16 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-    const livros = await getCollection("livros");
+  const livros = await getCollection("livros");
 
-    return livros.map((livro) => ({
-        params: {
-            slug: livro.id,
-        },
-        props: {
-            livro,
-        },
-    }));
+  return livros.map((livro) => ({
+    params: {
+      slug: livro.id,
+    },
+    props: {
+      livro,
+    },
+  }));
 }
 
 const { livro } = Astro.props;
@@ -20,711 +20,2901 @@ const { livro } = Astro.props;
 const { Content } = await render(livro);
 
 const score = livro.data.score ?? 0;
-const aplicabilidade = livro.data.aplicabilidade ?? "Não avaliada";
-const relevancia = livro.data.relevancia ?? "Não avaliada";
-const atualidade = livro.data.atualidade ?? "Não avaliada";
+
+const aplicabilidade =
+  livro.data.aplicabilidade ?? "Não avaliada";
+
+const relevancia =
+  livro.data.relevancia ?? "Não avaliada";
+
+const atualidade =
+  livro.data.atualidade ?? "Não avaliada";
 ---
 
 <BaseLayout
-    title={`${livro.data.title} | EstratégiaZ`}
-    description={`Análise EstratégiaZ do livro ${livro.data.title}.`}
+  title={`${livro.data.title} | EstratégiaZ`}
+  description={`Análise EstratégiaZ do livro ${livro.data.title}.`}
 >
 
-<div class="detail-page">
+  <main class="container livro-page">
 
-    <div class="detail-header">
 
-        <div class="detail-main">
+    <!-- =====================================================
+         CABEÇALHO
+         ===================================================== -->
 
-            <h1>{livro.data.title}</h1>
+    <div class="livro-header">
 
-            {livro.data.autor && (
-                <p>
-                    <strong>Autor:</strong> {livro.data.autor}
-                </p>
-            )}
 
-            {livro.data.ano && (
-                <p>
-                    <strong>Ano:</strong> {livro.data.ano}
-                </p>
-            )}
+      <!-- INFORMAÇÕES DO LIVRO -->
 
-            {livro.data.editora && (
-                <p>
-                    <strong>Editora:</strong> {livro.data.editora}
-                </p>
-            )}
+      <div class="livro-main">
 
-        </div>
+        <h1>
+          {livro.data.title}
+        </h1>
 
-        <div class="score-card">
+        <div class="livro-info">
 
-            <span class="score-label">
-                ESTRATEGIAZ SCORE
-            </span>
-
-            <div class="score">
-                {score.toFixed(1)}
-                <span>/10</span>
-            </div>
-
-            <div class="score-stars">
-                ★★★★★
-            </div>
-
+          {livro.data.autor && (
             <p>
-                Avaliação editorial EstratégiaZ
+              <strong>Autor:</strong>
+              {livro.data.autor}
             </p>
+          )}
+
+          {livro.data.ano && (
+            <p>
+              <strong>Ano:</strong>
+              {livro.data.ano}
+            </p>
+          )}
+
+          {livro.data.editora && (
+            <p>
+              <strong>Editora:</strong>
+              {livro.data.editora}
+            </p>
+          )}
 
         </div>
 
-    
+      </div>
 
-    <section
-    class="community-rating"
-    id="rating-area"
->
 
-    <span class="community-kicker">
-        AVALIAÇÃO DA COMUNIDADE
-    </span>
+      <!-- ESTRATEGIAZ SCORE -->
 
-    <h2>
-        O que você acha deste livro?
-    </h2>
+      <div class="score-card">
 
-    <p class="community-intro">
-        Você já conhece este livro?
-        Compartilhe sua avaliação com outros profissionais.
-    </p>
+        <span class="score-label">
+          ESTRATEGIAZ SCORE
+        </span>
 
-    <div
-        class="community-average-card"
-    >
+        <div class="score">
 
-        <div
-            id="community-average-stars"
-            class="community-average-stars"
-        >
-            ☆☆☆☆☆
+          {score.toFixed(1)}
+
+          <span>
+            /10
+          </span>
+
         </div>
 
-        <strong
-            id="community-average"
-        >
-            —
-        </strong>
+        <div class="score-stars">
+          ★★★★★
+        </div>
 
-        <span>/5</span>
-
-        <p
-            id="community-count"
-        >
-            Ainda não há avaliações.
+        <p>
+          Avaliação editorial EstratégiaZ
         </p>
 
-    </div>
-
-
-    <div
-        id="rating-stars"
-        data-conteudo-id={livro.id}
-    >
-
-        <button
-            type="button"
-            data-rating="1"
-            aria-label="Avaliar com 1 estrela"
-        >
-            ★
-        </button>
-
-        <button
-            type="button"
-            data-rating="2"
-            aria-label="Avaliar com 2 estrelas"
-        >
-            ★
-        </button>
-
-        <button
-            type="button"
-            data-rating="3"
-            aria-label="Avaliar com 3 estrelas"
-        >
-            ★
-        </button>
-
-        <button
-            type="button"
-            data-rating="4"
-            aria-label="Avaliar com 4 estrelas"
-        >
-            ★
-        </button>
-
-        <button
-            type="button"
-            data-rating="5"
-            aria-label="Avaliar com 5 estrelas"
-        >
-            ★
-        </button>
+      </div>
 
     </div>
 
 
-    <p
-        id="rating-instruction"
-        class="rating-instruction"
-    >
-        Selecione uma nota de 1 a 5.
-    </p>
+    <!-- =====================================================
+         LAYOUT PRINCIPAL
+         ===================================================== -->
+
+    <div class="livro-layout">
 
 
-    <p
-        id="rating-message"
-        class="rating-message"
-        aria-live="polite"
-    ></p>
+      <!-- ===================================================
+           CONTEÚDO PRINCIPAL
+           =================================================== -->
 
-</section>
+      <main class="livro-primary">
 
-    </div>
 
-    <div class="ratings-grid">
+        <!-- =================================================
+             CONTEÚDO COMPLETO
+             
+             Fica escondido inicialmente e serve como fonte
+             para gerar o resumo público.
+             ================================================= -->
 
-        <div class="rating-item">
-            <span>Aplicabilidade</span>
-            <strong>{aplicabilidade}</strong>
+        <article
+          id="livro-content-source"
+          class="livro-content-source"
+        >
+
+          <Content />
+
+        </article>
+
+
+        <!-- =================================================
+             RESUMO PÚBLICO
+             ================================================= -->
+
+        <div
+          id="livro-public-summary"
+          class="livro-public-summary"
+        ></div>
+
+
+        <!-- =================================================
+             CTA NÍVEL 2
+             ================================================= -->
+
+        <div
+          id="level-two-cta"
+          class="level-two-cta"
+        >
+
+          <div class="level-two-cta-content">
+
+            <span class="level-two-kicker">
+              INTELIGÊNCIA ESTRATÉGICA
+            </span>
+
+            <h2>
+              Quer conhecer mais sobre {livro.data.title}?
+            </h2>
+
+            <p>
+              Acesse a análise ampliada e participe
+              como avaliador da comunidade EstratégiaZ.
+            </p>
+
+            <a
+              href={`/login?redirect=/livros/${livro.id}`}
+              class="level-two-button"
+            >
+              Conheça mais
+            </a>
+
+          </div>
+
         </div>
 
-        <div class="rating-item">
-            <span>Relevância</span>
-            <strong>{relevancia}</strong>
+
+        <!-- =================================================
+             NÍVEL 2
+             ================================================= -->
+
+        <div
+          id="level-two-content"
+          class="level-two-content"
+          hidden
+        >
+
+
+          <!-- ===============================================
+               AVALIAÇÕES EDITORIAIS
+               =============================================== -->
+
+          <div class="rating-grid">
+
+
+            <div class="rating-item">
+
+              <span>
+                Aplicabilidade
+              </span>
+
+              <strong>
+                {aplicabilidade}
+              </strong>
+
+            </div>
+
+
+            <div class="rating-item">
+
+              <span>
+                Relevância
+              </span>
+
+              <strong>
+                {relevancia}
+              </strong>
+
+            </div>
+
+
+            <div class="rating-item">
+
+              <span>
+                Atualidade
+              </span>
+
+              <strong>
+                {atualidade}
+              </strong>
+
+            </div>
+
+
+          </div>
+
+
+          <!-- ===============================================
+               CONTEÚDO COMPLETO DO OBSIDIAN
+               =============================================== -->
+
+          <article class="livro-content">
+
+            <Content />
+
+          </article>
+
         </div>
 
-        <div class="rating-item">
-            <span>Atualidade</span>
-            <strong>{atualidade}</strong>
-        </div>
+      </main>
+
+
+      <!-- ===================================================
+           COMUNIDADE
+           =================================================== -->
+
+      <aside class="livro-sidebar">
+
+
+        <section
+          class="community-rating"
+          id="rating-area"
+        >
+
+
+          <!-- CABEÇALHO -->
+
+          <div class="community-heading">
+
+            <span class="community-eyebrow">
+              AVALIAÇÃO DA COMUNIDADE
+            </span>
+
+            <h2>
+              O que você acha deste livro?
+            </h2>
+
+            <p>
+              Avalie este livro e compartilhe
+              sua experiência com outros profissionais.
+            </p>
+
+          </div>
+
+
+          <!-- MÉDIA -->
+
+          <div
+            class="community-result"
+            id="community-result"
+          >
+
+            <div
+              id="community-average-stars"
+              class="community-average-stars"
+            >
+              ☆☆☆☆☆
+            </div>
+
+            <div class="community-average-info">
+
+              <strong id="community-average">
+                —
+              </strong>
+
+              <span>
+                /5
+              </span>
+
+            </div>
+
+            <p id="community-count">
+              Ainda não há avaliações.
+            </p>
+
+          </div>
+
+
+          <!-- ESTRELAS DA COMUNIDADE -->
+
+          <div
+            id="rating-stars"
+            data-conteudo-id={livro.id}
+            class="rating-stars"
+          >
+
+            <button
+              type="button"
+              data-rating="1"
+              aria-label="Avaliar com 1 estrela"
+            >
+              ★
+            </button>
+
+            <button
+              type="button"
+              data-rating="2"
+              aria-label="Avaliar com 2 estrelas"
+            >
+              ★
+            </button>
+
+            <button
+              type="button"
+              data-rating="3"
+              aria-label="Avaliar com 3 estrelas"
+            >
+              ★
+            </button>
+
+            <button
+              type="button"
+              data-rating="4"
+              aria-label="Avaliar com 4 estrelas"
+            >
+              ★
+            </button>
+
+            <button
+              type="button"
+              data-rating="5"
+              aria-label="Avaliar com 5 estrelas"
+            >
+              ★
+            </button>
+
+          </div>
+
+
+          <p
+            id="rating-hint"
+            class="rating-hint"
+          >
+            Selecione uma nota de 1 a 5.
+          </p>
+
+
+          <div
+            id="rating-message"
+            class="rating-message"
+            aria-live="polite"
+          ></div>
+
+
+          <!-- =================================================
+               AVALIAÇÃO DO AVALIADOR
+               ================================================= -->
+
+          <div
+            id="evaluator-area"
+            class="evaluator-area"
+            hidden
+          >
+
+            <div class="evaluator-heading">
+
+              <span class="community-eyebrow">
+                AVALIAÇÃO DO AVALIADOR
+              </span>
+
+              <h3>
+                Avalie este livro
+              </h3>
+
+              <p>
+                Sua avaliação ajuda a construir
+                a inteligência coletiva do EstratégiaZ.
+              </p>
+
+            </div>
+
+
+            <div class="criterion-rating">
+
+
+              <!-- APLICABILIDADE -->
+
+              <div class="criterion-item">
+
+                <div class="criterion-label">
+
+                  <strong>
+                    Aplicabilidade
+                  </strong>
+
+                  <span>
+                    É útil para situações reais?
+                  </span>
+
+                </div>
+
+                <div
+                  class="criterion-stars"
+                  data-criterion="aplicabilidade"
+                >
+
+                  <button type="button" data-value="1">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="2">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="3">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="4">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="5">
+                    ★
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              <!-- RELEVÂNCIA -->
+
+              <div class="criterion-item">
+
+                <div class="criterion-label">
+
+                  <strong>
+                    Relevância
+                  </strong>
+
+                  <span>
+                    O conhecimento continua relevante?
+                  </span>
+
+                </div>
+
+                <div
+                  class="criterion-stars"
+                  data-criterion="relevancia"
+                >
+
+                  <button type="button" data-value="1">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="2">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="3">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="4">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="5">
+                    ★
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              <!-- ATUALIDADE -->
+
+              <div class="criterion-item">
+
+                <div class="criterion-label">
+
+                  <strong>
+                    Atualidade
+                  </strong>
+
+                  <span>
+                    Continua atual para os negócios?
+                  </span>
+
+                </div>
+
+                <div
+                  class="criterion-stars"
+                  data-criterion="atualidade"
+                >
+
+                  <button type="button" data-value="1">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="2">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="3">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="4">
+                    ★
+                  </button>
+
+                  <button type="button" data-value="5">
+                    ★
+                  </button>
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+            <!-- BOTÃO -->
+
+            <button
+              type="button"
+              id="evaluator-submit"
+              class="evaluator-submit"
+            >
+              Salvar minha avaliação
+            </button>
+
+
+            <p
+              id="evaluator-message"
+              class="evaluator-message"
+              aria-live="polite"
+            ></p>
+
+          </div>
+
+
+          <!-- =================================================
+               COMENTÁRIO
+               ================================================= -->
+
+          <div
+            id="comment-area"
+            class="comment-area"
+            hidden
+          >
+
+            <div class="review-user">
+
+              <div
+                class="review-avatar"
+                id="review-avatar"
+              >
+                E
+              </div>
+
+              <div class="review-user-info">
+
+                <strong id="review-user-name">
+                  Avaliando como você
+                </strong>
+
+                <span>
+                  Sua opinião ajuda a comunidade EstratégiaZ.
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <label for="comentario">
+              Compartilhe sua opinião
+            </label>
+
+
+            <textarea
+              id="comentario"
+              maxlength="1000"
+              placeholder="O que você acha deste livro? Conte sua experiência, aplicação prática ou principal aprendizado..."
+            ></textarea>
+
+
+            <div class="comment-footer">
+
+              <span id="comment-counter">
+                0/1000
+              </span>
+
+              <button
+                type="button"
+                id="comment-button"
+              >
+                Publicar comentário
+              </button>
+
+            </div>
+
+          </div>
+
+
+        </section>
+
+      </aside>
 
     </div>
 
-
-    <div class="content">
-
-        <Content />
-
-    </div>
-
-</div>
+  </main>
 
 </BaseLayout>
 
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
 <script>
-    import { supabase } from "../../lib/supabase.js";
+
+  import { supabase } from "../../lib/supabase.js";
+
+
+  /*
+   * ELEMENTOS
+   */
+
+  const stars =
+    document.querySelectorAll<HTMLButtonElement>(
+      "#rating-stars button"
+    );
+
+
+  const ratingContainer =
+    document.querySelector(
+      "#rating-stars"
+    );
+
+
+  const averageStars =
+    document.querySelector<HTMLElement>(
+      "#community-average-stars"
+    );
+
+
+  const average =
+    document.querySelector<HTMLElement>(
+      "#community-average"
+    );
+
+
+  const count =
+    document.querySelector<HTMLElement>(
+      "#community-count"
+    );
+
+
+  const hint =
+    document.querySelector(
+      "#rating-hint"
+    );
+
+
+  const message =
+    document.querySelector(
+      "#rating-message"
+    );
+
+
+  const evaluatorArea =
+    document.querySelector(
+      "#evaluator-area"
+    );
+
+
+  const evaluatorSubmit =
+    document.querySelector(
+      "#evaluator-submit"
+    );
+
+
+  const evaluatorMessage =
+    document.querySelector(
+      "#evaluator-message"
+    );
+
+
+  const commentArea =
+    document.querySelector(
+      "#comment-area"
+    );
+
+
+  const commentInput =
+    document.querySelector(
+      "#comentario"
+    );
+
+
+  const commentButton =
+    document.querySelector(
+      "#comment-button"
+    );
+
+
+  const commentCounter =
+    document.querySelector(
+      "#comment-counter"
+    );
+
+
+  const userName =
+    document.querySelector(
+      "#review-user-name"
+    );
+
+
+  const avatar =
+    document.querySelector(
+      "#review-avatar"
+    );
+
+
+  const publicSummary =
+    document.querySelector(
+      "#livro-public-summary"
+    );
+
+
+  const contentSource =
+    document.querySelector(
+      "#livro-content-source"
+    );
+
+
+  const levelTwoContent =
+    document.querySelector(
+      "#level-two-content"
+    );
+
+
+  const levelTwoCta =
+    document.querySelector(
+      "#level-two-cta"
+    );
+
+
+  /*
+   * VERIFICA ELEMENTOS ESSENCIAIS
+   */
+
+  if (
+    !(ratingContainer instanceof HTMLElement) ||
+    !(hint instanceof HTMLElement) ||
+    !(message instanceof HTMLElement)
+  ) {
+
+    throw new Error(
+      "Elementos da avaliação do livro não encontrados."
+    );
+
+  }
+
+
+  const conteudoTipo =
+    "livro";
+
+
+  const conteudoId =
+    ratingContainer.dataset.conteudoId;
+
+
+  if (!conteudoId) {
+
+    throw new Error(
+      "ID do livro não encontrado."
+    );
+
+  }
+
+
+  /*
+   * =========================================================
+   * RESUMO PÚBLICO
+   * =========================================================
+   */
+
+  function montarResumoPublico() {
+
+    if (
+      !(publicSummary instanceof HTMLElement) ||
+      !(contentSource instanceof HTMLElement)
+    ) {
+
+      return;
+
+    }
+
+
+    const elementos =
+      Array.from(
+        contentSource.children
+      );
+
+
+    let secaoAtual = 0;
+
+    let capturando = false;
+
+
+    elementos.forEach(
+      (elemento) => {
+
+        const tag =
+          elemento.tagName.toLowerCase();
+
+
+        /*
+         * O resumo público do livro é formado pelas
+         * duas primeiras seções do Markdown:
+         *
+         * ## Por que este livro importa
+         * ## Principais ideias
+         */
+
+        if (tag === "h2") {
+
+          secaoAtual++;
+
+          capturando =
+            secaoAtual <= 2;
+
+        }
+
+
+        if (capturando) {
+
+          publicSummary.appendChild(
+            elemento.cloneNode(true)
+          );
+
+        }
+
+      }
+    );
+
+  }
+
+
+  /*
+   * =========================================================
+   * NÍVEL 2
+   * =========================================================
+   */
+
+  async function verificarNivelDoUsuario() {
+
+    const {
+      data: {
+        user
+      }
+    } =
+      await supabase.auth.getUser();
+
+
+    if (!user) {
+
+      return;
+
+    }
 
 
     /*
-     * ELEMENTOS DA PÁGINA
-     */
-
-    const stars =
-        document.querySelectorAll<HTMLButtonElement>(
-            "#rating-stars button"
-        );
-
-
-    const ratingContainer =
-        document.querySelector(
-            "#rating-stars"
-        );
-
-
-    const averageStars =
-        document.querySelector<HTMLElement>(
-            "#community-average-stars"
-        )!;
-
-
-    const average =
-        document.querySelector<HTMLElement>(
-            "#community-average"
-        )!;
-
-
-    const count =
-        document.querySelector<HTMLElement>(
-            "#community-count"
-        )!;
-
-
-    const instruction =
-        document.querySelector(
-            "#rating-instruction"
-        );
-
-
-    const message =
-        document.querySelector(
-            "#rating-message"
-        );
-
-
-    /*
-     * VERIFICA ELEMENTOS
+     * Usuário logado:
+     * libera o conteúdo completo.
      */
 
     if (
-        !(ratingContainer instanceof HTMLElement) ||
-        !(instruction instanceof HTMLElement) ||
-        !(message instanceof HTMLElement)
+      levelTwoContent instanceof HTMLElement
     ) {
 
-        throw new Error(
-            "Elementos da avaliação do livro não encontrados."
-        );
+      levelTwoContent.hidden =
+        false;
+
+    }
+
+
+    if (
+      levelTwoCta instanceof HTMLElement
+    ) {
+
+      levelTwoCta.hidden =
+        true;
+
+    }
+
+
+    if (
+      publicSummary instanceof HTMLElement
+    ) {
+
+      publicSummary.hidden =
+        true;
+
+    }
+
+
+    if (
+      contentSource instanceof HTMLElement
+    ) {
+
+      contentSource.hidden =
+        true;
 
     }
 
 
     /*
-     * TIPO DO CONTEÚDO
+     * Preenche nome do avaliador
      */
 
-    const conteudoTipo = "livro";
+    const nome =
+      user.user_metadata?.full_name ||
+      user.user_metadata?.name ||
+      user.email?.split("@")[0] ||
+      "Avaliador";
 
 
-    /*
-     * ID DO LIVRO
-     */
+    if (
+      userName instanceof HTMLElement
+    ) {
 
-    const conteudoId =
-        ratingContainer.dataset.conteudoId;
-
-
-    if (!conteudoId) {
-
-        throw new Error(
-            "ID do livro não encontrado."
-        );
+      userName.textContent =
+        nome;
 
     }
 
 
-    /*
-     * CARREGA A MÉDIA DA COMUNIDADE
-     */
+    if (
+      avatar instanceof HTMLElement
+    ) {
 
-    async function carregarMediaComunidade() {
+      avatar.textContent =
+        nome
+          .charAt(0)
+          .toUpperCase();
+
+    }
+
+  }
+
+
+  /*
+   * =========================================================
+   * MÉDIA DA COMUNIDADE
+   * =========================================================
+   */
+
+  async function carregarMediaComunidade() {
+
+    const {
+      data,
+      error
+    } =
+      await supabase
+        .from("avaliacoes")
+        .select("nota")
+        .eq(
+          "conteudo_tipo",
+          conteudoTipo
+        )
+        .eq(
+          "conteudo_id",
+          conteudoId
+        );
+
+
+    if (error) {
+
+      console.error(
+        "Erro ao carregar avaliações:",
+        error
+      );
+
+
+      if (
+        average instanceof HTMLElement
+      ) {
+
+        average.textContent =
+          "—";
+
+      }
+
+
+      if (
+        count instanceof HTMLElement
+      ) {
+
+        count.textContent =
+          "Não foi possível carregar as avaliações.";
+
+      }
+
+
+      if (
+        averageStars instanceof HTMLElement
+      ) {
+
+        averageStars.textContent =
+          "☆☆☆☆☆";
+
+      }
+
+
+      return;
+
+    }
+
+
+    if (
+      !data ||
+      data.length === 0
+    ) {
+
+      if (
+        average instanceof HTMLElement
+      ) {
+
+        average.textContent =
+          "—";
+
+      }
+
+
+      if (
+        count instanceof HTMLElement
+      ) {
+
+        count.textContent =
+          "Ainda não há avaliações.";
+
+      }
+
+
+      if (
+        averageStars instanceof HTMLElement
+      ) {
+
+        averageStars.textContent =
+          "☆☆☆☆☆";
+
+      }
+
+
+      return;
+
+    }
+
+
+    const quantidade =
+      data.length;
+
+
+    const soma =
+      data.reduce(
+        (
+          total: number,
+          avaliacao: { nota: number }
+        ) =>
+          total +
+          Number(
+            avaliacao.nota
+          ),
+        0
+      );
+
+
+    const media =
+      soma / quantidade;
+
+
+    if (
+      average instanceof HTMLElement
+    ) {
+
+      average.textContent =
+        media.toFixed(1);
+
+    }
+
+
+    if (
+      count instanceof HTMLElement
+    ) {
+
+      count.textContent =
+        quantidade === 1
+          ? "1 avaliação da comunidade."
+          : `${quantidade} avaliações da comunidade.`;
+
+    }
+
+
+    const estrelasCheias =
+      Math.round(media);
+
+
+    let estrelas =
+      "";
+
+
+    for (
+      let i = 1;
+      i <= 5;
+      i++
+    ) {
+
+      estrelas +=
+        i <= estrelasCheias
+          ? "★"
+          : "☆";
+
+    }
+
+
+    if (
+      averageStars instanceof HTMLElement
+    ) {
+
+      averageStars.textContent =
+        estrelas;
+
+    }
+
+  }
+
+
+  /*
+   * =========================================================
+   * ESTRELAS DA COMUNIDADE
+   * =========================================================
+   */
+
+  stars.forEach(
+    (star) => {
+
+      star.addEventListener(
+        "click",
+        async () => {
+
+          const nota =
+            Number(
+              star.dataset.rating
+            );
+
+
+          /*
+           * Verifica login
+           */
+
+          const {
+            data: {
+              user
+            }
+          } =
+            await supabase.auth.getUser();
+
+
+          /*
+           * Se não estiver logado,
+           * envia para cadastro.
+           */
+
+          if (!user) {
+
+            window.location.href =
+              `/cadastro?redirect=/livros/${conteudoId}`;
+
+            return;
+
+          }
+
+
+          /*
+           * Desabilita enquanto salva
+           */
+
+          stars.forEach(
+            (button) => {
+
+              button.disabled =
+                true;
+
+            }
+          );
+
+
+          message.textContent =
+            "Registrando sua avaliação...";
+
+
+          /*
+           * Salva avaliação geral
+           */
+
+          const {
+            error
+          } =
+            await supabase
+              .from("avaliacoes")
+              .insert({
+
+                user_id:
+                  user.id,
+
+                conteudo_tipo:
+                  conteudoTipo,
+
+                conteudo_id:
+                  conteudoId,
+
+                nota,
+
+                publicado:
+                  false
+
+              });
+
+
+          if (error) {
+
+            console.error(
+              "Erro Supabase:",
+              error
+            );
+
+
+            message.textContent =
+              `Erro ao registrar: ${error.message}`;
+
+
+            stars.forEach(
+              (button) => {
+
+                button.disabled =
+                  false;
+
+              }
+            );
+
+
+            return;
+
+          }
+
+
+          /*
+           * Marca estrelas escolhidas
+           */
+
+          stars.forEach(
+            (button) => {
+
+              const rating =
+                Number(
+                  button.dataset.rating
+                );
+
+
+              button.classList.toggle(
+                "selected",
+                rating <= nota
+              );
+
+            }
+          );
+
+
+          hint.textContent =
+            "Você já avaliou este livro.";
+
+
+          message.textContent =
+            `Sua avaliação: ${nota}/5`;
+
+
+          /*
+           * Libera avaliação dos critérios
+           */
+
+          if (
+            evaluatorArea instanceof HTMLElement
+          ) {
+
+            evaluatorArea.hidden =
+              false;
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+  /*
+   * =========================================================
+   * ESTRELAS DOS CRITÉRIOS
+   * =========================================================
+   */
+
+  const criterionStars =
+    document.querySelectorAll<HTMLElement>(
+      ".criterion-stars"
+    );
+
+
+  const criterios: Record<
+    string,
+    number
+  > = {};
+
+
+  criterionStars.forEach(
+    (grupo) => {
+
+      const criterio =
+        grupo.dataset.criterion;
+
+
+      if (!criterio) {
+
+        return;
+
+      }
+
+
+      const botoes =
+        grupo.querySelectorAll<HTMLButtonElement>(
+          "button"
+        );
+
+
+      botoes.forEach(
+        (botao) => {
+
+          botao.addEventListener(
+            "click",
+            () => {
+
+              const valor =
+                Number(
+                  botao.dataset.value
+                );
+
+
+              criterios[criterio] =
+                valor;
+
+
+              botoes.forEach(
+                (item) => {
+
+                  const itemValor =
+                    Number(
+                      item.dataset.value
+                    );
+
+
+                  item.classList.toggle(
+                    "selected",
+                    itemValor <= valor
+                  );
+
+                }
+              );
+
+            }
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  /*
+   * =========================================================
+   * SALVAR AVALIAÇÃO DO AVALIADOR
+   * =========================================================
+   */
+
+  if (
+    evaluatorSubmit instanceof HTMLButtonElement
+  ) {
+
+    evaluatorSubmit.addEventListener(
+      "click",
+      async () => {
 
         const {
-            data,
-            error
-        } = await supabase
+          data: {
+            user
+          }
+        } =
+          await supabase.auth.getUser();
+
+
+        if (!user) {
+
+          window.location.href =
+            `/cadastro?redirect=/livros/${conteudoId}`;
+
+          return;
+
+        }
+
+
+        /*
+         * Verifica se os três critérios foram avaliados
+         */
+
+        if (
+          !criterios.aplicabilidade ||
+          !criterios.relevancia ||
+          !criterios.atualidade
+        ) {
+
+          if (
+            evaluatorMessage instanceof HTMLElement
+          ) {
+
+            evaluatorMessage.textContent =
+              "Avalie os três critérios antes de salvar.";
+
+          }
+
+          return;
+
+        }
+
+
+        evaluatorSubmit.disabled =
+          true;
+
+
+        if (
+          evaluatorMessage instanceof HTMLElement
+        ) {
+
+          evaluatorMessage.textContent =
+            "Salvando sua avaliação...";
+
+        }
+
+
+        /*
+         * Atualiza a avaliação geral existente
+         */
+
+        const {
+          error
+        } =
+          await supabase
             .from("avaliacoes")
-            .select("nota")
+            .update({
+
+              aplicabilidade:
+                criterios.aplicabilidade,
+
+              relevancia:
+                criterios.relevancia,
+
+              atualidade:
+                criterios.atualidade
+
+            })
             .eq(
-                "conteudo_tipo",
-                conteudoTipo
+              "user_id",
+              user.id
             )
             .eq(
-                "conteudo_id",
-                conteudoId
+              "conteudo_tipo",
+              conteudoTipo
+            )
+            .eq(
+              "conteudo_id",
+              conteudoId
             );
 
 
         if (error) {
 
-            console.error(
-                "Erro ao carregar avaliações:",
-                error
-            );
-
-            average.textContent =
-                "—";
-
-            count.textContent =
-                "Não foi possível carregar as avaliações.";
-
-            averageStars.textContent =
-                "☆☆☆☆☆";
-
-            return;
-
-        }
+          console.error(
+            "Erro ao salvar critérios:",
+            error
+          );
 
 
-        /*
-         * NÃO EXISTEM AVALIAÇÕES
-         */
+          if (
+            evaluatorMessage instanceof HTMLElement
+          ) {
 
-        if (!data || data.length === 0) {
+            evaluatorMessage.textContent =
+              `Erro ao salvar: ${error.message}`;
 
-            average.textContent =
-                "—";
+          }
 
-            count.textContent =
-                "Ainda não há avaliações.";
 
-            averageStars.textContent =
-                "☆☆☆☆☆";
+          evaluatorSubmit.disabled =
+            false;
 
-            return;
+
+          return;
 
         }
 
 
-        /*
-         * QUANTIDADE
-         */
-
-        const quantidade =
-            data.length;
-
-
-        /*
-         * SOMA DAS NOTAS
-         */
-
-        const soma =
-            data.reduce(
-                (
-                    total: number,
-                    avaliacao: { nota: number }
-                ) =>
-                    total +
-                    Number(avaliacao.nota),
-                0
-            );
-
-
-        /*
-         * MÉDIA
-         */
-
-        const media =
-            soma / quantidade;
-
-
-        average.textContent =
-            media.toFixed(1);
-
-
-        /*
-         * QUANTIDADE DE AVALIAÇÕES
-         */
-
-        count.textContent =
-            quantidade === 1
-                ? "1 avaliação da comunidade."
-                : `${quantidade} avaliações da comunidade.`;
-
-
-        /*
-         * ESTRELAS DA MÉDIA
-         */
-
-        const estrelasCheias =
-            Math.round(media);
-
-
-        let estrelas =
-            "";
-
-
-        for (
-            let i = 1;
-            i <= 5;
-            i++
+        if (
+          evaluatorMessage instanceof HTMLElement
         ) {
 
-            estrelas +=
-                i <= estrelasCheias
-                    ? "★"
-                    : "☆";
+          evaluatorMessage.textContent =
+            "Sua avaliação foi salva com sucesso.";
 
         }
 
 
-        averageStars.textContent =
-            estrelas;
+        evaluatorSubmit.textContent =
+          "Avaliação salva";
 
-    }
 
+        /*
+         * Mostra área de comentário
+         */
 
-    /*
-     * CLIQUE NAS ESTRELAS
-     */
+        if (
+          commentArea instanceof HTMLElement
+        ) {
 
-    stars.forEach((star) => {
+          commentArea.hidden =
+            false;
 
-        star.addEventListener(
-            "click",
-            async () => {
+        }
 
-                /*
-                 * NOTA ESCOLHIDA
-                 */
+      }
+    );
 
-                const nota =
-                    Number(
-                        star.dataset.rating
-                    );
+  }
 
 
-                /*
-                 * VERIFICA USUÁRIO LOGADO
-                 */
+  /*
+   * =========================================================
+   * CONTADOR DO COMENTÁRIO
+   * =========================================================
+   */
 
-                const {
-                    data: {
-                        user
-                    }
-                } =
-                    await supabase.auth.getUser();
+  if (
+    commentInput instanceof HTMLTextAreaElement &&
+    commentCounter instanceof HTMLElement
+  ) {
 
+    commentInput.addEventListener(
+      "input",
+      () => {
 
-                /*
-                 * SE NÃO ESTIVER LOGADO,
-                 * VAI PARA O CADASTRO
-                 */
+        commentCounter.textContent =
+          `${commentInput.value.length}/1000`;
 
-                if (!user) {
+      }
+    );
 
-                    window.location.href =
-                        `/cadastro?redirect=/livros/${conteudoId}`;
+  }
 
-                    return;
 
-                }
+  /*
+   * =========================================================
+   * PUBLICAR COMENTÁRIO
+   * =========================================================
+   */
 
+  if (
+    commentButton instanceof HTMLButtonElement
+  ) {
 
-                /*
-                 * DESABILITA AS ESTRELAS
-                 * ENQUANTO SALVA
-                 */
+    commentButton.addEventListener(
+      "click",
+      async () => {
 
-                stars.forEach(
-                    (button) => {
+        const {
+          data: {
+            user
+          }
+        } =
+          await supabase.auth.getUser();
 
-                        button.disabled =
-                            true;
 
-                    }
-                );
+        if (!user) {
 
+          window.location.href =
+            `/cadastro?redirect=/livros/${conteudoId}`;
 
-                message.textContent =
-                    "Registrando sua avaliação...";
+          return;
 
+        }
 
-                /*
-                 * SALVA NO SUPABASE
-                 */
 
-                const {
-                    error
-                } =
-                    await supabase
-                        .from("avaliacoes")
-                        .insert({
+        if (
+          !(commentInput instanceof HTMLTextAreaElement)
+        ) {
 
-                            user_id:
-                                user.id,
+          return;
 
-                            conteudo_tipo:
-                                conteudoTipo,
+        }
 
-                            conteudo_id:
-                                conteudoId,
 
-                            nota,
+        const comentario =
+          commentInput.value.trim();
 
-                            publicado:
-                                false
 
-                        });
+        if (!comentario) {
 
+          commentInput.focus();
 
-                /*
-                 * ERRO AO SALVAR
-                 */
+          return;
 
-                if (error) {
+        }
 
-                    console.error(
-                        "ERRO SUPABASE:",
-                        error
-                    );
 
+        commentButton.disabled =
+          true;
 
-                    message.textContent =
-                        `Erro ao registrar: ${error.message}`;
 
+        commentButton.textContent =
+          "Publicando...";
 
-                    stars.forEach(
-                        (button) => {
 
-                            button.disabled =
-                                false;
+        const {
+          error
+        } =
+          await supabase
+            .from("avaliacoes")
+            .update({
 
-                        }
-                    );
+              comentario,
 
+              depoimento:
+                comentario,
 
-                    return;
+              publicado:
+                true
 
-                }
+            })
+            .eq(
+              "user_id",
+              user.id
+            )
+            .eq(
+              "conteudo_tipo",
+              conteudoTipo
+            )
+            .eq(
+              "conteudo_id",
+              conteudoId
+            );
 
 
-                /*
-                 * MARCA VISUALMENTE
-                 * A NOTA ESCOLHIDA
-                 */
+        if (error) {
 
-                stars.forEach(
-                    (button) => {
+          console.error(
+            "Erro ao publicar comentário:",
+            error
+          );
 
-                        const rating =
-                            Number(
-                                button.dataset.rating
-                            );
 
+          commentButton.disabled =
+            false;
 
-                        button.classList.toggle(
-                            "selected",
-                            rating <= nota
-                        );
+          commentButton.textContent =
+            "Publicar comentário";
 
-                    }
-                );
+          return;
 
+        }
 
-                /*
-                 * NÃO PERMITE NOVO VOTO
-                 */
 
-                stars.forEach(
-                    (button) => {
+        commentButton.textContent =
+          "Comentário publicado";
 
-                        button.disabled =
-                            true;
+        commentInput.disabled =
+          true;
 
-                    }
-                );
+      }
+    );
 
+  }
 
-                instruction.textContent =
-                    "Você já avaliou este livro.";
 
+  /*
+   * =========================================================
+   * INICIALIZAÇÃO
+   * ========================================================= */
 
-                message.textContent =
-                    `Sua avaliação: ${nota}/5`;
+  montarResumoPublico();
 
-            }
-        );
+  verificarNivelDoUsuario();
 
-    });
-
-
-    /*
-     * EXECUTA AO CARREGAR A PÁGINA
-     */
-
-    carregarMediaComunidade();
+  carregarMediaComunidade();
 
 </script>
+
+
 <style>
 
+/* =========================================================
+   ESTRUTURA
+   ========================================================= */
+
+.livro-page {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.livro-header {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    300px;
+
+  gap: 32px;
+
+  align-items: stretch;
+
+  margin-bottom: 36px;
+}
+
+.livro-main h1 {
+  margin: 0 0 20px;
+
+  color: #102a43;
+
+  font-size: clamp(
+    32px,
+    5vw,
+    52px
+  );
+
+  line-height: 1.1;
+}
+
+.livro-info p {
+  margin: 8px 0;
+
+  color: #475569;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   SCORE
+   ========================================================= */
+
+.score-card {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 28px;
+
+  border:
+    1px solid
+    #e2e8f0;
+
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+}
+
+.score-label {
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: .14em;
+
+  color: #64748b;
+
+  text-align: center;
+}
+
+.score {
+  margin-top: 8px;
+
+  color: #102a43 !important;
+
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.1;
+
+  text-align: center;
+}
+
+.score span {
+  color: #64748b !important;
+
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.score-stars {
+  margin-top: 4px;
+
+  color: #f59e0b;
+
+  font-size: 20px;
+
+  letter-spacing: 2px;
+}
+
+.score-card p {
+  margin: 8px 0 0;
+
+  color: #64748b;
+
+  font-size: 12px;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.livro-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    360px;
+
+  gap: 36px;
+
+  align-items: start;
+}
+
+.livro-primary {
+  min-width: 0;
+}
+
+.livro-sidebar {
+  min-width: 0;
+
+  position: sticky;
+
+  top: 24px;
+}
+
+
+/* =========================================================
+   FONTE DO CONTEÚDO
+   ========================================================= */
+
+.livro-content-source {
+  display: none;
+}
+
+
+/* =========================================================
+   RESUMO PÚBLICO
+   ========================================================= */
+
+.livro-public-summary {
+  color: #334e68;
+
+  line-height: 1.8;
+}
+
+.livro-public-summary h2 {
+  margin:
+    0 0 16px;
+
+  color: #102a43;
+
+  font-size: 28px;
+}
+
+.livro-public-summary p {
+  margin:
+    0 0 24px;
+}
+
+.livro-public-summary ul,
+.livro-public-summary ol {
+  margin:
+    0 0 28px;
+
+  padding-left: 24px;
+}
+
+.livro-public-summary li {
+  margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.level-two-cta {
+  margin-top: 36px;
+
+  padding: 30px;
+
+  border:
+    1px solid
+    #dbe4ee;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8fafc,
+      #ffffff
+    );
+}
+
+.level-two-cta-content {
+  max-width: 650px;
+}
+
+.level-two-kicker {
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: .14em;
+
+  color: #64748b;
+}
+
+.level-two-cta h2 {
+  margin:
+    8px 0 10px;
+
+  color: #102a43;
+
+  font-size: 25px;
+}
+
+.level-two-cta p {
+  margin:
+    0 0 20px;
+
+  color: #475569;
+
+  line-height: 1.6;
+}
+
+.level-two-button {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding:
+    11px 20px;
+
+  border-radius: 9px;
+
+  background: #102a43;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    transform .15s ease,
+    background .2s ease;
+}
+
+.level-two-button:hover {
+  background: #243b53;
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* =========================================================
+   NÍVEL 2
+   ========================================================= */
+
+.level-two-content {
+  margin-top: 36px;
+}
+
+.level-two-content[hidden] {
+  display: none;
+}
+
+
+/* =========================================================
+   AVALIAÇÕES EDITORIAIS
+   ========================================================= */
+
+.rating-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 12px;
+
+  margin-bottom: 36px;
+}
+
+.rating-item {
+  padding: 18px;
+
+  border:
+    1px solid
+    #e2e8f0;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  box-sizing: border-box;
+}
+
+.rating-item span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+.rating-item strong {
+  color: #102a43;
+
+  font-size: 15px;
+}
+
+
+/* =========================================================
+   CONTEÚDO DO LIVRO
+   ========================================================= */
+
+.livro-content {
+  color: #334e68;
+
+  line-height: 1.8;
+}
+
+.livro-content h2 {
+  margin-top: 36px;
+
+  margin-bottom: 14px;
+
+  color: #102a43;
+
+  font-size: 28px;
+}
+
+.livro-content h3 {
+  margin-top: 28px;
+
+  color: #243b53;
+
+  font-size: 21px;
+}
+
+.livro-content p {
+  margin:
+    0 0 18px;
+}
+
+.livro-content ul,
+.livro-content ol {
+  margin-bottom: 24px;
+
+  padding-left: 24px;
+}
+
+.livro-content li {
+  margin-bottom: 8px;
+}
+
+.livro-content blockquote {
+  margin:
+    24px 0;
+
+  padding:
+    18px 22px;
+
+  border-left:
+    4px solid
+    #cbd5e1;
+
+  background: #f8fafc;
+
+  color: #475569;
+}
+
+
+/* =========================================================
+   COMUNIDADE
+   ========================================================= */
+
 .community-rating {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-    padding: 30px;
-    border: 1px solid #e2e8f0;
-    border-radius: 18px;
-    background: white;
+  width: 100%;
+
+  max-width: 100%;
+
+  margin: 0;
+
+  padding: 26px;
+
+  border:
+    1px solid
+    #e2e8f0;
+
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
 }
 
-.community-kicker {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    color: #64748b;
+.community-heading {
+  min-width: 0;
 }
 
-.community-rating h2 {
-    margin: 8px 0 12px;
-    font-size: 28px;
-    color: #102a43;
+.community-eyebrow {
+  font-size: 11px;
+
+  font-weight: 700;
+
+  letter-spacing: .14em;
+
+  color: #64748b;
 }
 
-.community-intro {
-    color: #475569;
-    line-height: 1.6;
+.community-heading h2 {
+  margin:
+    8px 0 10px;
+
+  color: #102a43;
+
+  font-size: 25px;
+
+  line-height: 1.2;
 }
 
-.community-average-card {
-    margin: 22px 0;
-    padding: 18px;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    background: #f8fafc;
+.community-heading p {
+  margin:
+    0;
+
+  color: #475569;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   MÉDIA
+   ========================================================= */
+
+.community-result {
+  margin:
+    22px 0;
+
+  padding: 18px;
+
+  border:
+    1px solid
+    #e2e8f0;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  box-sizing: border-box;
 }
 
 .community-average-stars {
-    display: inline-block;
-    margin-right: 12px;
-    color: #f59e0b;
-    font-size: 22px;
-    letter-spacing: 2px;
+  color: #f59e0b;
+
+  font-size: 22px;
+
+  letter-spacing: 2px;
+
+  line-height: 1.2;
+
+  word-break: normal;
 }
 
-#community-average {
-    font-size: 25px;
-    color: #102a43;
+.community-average-info {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 4px;
+
+  margin-top: 8px;
 }
 
-.community-average-card > span {
-    color: #64748b;
+.community-average-info strong {
+  color: #102a43;
+
+  font-size: 28px;
 }
 
-.community-average-card p {
-    margin: 8px 0 0;
-    font-size: 13px;
-    color: #64748b;
+.community-average-info span {
+  color: #64748b;
+
+  font-size: 14px;
 }
 
-#rating-stars {
-    display: flex;
-    gap: 5px;
+.community-result p {
+  margin:
+    7px 0 0;
+
+  color: #64748b;
+
+  font-size: 12px;
 }
 
-#rating-stars button {
-    border: 0;
-    background: transparent;
-    padding: 0;
-    color: #cbd5e1;
-    font-size: 32px;
-    cursor: pointer;
+
+/* =========================================================
+   ESTRELAS DA COMUNIDADE
+   ========================================================= */
+
+.rating-stars {
+  display: flex;
+
+  flex-wrap: nowrap;
+
+  align-items: center;
+
+  gap: 2px;
+
+  width: 100%;
+
+  max-width: 100%;
+
+  box-sizing: border-box;
 }
 
-#rating-stars button:hover,
-#rating-stars button.selected {
-    color: #f59e0b;
+.rating-stars button {
+  flex:
+    0 0 32px;
+
+  width: 32px;
+
+  height: 34px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #cbd5e1;
+
+  font-family: inherit;
+
+  font-size: 29px;
+
+  line-height: 34px;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    color .15s ease,
+    transform .15s ease;
 }
 
-#rating-stars button:disabled {
-    cursor: default;
+.rating-stars button:hover,
+.rating-stars button.selected {
+  color: #f59e0b;
+
+  transform:
+    scale(1.04);
 }
 
-.rating-instruction,
+.rating-stars button:disabled {
+  cursor: default;
+}
+
+.rating-hint,
 .rating-message {
-    font-size: 13px;
-    color: #64748b;
+  margin:
+    8px 0 0;
+
+  color: #64748b;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   AVALIAÇÃO DO AVALIADOR
+   ========================================================= */
+
+.evaluator-area {
+  width: 100%;
+
+  max-width: 100%;
+
+  margin-top: 28px;
+
+  padding-top: 28px;
+
+  border-top:
+    1px solid
+    #e2e8f0;
+
+  box-sizing: border-box;
+}
+
+.evaluator-area[hidden] {
+  display: none;
+}
+
+.evaluator-heading h3 {
+  margin:
+    7px 0 8px;
+
+  color: #102a43;
+
+  font-size: 21px;
+}
+
+.evaluator-heading p {
+  margin:
+    0 0 20px;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+.criterion-rating {
+  display: grid;
+
+  width: 100%;
+
+  max-width: 100%;
+
+  gap: 10px;
+}
+
+.criterion-item {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  width: 100%;
+
+  max-width: 100%;
+
+  min-width: 0;
+
+  gap: 10px;
+
+  padding: 13px;
+
+  border:
+    1px solid
+    #e2e8f0;
+
+  border-radius: 12px;
+
+  background: #f8fafc;
+
+  box-sizing: border-box;
+}
+
+.criterion-label {
+  min-width: 0;
+
+  flex: 1;
+}
+
+.criterion-label strong {
+  display: block;
+
+  color: #102a43;
+
+  font-size: 13px;
+}
+
+.criterion-label span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #64748b;
+
+  font-size: 10px;
+
+  line-height: 1.4;
+}
+
+.criterion-stars {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  flex-shrink: 0;
+
+  gap: 0;
+
+  white-space: nowrap;
+}
+
+.criterion-stars button {
+  flex:
+    0 0 24px;
+
+  width: 24px;
+
+  height: 25px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #cbd5e1;
+
+  font-family: inherit;
+
+  font-size: 20px;
+
+  line-height: 25px;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    color .15s ease,
+    transform .15s ease;
+}
+
+.criterion-stars button:hover,
+.criterion-stars button.selected {
+  color: #f59e0b;
+
+  transform:
+    scale(1.05);
+}
+
+
+/* =========================================================
+   BOTÃO SALVAR
+   ========================================================= */
+
+.evaluator-submit {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: auto;
+
+  min-height: 42px;
+
+  margin-top: 18px;
+
+  padding:
+    10px 18px;
+
+  border: 0;
+
+  border-radius: 9px;
+
+  background: #102a43;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    background .2s ease,
+    transform .15s ease;
+}
+
+.evaluator-submit:hover {
+  background: #243b53;
+
+  transform:
+    translateY(-1px);
+}
+
+.evaluator-submit:disabled {
+  opacity: .65;
+
+  cursor: default;
+
+  transform: none;
+}
+
+.evaluator-message {
+  margin-top: 10px;
+
+  color: #475569;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   COMENTÁRIO
+   ========================================================= */
+
+.comment-area {
+  margin-top: 24px;
+
+  padding-top: 24px;
+
+  border-top:
+    1px solid
+    #e2e8f0;
+}
+
+.comment-area[hidden] {
+  display: none;
+}
+
+.review-user {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+}
+
+.review-avatar {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 38px;
+
+  height: 38px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #102a43;
+
+  color: #ffffff;
+
+  font-weight: 700;
+}
+
+.review-user-info strong {
+  display: block;
+
+  color: #102a43;
+
+  font-size: 13px;
+}
+
+.review-user-info span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+.comment-area label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #102a43;
+
+  font-size: 13px;
+
+  font-weight: 700;
+}
+
+.comment-area textarea {
+  width: 100%;
+
+  min-height: 120px;
+
+  padding: 12px;
+
+  border:
+    1px solid
+    #cbd5e1;
+
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  color: #102a43;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  resize: vertical;
+
+  box-sizing: border-box;
+}
+
+.comment-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 8px;
+}
+
+#comment-counter {
+  color: #64748b;
+
+  font-size: 11px;
+}
+
+#comment-button {
+  padding:
+    9px 14px;
+
+  border: 0;
+
+  border-radius: 8px;
+
+  background: #102a43;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+#comment-button:disabled {
+  opacity: .65;
+
+  cursor: default;
+}
+
+
+/* =========================================================
+   TABLET / LAPTOP
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .livro-layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      320px;
+
+    gap: 24px;
+  }
+
+  .livro-header {
+    grid-template-columns:
+      minmax(0, 1fr)
+      260px;
+  }
+
+  .community-rating {
+    padding: 22px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .livro-header {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+  }
+
+
+  .score-card {
+    align-items: flex-start;
+  }
+
+
+  .score-card p {
+    text-align: left;
+  }
+
+
+  .livro-layout {
+    grid-template-columns: 1fr;
+
+    gap: 36px;
+  }
+
+
+  /*
+   * Comunidade fica DEPOIS de todo o conteúdo
+   */
+
+  .livro-sidebar {
+    position: static;
+
+    order: 2;
+  }
+
+
+  .livro-primary {
+    order: 1;
+  }
+
+
+  .rating-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .criterion-item {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .criterion-stars {
+    width: 100%;
+
+    justify-content: flex-start;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE PEQUENO
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+  .livro-page {
+    padding-top: 24px;
+  }
+
+
+  .livro-main h1 {
+    font-size: 34px;
+  }
+
+
+  .community-rating {
+    padding: 20px;
+  }
+
+
+  .community-heading h2 {
+    font-size: 22px;
+  }
+
+
+  .level-two-cta {
+    padding: 22px;
+  }
+
+
+  .rating-stars button {
+    flex-basis: 30px;
+
+    width: 30px;
+
+    font-size: 27px;
+  }
+
+
+  .comment-footer {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
 }
 
 </style>

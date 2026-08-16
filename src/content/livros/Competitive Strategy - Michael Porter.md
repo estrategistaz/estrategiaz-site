@@ -1,7 +1,7 @@
-
 ---
 title: Competitive Strategy
 tipo: livro
+
 autor: Michael Porter
 ano: 1980
 editora: Free Press
@@ -12,6 +12,7 @@ area:
   - Administração
 
 score: 9.4
+
 relevancia: Muito alta
 aplicabilidade: Alta
 atualidade: Alta
@@ -60,3 +61,9 @@ Empresários, consultores, gestores, estudantes e profissionais de estratégia.
 Algumas premissas precisam ser adaptadas a mercados digitais, plataformas e ambientes de inovação acelerada.
 
 ## Minha análise EstratégiaZ
+
+Competitive Strategy permanece como uma das obras fundamentais para compreender a estratégia competitiva e a relação entre estrutura de mercado e posicionamento empresarial.
+
+## EstratégiaZ Score
+
+9.4/10

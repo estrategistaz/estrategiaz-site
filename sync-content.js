@@ -24,6 +24,15 @@ const estruturas = [
     origem: path.join(__dirname, "..", "obsidianVault", "03 Frameworks"),
     destino: path.join(__dirname, "src", "content", "frameworks"),
   },
+
+  {
+    origem: path.join(__dirname, "..", "obsidianVault", "04 Cases"),
+    destino: path.join(__dirname, "src", "content", "cases"),
+  },
+  {
+  origem: path.join(__dirname, "..", "obsidianVault", "97 Sobre"),
+  destino: path.join(__dirname, "src", "content", "sobre"),
+},
 ];
 
 // =====================================================

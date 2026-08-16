@@ -35,73 +35,228 @@ const { Content } = await render(autor);
 
   <section class="container autor-page">
 
-    <div class="autor-header">
+  <!-- =====================================================
+       CABEÇALHO DO AUTOR
+       ===================================================== -->
 
-      <!-- INFORMAÇÕES DO AUTOR -->
+  <div class="autor-header">
 
-      <div class="autor-main">
+    <!-- INFORMAÇÕES DO AUTOR -->
 
-        <h1>{autor.data.title}</h1>
+    <div class="autor-main">
 
-        <div class="autor-info">
+      <h1>
+        {autor.data.title}
+      </h1>
 
-          {autor.data.pais && (
-            <p>
-              <strong>País:</strong> {autor.data.pais}
-            </p>
-          )}
+      <div class="autor-info">
 
-          {autor.data.nascimento && (
-            <p>
-              <strong>Nascimento:</strong> {autor.data.nascimento}
-            </p>
-          )}
+        {autor.data.pais && (
+          <p>
+            <strong>País:</strong>
+            {autor.data.pais}
+          </p>
+        )}
 
-          {autor.data.universidade && (
-            <p>
-              <strong>Universidade:</strong>{" "}
+        {autor.data.nascimento && (
+          <p>
+            <strong>Nascimento:</strong>
+            {autor.data.nascimento}
+          </p>
+        )}
 
-              {Array.isArray(autor.data.universidade)
-                ? autor.data.universidade.join(" • ")
-                : autor.data.universidade}
-            </p>
-          )}
+        {autor.data.universidade && (
+          <p>
+            <strong>Universidade:</strong>{" "}
 
-        </div>
+            {Array.isArray(autor.data.universidade)
+              ? autor.data.universidade.join(" • ")
+              : autor.data.universidade}
+
+          </p>
+        )}
 
       </div>
 
+    </div>
 
-      <!-- ESTRATEGIAZ SCORE -->
 
-      <div class="score-card">
+    <!-- ESTRATEGIAZ SCORE -->
 
-        <span class="score-label">
-          ESTRATEGIAZ SCORE
+    <div class="score-card">
+
+      <span class="score-label">
+        ESTRATEGIAZ SCORE
+      </span>
+
+      <div class="score">
+
+        {score.toFixed(1)}
+
+        <span>
+          /10
         </span>
 
-        <div class="score">
-          {score.toFixed(1)}
-          <span>/10</span>
-        </div>
+      </div>
 
-        <div class="score-stars">
-          ★★★★★
-        </div>
+      <div class="score-stars">
+        ★★★★★
+      </div>
 
-        <p>
-          Avaliação editorial Estrategiaz
-        </p>
+      <p>
+        Avaliação editorial Estrategiaz
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       LAYOUT PRINCIPAL
+       DESKTOP:
+       CONTEÚDO | COMUNIDADE
+
+       MOBILE:
+       CONTEÚDO
+       COMUNIDADE
+       ===================================================== -->
+
+  <div class="autor-layout">
+
+
+    <!-- ===================================================
+         COLUNA PRINCIPAL
+         =================================================== -->
+
+    <main class="autor-primary">
+
+
+      <!-- =================================================
+           RESUMO PÚBLICO
+           ================================================= -->
+
+      <div
+        id="autor-public-summary"
+        class="autor-public-summary"
+      ></div>
+
+
+      <!-- =================================================
+           CTA PARA NÍVEL 2
+           ================================================= -->
+
+      <div
+        class="level-two-cta"
+        id="level-two-cta"
+      >
+
+        <div class="level-two-cta-content">
+
+          <span class="level-two-kicker">
+            INTELIGÊNCIA ESTRATÉGICA
+          </span>
+
+          <h2>
+            Quer conhecer mais sobre {autor.data.title}?
+          </h2>
+
+          <p>
+            Acesse a análise ampliada e participe
+            como avaliador da comunidade EstratégiaZ.
+          </p>
+
+          <a
+            href={`/login?redirect=/autores/${autor.id}`}
+            class="level-two-button"
+          >
+            Conheça mais
+          </a>
+
+        </div>
 
       </div>
 
 
-      <!-- AVALIAÇÃO DA COMUNIDADE -->
+      <!-- =================================================
+           NÍVEL 2
+           ================================================= -->
+
+      <div
+        id="level-two-content"
+        class="level-two-content"
+        hidden
+      >
+
+
+        <!-- ===============================================
+             AVALIAÇÕES EDITORIAIS
+             =============================================== -->
+
+        <div class="rating-grid">
+
+          <div class="rating-item">
+
+            <span>
+              Aplicabilidade
+            </span>
+
+            <strong>
+              {aplicabilidade}
+            </strong>
+
+          </div>
+
+
+          <div class="rating-item">
+
+            <span>
+              Implementação
+            </span>
+
+            <strong>
+              {implementacao}
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- ===============================================
+             CONTEÚDO COMPLETO DO AUTOR
+             VEM DO OBSIDIAN
+             =============================================== -->
+
+        <article
+          id="autor-content-source"
+          class="autor-content"
+        >
+
+          <Content />
+
+        </article>
+
+      </div>
+
+    </main>
+
+
+    <!-- ===================================================
+         COLUNA DA COMUNIDADE
+         =================================================== -->
+
+    <aside class="autor-sidebar">
 
       <section
         class="community-rating"
         id="rating-area"
       >
+
+
+        <!-- ===============================================
+             CABEÇALHO
+             =============================================== -->
 
         <div class="community-heading">
 
@@ -115,13 +270,16 @@ const { Content } = await render(autor);
 
           <p>
             Avalie o trabalho de {autor.data.title}
-            e compartilhe sua experiência com outros profissionais.
+            e compartilhe sua experiência com
+            outros profissionais.
           </p>
 
         </div>
 
 
-        <!-- MÉDIA DA COMUNIDADE -->
+        <!-- ===============================================
+             MÉDIA DA COMUNIDADE
+             =============================================== -->
 
         <div
           class="community-result"
@@ -154,7 +312,9 @@ const { Content } = await render(autor);
         </div>
 
 
-        <!-- ESTRELAS PARA O USUÁRIO -->
+        <!-- ===============================================
+             ESTRELAS PARA A AVALIAÇÃO GERAL
+             =============================================== -->
 
         <div
           id="rating-stars"
@@ -220,7 +380,309 @@ const { Content } = await render(autor);
         ></div>
 
 
-        <!-- ÁREA DO COMENTÁRIO -->
+        <!-- ===============================================
+             AVALIAÇÃO DO AVALIADOR
+             NÍVEL 2
+             =============================================== -->
+
+        <div
+          id="evaluator-area"
+          class="evaluator-area"
+          hidden
+        >
+
+          <div class="evaluator-heading">
+
+            <span class="community-eyebrow">
+              AVALIAÇÃO DO AVALIADOR
+            </span>
+
+            <h3>
+              Avalie este autor
+            </h3>
+
+            <p>
+              Sua avaliação ajuda a construir
+              a inteligência coletiva do EstratégiaZ.
+            </p>
+
+          </div>
+
+
+          <!-- CRITÉRIOS -->
+
+          <div class="criterion-rating">
+
+
+            <!-- APLICABILIDADE -->
+
+            <div class="criterion-item">
+
+              <div class="criterion-label">
+
+                <strong>
+                  Aplicabilidade
+                </strong>
+
+                <span>
+                  É útil para situações reais?
+                </span>
+
+              </div>
+
+              <div
+                class="criterion-stars"
+                data-criterion="aplicabilidade"
+              >
+
+                <button
+                  type="button"
+                  data-value="1"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="2"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="3"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="4"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="5"
+                >
+                  ★
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <!-- IMPLEMENTAÇÃO -->
+
+            <div class="criterion-item">
+
+              <div class="criterion-label">
+
+                <strong>
+                  Implementação
+                </strong>
+
+                <span>
+                  É fácil transformar em prática?
+                </span>
+
+              </div>
+
+              <div
+                class="criterion-stars"
+                data-criterion="implementacao"
+              >
+
+                <button
+                  type="button"
+                  data-value="1"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="2"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="3"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="4"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="5"
+                >
+                  ★
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <!-- RELEVÂNCIA -->
+
+            <div class="criterion-item">
+
+              <div class="criterion-label">
+
+                <strong>
+                  Relevância
+                </strong>
+
+                <span>
+                  O conhecimento continua relevante?
+                </span>
+
+              </div>
+
+              <div
+                class="criterion-stars"
+                data-criterion="relevancia"
+              >
+
+                <button
+                  type="button"
+                  data-value="1"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="2"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="3"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="4"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="5"
+                >
+                  ★
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <!-- ATUALIDADE -->
+
+            <div class="criterion-item">
+
+              <div class="criterion-label">
+
+                <strong>
+                  Atualidade
+                </strong>
+
+                <span>
+                  Continua atual para os negócios?
+                </span>
+
+              </div>
+
+              <div
+                class="criterion-stars"
+                data-criterion="atualidade"
+              >
+
+                <button
+                  type="button"
+                  data-value="1"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="2"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="3"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="4"
+                >
+                  ★
+                </button>
+
+                <button
+                  type="button"
+                  data-value="5"
+                >
+                  ★
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- BOTÃO -->
+
+          <button
+            type="button"
+            id="evaluator-submit"
+            class="evaluator-submit"
+          >
+            Salvar minha avaliação
+          </button>
+
+
+          <p
+            id="evaluator-message"
+            class="evaluator-message"
+            aria-live="polite"
+          ></p>
+
+        </div>
+
+
+        <!-- ===============================================
+             COMENTÁRIO
+             =============================================== -->
 
         <div
           id="comment-area"
@@ -283,50 +745,13 @@ const { Content } = await render(autor);
 
       </section>
 
-    </div>
+    </aside>
 
+  </div>
 
-    <!-- AVALIAÇÕES EDITORIAIS -->
+</section>
 
-    <div class="rating-grid">
-
-      <div class="rating-item">
-
-        <span>
-          Aplicabilidade
-        </span>
-
-        <strong>
-          {aplicabilidade}
-        </strong>
-
-      </div>
-
-
-      <div class="rating-item">
-
-        <span>
-          Implementação
-        </span>
-
-        <strong>
-          {implementacao}
-        </strong>
-
-      </div>
-
-    </div>
-
-
-    <!-- CONTEÚDO DO AUTOR -->
-
-    <article class="autor-content">
-
-      <Content />
-
-    </article>
-
-  </section>
+    
 
 
   <script>
@@ -391,7 +816,76 @@ const { Content } = await render(autor);
       document.querySelector(
         "#community-average-stars"
       );
+    const levelTwoCTA =
+  document.querySelector("#level-two-cta");
 
+const levelTwoContent =
+  document.querySelector("#level-two-content");
+
+const publicSummary =
+  document.querySelector("#autor-public-summary");
+
+const contentSource =
+  document.querySelector("#autor-content-source");
+
+const evaluatorArea =
+  document.querySelector("#evaluator-area");
+
+const evaluatorSubmit =
+  document.querySelector("#evaluator-submit");
+
+const evaluatorMessage =
+  document.querySelector("#evaluator-message");
+
+const criterionContainers =
+  document.querySelectorAll<HTMLElement>(
+    ".criterion-stars"
+  );
+
+  const criterios: Record<string, number> = {};
+
+criterionContainers.forEach((container) => {
+
+  const criterio =
+    container.dataset.criterion;
+
+  if (!criterio) return;
+
+  const buttons =
+    container.querySelectorAll<HTMLButtonElement>(
+      "button"
+    );
+
+  buttons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+      const nota =
+        Number(
+          button.dataset.value
+        );
+
+      criterios[criterio] = nota;
+
+      buttons.forEach((item) => {
+
+        const valor =
+          Number(
+            item.dataset.value
+          );
+
+        item.classList.toggle(
+          "selected",
+          valor <= nota
+        );
+
+      });
+
+    });
+
+  });
+
+});
 
     /*
      * VERIFICAÇÕES
@@ -747,7 +1241,77 @@ const { Content } = await render(autor);
 
     }
 
+    /*
+ * VERIFICA ACESSO AO NÍVEL 2
+ */
 
+async function verificarNivelDoUsuario() {
+
+  const {
+    data: {
+      user
+    }
+  } = await supabase.auth.getUser();
+
+
+  /*
+   * Visitante:
+   * mantém o conteúdo bloqueado.
+   */
+
+  if (!user) {
+    return;
+  }
+
+
+  /*
+   * Usuário logado:
+   * libera o conteúdo do Nível 2.
+   */
+
+  if (
+    levelTwoContent instanceof HTMLElement
+  ) {
+
+    levelTwoContent.hidden = false;
+
+  }
+
+  if (
+  publicSummary instanceof HTMLElement
+) {
+
+  publicSummary.hidden = true;
+
+}
+
+  /*
+   * Libera a avaliação do avaliador.
+   */
+
+  if (
+    evaluatorArea instanceof HTMLElement
+  ) {
+
+    evaluatorArea.hidden = false;
+
+  }
+
+
+  /*
+   * Esconde o botão "Conheça mais",
+   * pois o usuário já está autenticado.
+   */
+
+  if (
+    levelTwoCTA instanceof HTMLElement
+  ) {
+
+    levelTwoCTA.hidden = true;
+
+  }
+
+}
     /*
      * CLIQUE NAS ESTRELAS
      */
@@ -1187,14 +1751,73 @@ const { Content } = await render(autor);
       }
     );
 
+function montarResumoPublico() {
+
+  if (
+    !(publicSummary instanceof HTMLElement) ||
+    !(contentSource instanceof HTMLElement)
+  ) {
+    return;
+  }
+
+
+  const elementos =
+    Array.from(contentSource.children);
+
+
+  let numeroSecao = 0;
+
+  let capturando = false;
+
+
+  elementos.forEach((elemento) => {
+
+    const tag =
+      elemento.tagName.toLowerCase();
+
 
     /*
-     * INICIALIZAÇÃO
+     * Cada H2 inicia uma nova seção.
      */
 
-    carregarMediaComunidade();
+    if (tag === "h2") {
 
-    carregarAvaliacao();
+      numeroSecao++;
+
+      capturando =
+        numeroSecao <= 2;
+
+    }
+
+
+    /*
+     * Copia apenas as duas primeiras
+     * seções para o resumo público.
+     */
+
+    if (capturando) {
+
+      publicSummary.appendChild(
+        elemento.cloneNode(true)
+      );
+
+    }
+
+  });
+
+}
+
+    /*
+ * INICIALIZAÇÃO
+ */
+
+carregarMediaComunidade();
+
+carregarAvaliacao();
+
+verificarNivelDoUsuario();
+
+montarResumoPublico();
 
   </script>
 
@@ -1213,12 +1836,12 @@ const { Content } = await render(autor);
 
 
 .autor-header {
+
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1.2fr)
-    minmax(220px, 280px)
-    minmax(320px, 1fr);
+    minmax(0, 1fr)
+    minmax(220px, 280px);
 
   align-items: start;
 
@@ -1521,6 +2144,112 @@ const { Content } = await render(autor);
   transform: none;
 }
 
+/* =========================================
+   ESTRELAS DO AVALIADOR
+   ========================================= */
+
+.criterion-rating {
+  display: grid;
+  gap: 14px;
+  margin-top: 25px;
+}
+
+
+.criterion-item {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  padding: 18px 20px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 14px;
+}
+
+
+.criterion-label {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+
+.criterion-label strong {
+  color: #102a43;
+
+  font-size: 15px;
+}
+
+
+.criterion-label span {
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+
+.criterion-stars {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  flex-shrink: 0;
+}
+
+
+.criterion-stars button {
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #cbd5e1;
+
+  font-size: 27px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+
+.criterion-stars button:hover {
+  color: #f59e0b;
+
+  transform: scale(1.12);
+}
+
+
+.criterion-stars button.selected {
+  color: #f59e0b;
+}
+
+
+.criterion-stars button:focus-visible {
+  outline: 2px solid #2563eb;
+
+  outline-offset: 3px;
+
+  border-radius: 4px;
+}
 
 /* =========================================
    MENSAGENS
@@ -1762,7 +2491,336 @@ const { Content } = await render(autor);
   transform: none;
 }
 
+/* =========================================
+   NÍVEL 2 — INTELIGÊNCIA ESTRATÉGICA
+   ========================================= */
 
+.level-two-cta {
+  width: 100%;
+  margin: 45px 0 35px;
+  padding: 32px 34px;
+
+  background: var(--white);
+
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  box-shadow:
+    0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.level-two-cta-content {
+  max-width: 820px;
+}
+
+.level-two-kicker {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--primary);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+}
+
+.level-two-cta h2 {
+  margin: 0 0 10px;
+
+  color: var(--text);
+
+  font-size: 28px;
+  line-height: 1.25;
+}
+
+.level-two-cta p {
+  margin: 0 0 22px;
+
+  color: #475569;
+
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.level-two-button {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 22px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: var(--primary);
+  color: white;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.level-two-button:hover {
+  background: var(--primary-dark);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 16px rgba(37, 99, 235, 0.18);
+}
+
+
+/* =========================================
+   ÁREA PROTEGIDA DO NÍVEL 2
+   ========================================= */
+
+.level-two-content {
+  width: 100%;
+  margin-top: 35px;
+}
+
+.level-two-content[hidden] {
+  display: none !important;
+}
+
+
+/* =========================================
+   AVALIAÇÕES EDITORIAIS — NÍVEL 2
+   ========================================= */
+
+.level-two-content .rating-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+
+  width: 100%;
+
+  margin-bottom: 45px;
+}
+
+.level-two-content .rating-item {
+  min-width: 0;
+
+  padding: 22px 24px;
+
+  background: var(--white);
+
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  box-shadow:
+    0 4px 14px rgba(15, 23, 42, 0.03);
+}
+
+.level-two-content .rating-item span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: var(--text-light);
+
+  font-size: 14px;
+}
+
+.level-two-content .rating-item strong {
+  color: var(--text);
+
+  font-size: 20px;
+}
+
+
+/* =========================================
+   CONTEÚDO DO AUTOR — NÍVEL 2
+   ========================================= */
+
+.level-two-content .autor-content {
+  width: 100%;
+  max-width: 900px;
+
+  margin: 0 auto;
+}
+
+.level-two-content .autor-content h1 {
+  margin-bottom: 25px;
+
+  color: var(--text);
+
+  font-size: 36px;
+  line-height: 1.2;
+}
+
+.level-two-content .autor-content h2 {
+  margin-top: 45px;
+  margin-bottom: 15px;
+
+  color: var(--text);
+
+  font-size: 30px;
+  line-height: 1.25;
+}
+
+.level-two-content .autor-content h3 {
+  margin-top: 32px;
+  margin-bottom: 12px;
+
+  color: var(--text);
+
+  font-size: 23px;
+}
+
+.level-two-content .autor-content p {
+  margin-bottom: 18px;
+
+  color: #475569;
+
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.level-two-content .autor-content ul {
+  margin:
+    0 0 22px 25px;
+}
+
+.level-two-content .autor-content li {
+  margin-bottom: 8px;
+
+  color: #475569;
+
+  line-height: 1.7;
+}
+
+.level-two-content .autor-content strong {
+  color: var(--text);
+}
+
+/* =========================================
+   LAYOUT PRINCIPAL DO AUTOR
+   ========================================= */
+
+.autor-layout {
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(320px, 380px);
+
+  gap: 40px;
+
+  align-items: start;
+
+  margin-top: 30px;
+}
+
+
+.autor-primary {
+  min-width: 0;
+}
+
+
+.autor-sidebar {
+  min-width: 0;
+}
+
+
+.autor-public-summary {
+
+  max-width: 900px;
+
+  margin-bottom: 35px;
+}
+
+
+.autor-public-summary h2 {
+
+  margin-top: 35px;
+
+  margin-bottom: 15px;
+
+  color: #102a43;
+
+  font-size: 28px;
+
+  line-height: 1.25;
+}
+
+
+.autor-public-summary p,
+.autor-public-summary li {
+
+  color: #475569;
+
+  font-size: 17px;
+
+  line-height: 1.75;
+}
+
+
+.autor-public-summary ul {
+
+  margin-left: 25px;
+
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   RESPONSIVO
+   ========================================= */
+
+@media (max-width: 800px) {
+
+  .level-two-cta {
+    padding: 26px 22px;
+  }
+
+  .level-two-cta h2 {
+    font-size: 24px;
+  }
+
+  .level-two-content .rating-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .level-two-content .autor-content {
+    max-width: 100%;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .level-two-cta {
+    margin-top: 30px;
+    padding: 24px 20px;
+  }
+
+  .level-two-cta h2 {
+    font-size: 22px;
+  }
+
+  .level-two-content .autor-content h2 {
+    font-size: 26px;
+  }
+
+  .level-two-content .autor-content p {
+    font-size: 16px;
+  }
+
+}
 /* =========================================
    AVALIAÇÕES EDITORIAIS
    ========================================= */
@@ -1942,4 +3000,270 @@ const { Content } = await render(autor);
 
 }
 
+@media (max-width: 900px) {
+
+  .autor-layout {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  /*
+   * A ordem no HTML já é:
+   *
+   * conteúdo principal
+   * comunidade
+   *
+   * portanto no mobile a comunidade
+   * ficará depois de todo o conteúdo.
+   */
+
+  .autor-sidebar {
+
+    order: 2;
+
+  }
+
+
+  .autor-primary {
+
+    order: 1;
+
+  }
+
+
+  .criterion-item {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+  }
+
+
+  .criterion-stars {
+
+    width: 100%;
+
+  }
+
+}
+
+/* =========================================
+   AVALIAÇÃO DO AVALIADOR
+   ========================================= */
+
+.evaluator-area {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+  box-sizing: border-box;
+}
+
+.evaluator-heading {
+  width: 100%;
+}
+
+.evaluator-heading h3 {
+  margin: 6px 0 8px;
+  color: var(--text);
+  font-size: 22px;
+}
+
+.evaluator-heading p {
+  margin: 0 0 20px;
+  color: var(--text-light);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* LISTA DOS CRITÉRIOS */
+
+.criterion-rating {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  gap: 10px;
+}
+
+
+/* CADA CRITÉRIO */
+
+.criterion-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  gap: 12px;
+
+  padding: 14px;
+
+  background: #f8fafc;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+
+/* TEXTO */
+
+.criterion-label {
+  min-width: 0;
+  flex: 1;
+}
+
+.criterion-label strong {
+  display: block;
+
+  color: var(--text);
+
+  font-size: 14px;
+}
+
+.criterion-label span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: var(--text-light);
+
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+
+/* ESTRELAS */
+
+.criterion-stars {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  flex-shrink: 0;
+
+  gap: 1px;
+
+  white-space: nowrap;
+}
+
+.criterion-stars button {
+  width: 25px;
+  height: 25px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #cbd5e1;
+
+  font-family: inherit;
+
+  font-size: 21px;
+
+  line-height: 25px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.criterion-stars button:hover {
+  color: #f59e0b;
+  transform: scale(1.08);
+}
+
+.criterion-stars button.selected {
+  color: #f59e0b;
+}
+
+
+/* =========================================
+   BOTÃO SALVAR
+   ========================================= */
+
+.evaluator-submit {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: auto;
+  min-height: 42px;
+
+  margin-top: 18px;
+  padding: 10px 18px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: var(--primary);
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.evaluator-submit:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.evaluator-submit:disabled {
+  opacity: 0.65;
+  cursor: default;
+  transform: none;
+}
+
+.evaluator-message {
+  margin-top: 10px;
+
+  color: var(--primary);
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+
+  .criterion-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .criterion-stars {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+}
 </style>

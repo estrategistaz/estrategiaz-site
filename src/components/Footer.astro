@@ -2,27 +2,45 @@
 
     <div class="container">
 
-        <h2>Estrategia<span>Z</span></h2>
+        <h2>
+            Estrategia<span>Z</span>
+        </h2>
 
         <p>
             A maior biblioteca brasileira sobre Estratégia Empresarial.
         </p>
 
-        <div class="links">
 
-            <a href="/">Início</a>
+        <nav class="links">
 
-            <a href="/biblioteca">Biblioteca</a>
+            <a href="/">
+                Início
+            </a>
 
-            <a href="/consultoria">Consultoria</a>
+            <a href="/autores">
+                Autores
+            </a>
 
-            <a href="/artigos">Artigos</a>
+            <a href="/livros">
+                Livros
+            </a>
 
-        </div>
+            <a href="/frameworks">
+                Frameworks
+            </a>
+
+            <a href="/sobre">
+                Sobre
+            </a>
+
+        </nav>
+
 
         <p class="copyright">
 
-            © {new Date().getFullYear()} EstrategiaZ. Todos os direitos reservados.
+            © {new Date().getFullYear()}
+            EstrategiaZ.
+            Todos os direitos reservados.
 
         </p>
 
@@ -30,77 +48,120 @@
 
 </footer>
 
+
 <style>
 
-.footer{
+.footer {
 
-    background:#0f172a;
+    background: #0f172a;
 
-    color:white;
+    color: white;
 
-    margin-top:80px;
+    margin-top: 80px;
 
-    padding:60px 0;
+    padding: 60px 0;
 
-    text-align:center;
-
-}
-
-.footer h2{
-
-    font-size:2rem;
-
-    margin-bottom:10px;
+    text-align: center;
 
 }
 
-.footer span{
 
-    color:#3b82f6;
+.footer h2 {
 
-}
+    font-size: 2rem;
 
-.footer p{
-
-    color:#cbd5e1;
+    margin-bottom: 10px;
 
 }
 
-.links{
 
-    margin:30px 0;
+.footer span {
 
-    display:flex;
-
-    justify-content:center;
-
-    gap:30px;
-
-    flex-wrap:wrap;
+    color: #3b82f6;
 
 }
 
-.links a{
 
-    color:white;
+.footer p {
 
-    text-decoration:none;
-
-}
-
-.links a:hover{
-
-    color:#60a5fa;
+    color: #cbd5e1;
 
 }
 
-.copyright{
 
-    margin-top:30px;
+.links {
 
-    font-size:.9rem;
+    margin: 30px 0;
 
-    color:#94a3b8;
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 35px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.links a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: 500;
+
+    transition: .25s;
+
+}
+
+
+.links a:hover {
+
+    color: #60a5fa;
+
+}
+
+
+.copyright {
+
+    margin-top: 30px;
+
+    font-size: .9rem;
+
+    color: #94a3b8;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .footer {
+
+        padding: 50px 20px;
+
+    }
+
+
+    .links {
+
+        gap: 22px;
+
+    }
+
+
+    .links a {
+
+        font-size: .95rem;
+
+    }
 
 }
 
