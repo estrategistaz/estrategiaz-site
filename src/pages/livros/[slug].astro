@@ -29,11 +29,39 @@ const relevancia =
 
 const atualidade =
   livro.data.atualidade ?? "Não avaliada";
+
+  const livroSchema = {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": livro.data.title,
+    "url": `https://estrategiaz.com/livros/${livro.id}`,
+
+    ...(livro.data.autor && {
+        "author": {
+            "@type": "Person",
+            "name": livro.data.autor
+        }
+    }),
+
+    ...(livro.data.ano && {
+        "datePublished": `${livro.data.ano}-01-01`
+    }),
+
+    ...(livro.data.editora && {
+        "publisher": {
+            "@type": "Organization",
+            "name": livro.data.editora
+        }
+    })
+};
 ---
 
 <BaseLayout
-  title={`${livro.data.title} | EstratégiaZ`}
-  description={`Análise EstratégiaZ do livro ${livro.data.title}.`}
+    title={`${livro.data.title} | Estratégia Empresarial | EstratégiaZ`}
+    description={`Conheça ${livro.data.title}, sua relevância para a estratégia empresarial e a avaliação editorial do EstratégiaZ.`}
+    canonical={`https://estrategiaz.com/livros/${livro.id}`}
+    ogType="book"
+    schema={livroSchema}
 >
 
   <main class="container livro-page">

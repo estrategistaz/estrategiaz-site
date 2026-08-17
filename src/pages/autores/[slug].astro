@@ -26,11 +26,41 @@ const implementacao =
   autor.data.implementacao ?? "Não avaliada";
 
 const { Content } = await render(autor);
+
+const autorSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": autor.data.title,
+  "url": `https://estrategiaz.com/autores/${autor.id}`,
+  ...(autor.data.pais && {
+    "nationality": autor.data.pais
+  }),
+  ...(autor.data.nascimento && {
+    "birthDate": `${autor.data.nascimento}-01-01`
+  }),
+  ...(autor.data.universidade && {
+    "alumniOf": Array.isArray(autor.data.universidade)
+      ? autor.data.universidade.map((universidade) => ({
+          "@type": "CollegeOrUniversity",
+          "name": universidade
+        }))
+      : {
+          "@type": "CollegeOrUniversity",
+          "name": autor.data.universidade
+        }
+  })
+};
+
 ---
 
+
+
 <BaseLayout
-  title={autor.data.title}
-  description={`Informações e avaliação de ${autor.data.title} no Estrategiaz.`}
+  title={`${autor.data.title} | Estratégia Empresarial | EstratégiaZ`}
+  description={`Conheça ${autor.data.title}, suas principais contribuições para a estratégia empresarial, pensamento estratégico e gestão.`}
+  canonical={`https://estrategiaz.com/autores/${autor.id}`}
+  ogType="profile"
+    schema={autorSchema}
 >
 
   <section class="container autor-page">

@@ -24,11 +24,63 @@ const livros = caso.data.livros ?? [];
 const frameworks = caso.data.frameworks ?? [];
 const tags = caso.data.tags ?? [];
 const problema = caso.data.problema ?? [];
+
+const caseDescription =
+    `Análise do case ${caso.data.title}` +
+    (caso.data.empresa
+        ? ` da empresa ${caso.data.empresa}`
+        : "") +
+    (caso.data.setor
+        ? ` no setor de ${caso.data.setor}`
+        : "") +
+    `, com foco em estratégia empresarial.`;
+
+const caseSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+
+    "headline": caso.data.title,
+
+    "url": `https://estrategiaz.com/cases/${caso.id}`,
+
+    "description": caseDescription,
+
+    "publisher": {
+        "@type": "Organization",
+        "name": "EstratégiaZ",
+        "url": "https://estrategiaz.com"
+    },
+
+    ...(caso.data.empresa && {
+        "about": {
+            "@type": "Organization",
+            "name": caso.data.empresa
+        }
+    }),
+
+    ...(caso.data.pais && {
+        "contentLocation": {
+            "@type": "Country",
+            "name": caso.data.pais
+        }
+    }),
+
+    ...(caso.data.setor && {
+        "articleSection": caso.data.setor
+    }),
+
+    ...(tags.length > 0 && {
+        "keywords": tags.join(", ")
+    })
+};
 ---
 
 <BaseLayout
-    title={`${caso.data.title} | EstratégiaZ`}
-    description={`Case EstratégiaZ: ${caso.data.title}`}
+    title={`${caso.data.title} | Case Estratégico | EstratégiaZ`}
+    description={caseDescription}
+    canonical={`https://estrategiaz.com/cases/${caso.id}`}
+    ogType="article"
+    schema={caseSchema}
 >
 
 <div class="detail-page">

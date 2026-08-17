@@ -72,11 +72,46 @@ const tempoAplicacao =
   framework.data.tempo_aplicacao ??
   "Não avaliado";
 
+const frameworkSchema = {
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+
+    "name": framework.data.title,
+
+    "url": `https://estrategiaz.com/frameworks/${framework.id}`,
+
+    ...(framework.data.categoria && {
+        "termCode": framework.data.categoria
+    }),
+
+    ...(framework.data.criador && {
+        "creator": {
+            "@type": "Person",
+            "name": Array.isArray(framework.data.criador)
+                ? framework.data.criador.join(", ")
+                : framework.data.criador
+        }
+    }),
+
+    ...(framework.data.ano && {
+        "dateCreated": `${framework.data.ano}-01-01`
+    }),
+
+    ...(framework.data.tipo && {
+        "inDefinedTermSet": {
+            "@type": "DefinedTermSet",
+            "name": framework.data.tipo
+        }
+    })
+};
 ---
 
 <BaseLayout
-  title={`${framework.data.title} | EstratégiaZ`}
-  description={`Framework estratégico: ${framework.data.title}`}
+    title={`${framework.data.title} | Framework Estratégico | EstratégiaZ`}
+    description={`Conheça o framework ${framework.data.title}, sua aplicação e relevância para a estratégia empresarial.`}
+    canonical={`https://estrategiaz.com/frameworks/${framework.id}`}
+    ogType="article"
+    schema={frameworkSchema}
 >
 
 
