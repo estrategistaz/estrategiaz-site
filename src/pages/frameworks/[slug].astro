@@ -84,23 +84,11 @@ const frameworkSchema = {
         "termCode": framework.data.categoria
     }),
 
-    ...(framework.data.criador && {
-        "creator": {
-            "@type": "Person",
-            "name": Array.isArray(framework.data.criador)
-                ? framework.data.criador.join(", ")
-                : framework.data.criador
-        }
-    }),
-
-    ...(framework.data.ano && {
-        "dateCreated": `${framework.data.ano}-01-01`
-    }),
-
     ...(framework.data.tipo && {
         "inDefinedTermSet": {
             "@type": "DefinedTermSet",
-            "name": framework.data.tipo
+            "name": framework.data.tipo,
+            "url": "https://estrategiaz.com/frameworks"
         }
     })
 };
