@@ -1,22 +1,152 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const cases = await getCollection("cases");
 ---
 
 <BaseLayout
-    title="Autores | EstrategiaZ"
-    description="Grandes pensadores da estratégia empresarial">
+    title="Cases | EstratégiaZ"
+    description="Cases reais de estratégia empresarial, inovação, gestão e modelos de negócio."
+>
 
 <section class="container">
 
-<h1>Autores</h1>
+    <h1>Cases</h1>
 
-<p>
+    <p class="intro">
+        Casos reais de empresas e organizações para compreender
+        decisões, problemas e estratégias em diferentes contextos.
+    </p>
 
-Aqui você encontrará os principais autores da estratégia,
-administração, inovação e liderança.
+    <div class="grid">
 
-</p>
+        {cases.map((caso) => (
+
+            <a
+                class="card"
+                href={`/cases/${caso.id}`}
+            >
+
+                <span class="kicker">
+                    CASE ESTRATÉGICO
+                </span>
+
+                <h2>
+                    {caso.data.title}
+                </h2>
+
+                {caso.data.empresa && (
+                    <p>
+                        <strong>Empresa:</strong>
+                        {caso.data.empresa}
+                    </p>
+                )}
+
+                {caso.data.setor && (
+                    <p>
+                        <strong>Setor:</strong>
+                        {caso.data.setor}
+                    </p>
+                )}
+
+                {caso.data.pais && (
+                    <p>
+                        <strong>País:</strong>
+                        {caso.data.pais}
+                    </p>
+                )}
+
+                <span class="read-more">
+                    Ver case →
+                </span>
+
+            </a>
+
+        ))}
+
+    </div>
 
 </section>
 
 </BaseLayout>
+
+
+<style>
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 24px 100px;
+}
+
+h1 {
+    margin-bottom: 12px;
+    font-size: 48px;
+    line-height: 1.1;
+}
+
+.intro {
+    max-width: 720px;
+    color: #64748b;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 45px;
+}
+
+.card {
+    display: block;
+    padding: 28px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--white);
+    color: inherit;
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, .08);
+}
+
+.kicker {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .14em;
+    color: #64748b;
+}
+
+.card h2 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    line-height: 1.25;
+}
+
+.card p {
+    margin: 7px 0;
+    color: #64748b;
+    font-size: 15px;
+}
+
+.card strong {
+    color: #334155;
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+</style>

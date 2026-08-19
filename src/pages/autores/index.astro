@@ -6,93 +6,92 @@ const autores = await getCollection("autores");
 ---
 
 <BaseLayout
-    title="Autores | EstrategiaZ"
-    description="Grandes pensadores da estratégia empresarial">
+    title="Autores | EstratégiaZ"
+    description="Grandes pensadores da estratégia empresarial."
+>
 
 <section class="container">
 
-<h1>Autores</h1>
+    <h1>Autores</h1>
 
-<p>
-Grandes pensadores da estratégia empresarial.
-</p>
+    <p>
+        Grandes pensadores da estratégia empresarial.
+    </p>
 
-<div class="grid">
+    <div class="grid">
 
-{autores.map((autor) => (
+        {autores.map((autor) => (
 
-    <a
-        class="card"
-        href={`/autores/${autor.id}`}
-    >
+            <a
+                class="card"
+                href={`/autores/${autor.id}`}
+            >
 
-        <h2>{autor.data.title}</h2>
+                <h2>{autor.data.title}</h2>
 
-        <p>{autor.data.universidade}</p>
+                {autor.data.universidade && (
+                    <p>{autor.data.universidade}</p>
+                )}
 
-        <small>{autor.data.pais}</small>
+                {autor.data.pais && (
+                    <small>{autor.data.pais}</small>
+                )}
 
-    </a>
+            </a>
 
-))}
+        ))}
 
-</div>
+    </div>
 
 </section>
 
+</BaseLayout>
+
 <style>
 
-.grid{
+.grid {
 
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:24px;
-    margin-top:40px;
-
-}
-
-.card{
-
-    display:block;
-
-    background:white;
-
-    padding:30px;
-
-    border-radius:18px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.06);
-
-    transition:.25s;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
 
 }
 
-.card:hover{
+.card {
 
-    transform:translateY(-5px);
-
-    box-shadow:0 15px 35px rgba(0,0,0,.10);
-
-}
-
-.card h2{
-
-    margin-bottom:10px;
+    display: block;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    transition: .25s;
 
 }
 
-.card p{
+.card:hover {
 
-    color:#64748b;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.10);
 
 }
 
-.card small{
+.card h2 {
 
-    color:#94a3b8;
+    margin-bottom: 10px;
+
+}
+
+.card p {
+
+    color: #64748b;
+
+}
+
+.card small {
+
+    color: #94a3b8;
 
 }
 
 </style>
-
-</BaseLayout>
