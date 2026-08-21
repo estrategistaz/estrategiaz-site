@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection, render } from "astro:content";
+import CaseVoting from "../../components/CaseVoting.astro";
 
 export async function getStaticPaths() {
     const cases = await getCollection("cases");
@@ -243,21 +244,44 @@ const caseSchema = {
 
 
         <!-- =================================================
-             CONTEÚDO PROTEGIDO
-             ================================================= -->
+     CONTEÚDO PROTEGIDO + AVALIAÇÃO
+     ================================================= -->
 
-        <div
-            class="protected-area"
-            id="protected-area"
-            hidden
-        >
+<div
+    class="protected-area"
+    id="protected-area"
+    hidden
+>
 
-            <div class="case-content">
+    <div class="case-analysis-layout">
 
-                <Content />
+        <!-- =========================
+             CONTEÚDO DO CASE
+             ========================= -->
 
-            </div>
+        <article class="case-content">
 
+            <Content />
+
+        </article>
+
+
+        <!-- =========================
+             SIDEBAR DE AVALIAÇÃO
+             ========================= -->
+
+        <aside class="case-sidebar">
+
+            <CaseVoting
+                caseSlug={caso.id}
+                mode="protected"
+            />
+
+        </aside>
+
+    </div>
+
+</div>
 
             <!-- =================================================
                  CONEXÕES ESTRATÉGICAS
@@ -396,7 +420,7 @@ const caseSchema = {
 
             </section>
 
-        </div>
+        
 
     </section>
 
@@ -1211,6 +1235,47 @@ const caseSchema = {
     .case-content {
 
         padding: 24px 20px;
+
+    }
+
+}
+
+.case-analysis-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        320px;
+
+    gap: 32px;
+
+    align-items: start;
+
+}
+
+
+.case-sidebar {
+
+    position: sticky;
+
+    top: 24px;
+
+}
+
+
+@media (max-width: 900px) {
+
+    .case-analysis-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .case-sidebar {
+
+        position: static;
 
     }
 

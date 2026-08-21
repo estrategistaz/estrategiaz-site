@@ -1,0 +1,783 @@
+---
+interface Props {
+    caseSlug: string;
+    mode?: "public" | "protected";
+}
+
+const {
+    caseSlug,
+    mode = "protected"
+} = Astro.props;
+
+const loginUrl =
+    `/login?redirect=/cases/${caseSlug}`;
+---
+
+<div
+    class:list={[
+        "case-voting",
+        mode === "public"
+            ? "case-voting-public"
+            : "case-voting-protected"
+    ]}
+    data-case-slug={caseSlug}
+    data-mode={mode}
+>
+
+    <div class="voting-header">
+
+        <span class="voting-kicker">
+            AVALIAÇÃO DO CASE
+        </span>
+
+        <h3>
+            Como você avalia este case?
+        </h3>
+
+        <p>
+            Sua avaliação ajuda a identificar
+            quais estratégias são mais úteis
+            na prática.
+        </p>
+
+    </div>
+
+
+    <!-- APLICABILIDADE -->
+
+    <div class="vote-group">
+
+        <div class="vote-label">
+            Aplicabilidade
+        </div>
+
+        <div
+            class="stars"
+            data-field="aplicabilidade"
+        >
+
+            {Array.from({ length: 5 }, (_, index) => (
+
+                <button
+                    type="button"
+                    class="star"
+                    data-value={index + 1}
+                    aria-label={`Aplicabilidade: ${index + 1} de 5`}
+                >
+                    ★
+                </button>
+
+            ))}
+
+        </div>
+
+    </div>
+
+
+    <!-- RELEVÂNCIA -->
+
+    <div class="vote-group">
+
+        <div class="vote-label">
+            Relevância
+        </div>
+
+        <div
+            class="stars"
+            data-field="relevancia"
+        >
+
+            {Array.from({ length: 5 }, (_, index) => (
+
+                <button
+                    type="button"
+                    class="star"
+                    data-value={index + 1}
+                    aria-label={`Relevância: ${index + 1} de 5`}
+                >
+                    ★
+                </button>
+
+            ))}
+
+        </div>
+
+    </div>
+
+
+    <!-- VIRADA ESTRATÉGICA -->
+
+    <div class="vote-group">
+
+        <div class="vote-label">
+            Virada estratégica
+        </div>
+
+        <div
+            class="stars"
+            data-field="virada_estrategica"
+        >
+
+            {Array.from({ length: 5 }, (_, index) => (
+
+                <button
+                    type="button"
+                    class="star"
+                    data-value={index + 1}
+                    aria-label={`Virada estratégica: ${index + 1} de 5`}
+                >
+                    ★
+                </button>
+
+            ))}
+
+        </div>
+
+    </div>
+
+
+    {mode === "protected" && (
+
+        <button
+            type="button"
+            class="submit-vote"
+            id="submit-vote"
+        >
+            Enviar avaliação
+        </button>
+
+    )}
+
+
+    <p
+        class="vote-message"
+        id="vote-message"
+        aria-live="polite"
+    ></p>
+
+
+    {mode === "public" && (
+
+        <p class="login-hint">
+            <a href={loginUrl}>
+                Entre ou crie sua conta
+            </a>
+            para avaliar este case.
+        </p>
+
+    )}
+
+</div>
+
+
+<script>
+    import { supabase } from "../lib/supabase.js";
+
+    const votingElements =
+        document.querySelectorAll(
+            ".case-voting"
+        );
+
+    votingElements.forEach((element) => {
+
+        if (!(element instanceof HTMLElement)) {
+            return;
+        }
+
+        const caseSlug =
+            element.dataset.caseSlug;
+
+        const mode =
+            element.dataset.mode;
+
+        if (!caseSlug) {
+            return;
+        }
+
+
+        const loginUrl =
+            `/login?redirect=/cases/${caseSlug}`;
+
+
+        const message =
+            element.querySelector("#vote-message");
+
+
+        /*
+         * Cada dimensão guarda
+         * a nota escolhida.
+         */
+
+        const votes = {
+            aplicabilidade: null as number | null,
+            relevancia: null as number | null,
+            virada_estrategica: null as number | null
+        };
+
+
+        /*
+         * Clique nas estrelas
+         */
+
+        const groups =
+            element.querySelectorAll(
+                ".stars"
+            );
+
+
+        groups.forEach((group) => {
+
+            const field =
+                group.getAttribute(
+                    "data-field"
+                );
+
+            if (!field) {
+                return;
+            }
+
+
+            const stars =
+                group.querySelectorAll(
+                    ".star"
+                );
+
+
+            stars.forEach((star) => {
+
+                star.addEventListener(
+                    "click",
+                    async () => {
+
+                        const value =
+                            Number(
+                                star.getAttribute(
+                                    "data-value"
+                                )
+                            );
+
+
+                        /*
+                         * NÍVEL 1
+                         *
+                         * Não permite votação.
+                         * Envia para login.
+                         */
+
+                        if (
+                            mode === "public"
+                        ) {
+
+                            window.location.href =
+                                loginUrl;
+
+                            return;
+
+                        }
+
+
+                        /*
+                         * NÍVEL 2
+                         *
+                         * Verifica autenticação.
+                         */
+
+                        const {
+                            data: {
+                                user
+                            }
+                        } =
+                            await supabase.auth
+                                .getUser();
+
+
+                        if (!user) {
+
+                            window.location.href =
+                                loginUrl;
+
+                            return;
+
+                        }
+
+
+                        /*
+                         * Guarda a nota.
+                         */
+
+                        (
+                            votes as Record<
+                                string,
+                                number | null
+                            >
+                        )[field] = value;
+
+
+                        /*
+                         * Atualiza visual
+                         * das estrelas.
+                         */
+
+                        stars.forEach(
+                            (item) => {
+
+                                const itemValue =
+                                    Number(
+                                        item.getAttribute(
+                                            "data-value"
+                                        )
+                                    );
+
+
+                                item.classList.toggle(
+                                    "selected",
+                                    itemValue <= value
+                                );
+
+                            }
+                        );
+
+                    }
+                );
+
+            });
+
+        });
+
+
+        /*
+         * Botão de envio
+         */
+
+        const submitButton =
+            element.querySelector(
+                "#submit-vote"
+            );
+
+
+        if (
+            !(submitButton instanceof HTMLButtonElement)
+        ) {
+            return;
+        }
+
+
+        submitButton.addEventListener(
+            "click",
+            async () => {
+
+                /*
+                 * Verifica login
+                 */
+
+                const {
+                    data: {
+                        user
+                    }
+                } =
+                    await supabase.auth
+                        .getUser();
+
+
+                if (!user) {
+
+                    window.location.href =
+                        loginUrl;
+
+                    return;
+
+                }
+
+
+                /*
+                 * Verifica se todas
+                 * as notas foram dadas.
+                 */
+
+                if (
+                    votes.aplicabilidade === null ||
+                    votes.relevancia === null ||
+                    votes.virada_estrategica === null
+                ) {
+
+                    if (
+                        message instanceof HTMLElement
+                    ) {
+
+                        message.textContent =
+                            "Avalie os três critérios antes de enviar.";
+
+                    }
+
+                    return;
+
+                }
+
+
+                submitButton.disabled = true;
+
+                submitButton.textContent =
+                    "Enviando...";
+
+
+                /*
+                 * Salva no Supabase.
+                 *
+                 * upsert permite que o usuário
+                 * altere sua avaliação posteriormente.
+                 */
+
+                const {
+                    error
+                } =
+                    await supabase
+                        .from("case_votes")
+                        .upsert(
+                            {
+                                case_slug:
+                                    caseSlug,
+
+                                user_id:
+                                    user.id,
+
+                                aplicabilidade:
+                                    votes.aplicabilidade,
+
+                                relevancia:
+                                    votes.relevancia,
+
+                                virada_estrategica:
+                                    votes.virada_estrategica,
+
+                                updated_at:
+                                    new Date()
+                                        .toISOString()
+                            },
+                            {
+                                onConflict:
+                                    "case_slug,user_id"
+                            }
+                        );
+
+
+                if (error) {
+
+                    console.error(
+                        "Erro ao salvar avaliação:",
+                        error
+                    );
+
+
+                    submitButton.disabled =
+                        false;
+
+                    submitButton.textContent =
+                        "Enviar avaliação";
+
+
+                    if (
+                        message instanceof HTMLElement
+                    ) {
+
+                        message.textContent =
+                            "Não foi possível salvar sua avaliação.";
+
+                    }
+
+                    return;
+
+                }
+
+
+                /*
+                 * Sucesso
+                 */
+
+                submitButton.textContent =
+                    "Avaliação enviada ✓";
+
+
+                if (
+                    message instanceof HTMLElement
+                ) {
+
+                    message.textContent =
+                        "Obrigado. Sua avaliação foi registrada.";
+
+                }
+
+            }
+        );
+
+    });
+</script>
+
+
+<style>
+
+.case-voting {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 28px;
+
+    border: 1px solid #dbe3ef;
+
+    border-radius: 18px;
+
+    background: white;
+
+}
+
+
+.voting-header {
+
+    margin-bottom: 28px;
+
+}
+
+
+.voting-kicker {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: .14em;
+
+    color: #2563eb;
+
+}
+
+
+.voting-header h3 {
+
+    margin: 0 0 8px;
+
+    font-size: 22px;
+
+    color: #0f172a;
+
+}
+
+
+.voting-header p {
+
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+.vote-group {
+
+    margin-bottom: 22px;
+
+}
+
+
+.vote-label {
+
+    margin-bottom: 7px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #334155;
+
+}
+
+
+.stars {
+
+    display: flex;
+
+    gap: 4px;
+
+}
+
+
+.star {
+
+    width: 32px;
+
+    height: 32px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #cbd5e1;
+
+    font-size: 25px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        color .15s ease,
+        transform .15s ease;
+
+}
+
+
+.star:hover {
+
+    color: #f59e0b;
+
+    transform: scale(1.08);
+
+}
+
+
+.star.selected {
+
+    color: #f59e0b;
+
+}
+
+
+.submit-vote {
+
+    width: 100%;
+
+    margin-top: 8px;
+
+    padding: 12px 18px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.submit-vote:hover {
+
+    background: #1d4ed8;
+
+}
+
+
+.submit-vote:disabled {
+
+    opacity: .65;
+
+    cursor: default;
+
+}
+
+
+.vote-message {
+
+    margin: 14px 0 0;
+
+    color: #475569;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+}
+
+
+.login-hint {
+
+    margin-top: 22px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #e2e8f0;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+}
+
+
+.login-hint a {
+
+    color: #2563eb;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+}
+
+
+.login-hint a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/*
+ * NÍVEL 1
+ */
+
+.case-voting-public {
+
+    margin-top: 30px;
+
+}
+
+
+.case-voting-public .voting-header h3 {
+
+    font-size: 20px;
+
+}
+
+
+.case-voting-public .star {
+
+    cursor: pointer;
+
+}
+
+
+/*
+ * MOBILE
+ */
+
+@media (max-width: 700px) {
+
+    .case-voting {
+
+        padding: 22px;
+
+    }
+
+}
+
+</style>

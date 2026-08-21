@@ -960,7 +960,300 @@ criterionContainers.forEach((container) => {
 
     }
 
+    /*
+ * =========================================================
+ * SALVAR AVALIAÇÃO DOS CRITÉRIOS
+ * =========================================================
+ */
 
+if (
+  evaluatorSubmit instanceof HTMLButtonElement &&
+  evaluatorMessage instanceof HTMLElement
+) {
+
+  evaluatorSubmit.addEventListener(
+    "click",
+    async () => {
+
+      /*
+       * Verifica usuário autenticado
+       */
+
+      const {
+        data: {
+          user
+        }
+      } = await supabase.auth.getUser();
+
+
+      /*
+       * Se não estiver logado,
+       * envia para login.
+       */
+
+      if (!user) {
+
+        window.location.href =
+          `/login?redirect=/autores/${conteudoId}`;
+
+        return;
+
+      }
+
+
+      /*
+       * Verifica se todos os critérios
+       * foram avaliados.
+       */
+
+      const criteriosObrigatorios = [
+        "aplicabilidade",
+        "implementacao",
+        "relevancia",
+        "atualidade"
+      ];
+
+
+      const faltando =
+        criteriosObrigatorios.filter(
+          (criterio) =>
+            !criterios[criterio]
+        );
+
+
+      if (faltando.length > 0) {
+
+        evaluatorMessage.textContent =
+          "Avalie todos os critérios antes de salvar.";
+
+        return;
+
+      }
+
+
+      /*
+       * Desabilita o botão durante o salvamento.
+       */
+
+      evaluatorSubmit.disabled = true;
+
+      evaluatorSubmit.textContent =
+        "Salvando...";
+
+
+      /*
+       * Verifica se o usuário já possui
+       * uma avaliação deste autor.
+       */
+
+      const {
+        data: existente,
+        error: buscaError
+      } =
+        await supabase
+          .from("avaliacoes")
+          .select("id, nota")
+          .eq(
+            "user_id",
+            user.id
+          )
+          .eq(
+            "conteudo_tipo",
+            conteudoTipo
+          )
+          .eq(
+            "conteudo_id",
+            conteudoId
+          )
+          .maybeSingle();
+
+
+      if (buscaError) {
+
+        console.error(
+          "Erro ao buscar avaliação:",
+          buscaError
+        );
+
+        evaluatorMessage.textContent =
+          `Erro ao verificar avaliação: ${buscaError.message}`;
+
+        evaluatorSubmit.disabled = false;
+
+        evaluatorSubmit.textContent =
+          "Salvar minha avaliação";
+
+        return;
+
+      }
+
+
+      /*
+       * Calcula a nota geral.
+       *
+       * A tabela possui "nota" como campo obrigatório
+       * da avaliação principal.
+       */
+
+      const notaMedia =
+        Math.round(
+          (
+            criterios.aplicabilidade +
+            criterios.implementacao +
+            criterios.relevancia +
+            criterios.atualidade
+          ) / 4
+        );
+
+
+      /*
+       * Dados que serão salvos.
+       */
+
+      const dadosAvaliacao = {
+
+        aplicabilidade:
+          criterios.aplicabilidade,
+
+        implementacao:
+          criterios.implementacao,
+
+        relevancia:
+          criterios.relevancia,
+
+        atualidade:
+          criterios.atualidade,
+
+        nota:
+          notaMedia
+
+      };
+
+
+      let error;
+
+
+      /*
+       * ATUALIZA avaliação existente
+       */
+
+      if (existente) {
+
+        const resultado =
+          await supabase
+            .from("avaliacoes")
+            .update(
+              dadosAvaliacao
+            )
+            .eq(
+              "id",
+              existente.id
+            )
+            .eq(
+              "user_id",
+              user.id
+            );
+
+        error =
+          resultado.error;
+
+      }
+
+
+      /*
+       * CRIA nova avaliação
+       */
+
+      else {
+
+        const resultado =
+          await supabase
+            .from("avaliacoes")
+            .insert({
+
+              user_id:
+                user.id,
+
+              conteudo_tipo:
+                conteudoTipo,
+
+              conteudo_id:
+                conteudoId,
+
+              nota:
+                notaMedia,
+
+              aplicabilidade:
+                criterios.aplicabilidade,
+
+              implementacao:
+                criterios.implementacao,
+
+              relevancia:
+                criterios.relevancia,
+
+              atualidade:
+                criterios.atualidade,
+
+              publicado:
+                false
+
+            });
+
+        error =
+          resultado.error;
+
+      }
+
+
+      /*
+       * ERRO
+       */
+
+      if (error) {
+
+        console.error(
+          "Erro ao salvar avaliação:",
+          error
+        );
+
+        evaluatorMessage.textContent =
+          `Não foi possível salvar sua avaliação: ${error.message}`;
+
+        evaluatorSubmit.disabled =
+          false;
+
+        evaluatorSubmit.textContent =
+          "Salvar minha avaliação";
+
+        return;
+
+      }
+
+
+      /*
+       * SUCESSO
+       */
+
+      evaluatorMessage.textContent =
+        "Sua avaliação foi salva com sucesso.";
+
+      evaluatorSubmit.textContent =
+        "Avaliação salva ✓";
+
+
+      /*
+       * Mantém o botão desabilitado
+       * para evitar cliques duplicados.
+       */
+
+      evaluatorSubmit.disabled =
+        true;
+
+    }
+  );
+
+}
     /*
      * PINTA AS ESTRELAS DO USUÁRIO
      */
@@ -996,20 +1289,18 @@ criterionContainers.forEach((container) => {
 
     async function carregarMediaComunidade() {
 
-      const {
-        data,
-        error
-            } = await supabase
-        .from("avaliacoes")
-        .select("nota")
-        .eq(
-          "conteudo_tipo",
-          "autor"
-        )
-        .eq(
-          "conteudo_id",
-          conteudoId
-        );
+      const { data, error } = await supabase
+  .from("avaliacoes")
+  .update({
+    comentario: comentario
+  })
+  .eq("user_id", user.id)
+  .eq("conteudo_tipo", conteudoTipo)
+  .eq("conteudo_id", conteudoId)
+  .select();
+
+console.log("RESULTADO DO COMENTÁRIO:", data);
+console.log("ERRO DO COMENTÁRIO:", error);
 
 
       if (error) {
