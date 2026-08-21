@@ -40,13 +40,13 @@ tags:
 
 ## Contexto
 
-Joseph "Pep" Simek e Ronald Simek eram proprietários do **Tombstone Tap**, um bar localizado em Medford, Wisconsin, em frente a um cemitério. O próprio nome do estabelecimento fazia referência à sua localização. :contentReference[oaicite:0]{index=0}
+Joseph "Pep" Simek e Ronald Simek eram proprietários do **Tombstone Tap**, um bar localizado em Medford, Wisconsin, em frente a um cemitério. O próprio nome do estabelecimento fazia referência à sua localização. Tombstone significa lápide.
 
-Em 1962, os irmãos começaram a produzir pizzas para os clientes do bar. A atividade começou em uma cozinha extremamente pequena, de aproximadamente 6 por 6 pés. Durante o período em que Pep Simek se recuperava de uma perna quebrada, ele passou mais tempo experimentando receitas e aperfeiçoando a pizza. :contentReference[oaicite:1]{index=1}
+Em 1962, os irmãos começaram a produzir pizzas para os clientes do bar. A atividade começou em uma cozinha extremamente pequena, de aproximadamente 6 por 6 pés. Durante o período em que Pep Simek se recuperava de uma perna quebrada, ele passou mais tempo experimentando receitas e aperfeiçoando a pizza. 
 
 A pizza rapidamente ganhou popularidade.
 
-Em poucos anos, outros bares da região passaram a comprar as pizzas congeladas dos irmãos. Em 1966, os Simek já utilizavam um caminhão refrigerado para distribuir o produto a outros bares, postos de gasolina, resorts, pistas de boliche e outros estabelecimentos. :contentReference[oaicite:2]{index=2}
+Em poucos anos, outros bares da região passaram a comprar as pizzas congeladas dos irmãos. Em 1966, os Simek já utilizavam um caminhão refrigerado para distribuir o produto a outros bares, postos de gasolina, resorts, pistas de boliche e outros estabelecimentos. 
 
 Assim, uma solução criada inicialmente para um pequeno bar transformou-se em uma operação de distribuição de alimentos congelados.
 
@@ -82,7 +82,7 @@ A localização do bar, em frente ao cemitério, também acabou contribuindo par
 
 O nome **Tombstone** tornou-se parte da diferenciação do produto.
 
-Posteriormente, a comunicação explorou essa associação de maneira deliberadamente irreverente. A campanha **"What do you want on your Tombstone?"** tornou-se uma das marcas mais reconhecíveis da empresa e foi utilizada em campanhas publicitárias nacionais. :contentReference[oaicite:3]{index=3}
+Posteriormente, a comunicação explorou essa associação de maneira deliberadamente irreverente. A campanha **"What do you want on your Tombstone?"** tornou-se uma das marcas mais reconhecíveis da empresa e foi utilizada em campanhas publicitárias nacionais. 
 
 A estratégia combinava:
 
@@ -152,17 +152,17 @@ O resultado foi uma identidade de marca muito mais forte do que simplesmente ven
 
 O produto cresceu rapidamente.
 
-Em três anos, a produção já chegava a aproximadamente **2.000 pizzas por dia na região de Medford**. :contentReference[oaicite:4]{index=4}
+Em três anos, a produção já chegava a aproximadamente **2.000 pizzas por dia na região de Medford**. 
 
-Em 1966, os irmãos compraram um caminhão refrigerado e começaram a ampliar a distribuição. :contentReference[oaicite:5]{index=5}
+Em 1966, os irmãos compraram um caminhão refrigerado e começaram a ampliar a distribuição. 
 
-Entre 1976 e 1983, a empresa cresceu mais de **25% ao ano**, segundo registros históricos da companhia. :contentReference[oaicite:6]{index=6}
+Entre 1976 e 1983, a empresa cresceu mais de **25% ao ano**, segundo registros históricos da companhia. 
 
-Em 1984, a Tombstone já estava entre os três maiores fabricantes de pizza congelada dos Estados Unidos e apresentava vendas superiores a **US$ 100 milhões**. :contentReference[oaicite:7]{index=7}
+Em 1984, a Tombstone já estava entre os três maiores fabricantes de pizza congelada dos Estados Unidos e apresentava vendas superiores a **US$ 100 milhões**. 
 
-Em 1986, a **Kraft** anunciou a aquisição da Tombstone. Naquele momento, a empresa possuía vendas superiores a US$ 100 milhões e havia se tornado a segunda maior fabricante de pizza congelada do país. :contentReference[oaicite:8]{index=8}
+Em 1986, a **Kraft** anunciou a aquisição da Tombstone. Naquele momento, a empresa possuía vendas superiores a US$ 100 milhões e havia se tornado a segunda maior fabricante de pizza congelada do país. 
 
-A marca continuou crescendo sob a Kraft. Posteriormente, a divisão de pizzas congeladas da Kraft foi adquirida pela Nestlé em 2010. :contentReference[oaicite:9]{index=9}
+A marca continuou crescendo sob a Kraft. Posteriormente, a divisão de pizzas congeladas da Kraft foi adquirida pela Nestlé em 2010. 
 
 ## Análise EstratégiaZ
 
