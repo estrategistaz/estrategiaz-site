@@ -1,3 +1,4 @@
+---
 title: Product led Growth (PLG)
 tipo: Estratégia de crescimento orientada pelo produto
 criador: Atlassian
@@ -22,7 +23,7 @@ tags:
   - aquisição
   - retenção
   - PLG
-
+---
 # Product-led Growth (PLG)
 
 ## O que é
