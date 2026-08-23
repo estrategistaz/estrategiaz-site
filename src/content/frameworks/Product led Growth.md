@@ -5,14 +5,14 @@ criador: Atlassian
 ano: 2002
 categoria: Estratégia de crescimento / Go-to-Market
 score: 9.1
-aplicabilidade: 9.5
-implementacao: 8.5
-relevancia: 9.5
-atualidade: 10
-facilidade: 8.0
-profundidade: 8.5
-custo: 8.5
-tempo_aplicacao: 8.0
+aplicabilidade: Muito Alta
+implementacao: Alta
+relevancia: Muito Alta
+atualidade: Muito Alta
+facilidade: Média
+profundidade: Alta
+custo: Alto
+tempo_aplicacao: Médio
 tags:
   - crescimento
   - produto

@@ -1,3 +1,4 @@
+---
 title: O caso SimilarWeb
 tipo: case
 
@@ -5,7 +6,7 @@ autores:
   - Or Offer
 
 livros:
-  - 
+  - " "
 
 frameworks:
   - Análise de Mercado

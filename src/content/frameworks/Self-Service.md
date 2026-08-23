@@ -1,18 +1,23 @@
 ---
 title: Self-service
 tipo: Estratégia de autoatendimento
+
 criador: Clarence Saunders
 ano: 1916
 categoria: Estratégia de operações / Experiência do cliente
+
 score: 8.8
-aplicabilidade: 9.5
-implementacao: 8.5
-relevancia: 9.0
-atualidade: 9.5
-facilidade: 8.5
-profundidade: 8.0
-custo: 8.5
-tempo_aplicacao: 8.5
+
+aplicabilidade: Muito Alta
+implementacao: Alta
+relevancia: Alta
+atualidade: Muito Alta
+
+facilidade: Média
+profundidade: Alta
+custo: Alto
+tempo_aplicacao: Médio
+
 tags:
   - self-service
   - autoatendimento

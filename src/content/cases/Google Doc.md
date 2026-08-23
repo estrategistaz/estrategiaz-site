@@ -6,7 +6,7 @@ autores:
   - Sam Schillace
 
 livros:
-  - 
+  - Blue Ocean Strategy
 
 frameworks:
   - Inovação Disruptiva
