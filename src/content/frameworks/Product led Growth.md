@@ -1,4 +1,4 @@
-title: Product-led Growth (PLG)
+title: Product led Growth (PLG)
 tipo: Estratégia de crescimento orientada pelo produto
 criador: Atlassian
 ano: 2002
