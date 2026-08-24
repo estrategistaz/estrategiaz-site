@@ -1,7 +1,7 @@
 ---
 title: Peter Drucker
 tipo: autor
-
+foto: "/images/autores/peter-drucker.jpg"
 pais: Áustria
 nascimento: 1909
 

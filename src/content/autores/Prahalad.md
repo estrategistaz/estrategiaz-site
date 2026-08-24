@@ -1,7 +1,7 @@
 ---
 title: C. K. Prahalad
 tipo: autor
-
+foto: "/images/autores/prahalad.jpg"
 pais: Índia
 nascimento: 1941
 

@@ -1,7 +1,7 @@
 ---
 title: Ram Charan
 tipo: autor
-
+foto: "/images/autores/ram-charan.jpg"
 pais: Índia
 nascimento: 1939
 

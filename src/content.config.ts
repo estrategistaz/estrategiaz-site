@@ -12,6 +12,8 @@ const autores = defineCollection({
     title: z.string(),
     tipo: z.string().optional(),
 
+    foto: z.string().optional(),
+
     pais: z.string().optional(),
     nascimento: z.number().optional(),
 

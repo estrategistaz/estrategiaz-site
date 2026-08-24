@@ -1,7 +1,7 @@
 ---
 title: Michael Porter
 tipo: autor
-
+foto: "/images/autores/michael-porter.jpg"
 pais: Estados Unidos
 nascimento: 1947
 

@@ -65,11 +65,27 @@ const autorSchema = {
 
   <section class="container autor-page">
 
-  <!-- =====================================================
-       CABEÇALHO DO AUTOR
-       ===================================================== -->
+<!-- =====================================================
+     CABEÇALHO DO AUTOR
+     ===================================================== -->
 
-  <div class="autor-header">
+<div class="autor-header">
+
+  <!-- FOTO + INFORMAÇÕES DO AUTOR -->
+
+  <div class="autor-identity">
+
+    <!-- FOTO DO AUTOR -->
+
+    {autor.data.foto && (
+      <div class="autor-photo">
+        <img
+          src={autor.data.foto}
+          alt={`Foto de ${autor.data.title}`}
+          loading="eager"
+        />
+      </div>
+    )}
 
     <!-- INFORMAÇÕES DO AUTOR -->
 
@@ -110,36 +126,38 @@ const autorSchema = {
 
     </div>
 
+  </div>
 
-    <!-- ESTRATEGIAZ SCORE -->
 
-    <div class="score-card">
+  <!-- ESTRATEGIAZ SCORE -->
 
-      <span class="score-label">
-        ESTRATEGIAZ SCORE
+  <div class="score-card">
+
+    <span class="score-label">
+      ESTRATEGIAZ SCORE
+    </span>
+
+    <div class="score">
+
+      {score.toFixed(1)}
+
+      <span>
+        /10
       </span>
-
-      <div class="score">
-
-        {score.toFixed(1)}
-
-        <span>
-          /10
-        </span>
-
-      </div>
-
-      <div class="score-stars">
-        ★★★★★
-      </div>
-
-      <p>
-        Avaliação editorial Estrategiaz
-      </p>
 
     </div>
 
+    <div class="score-stars">
+      ★★★★★
+    </div>
+
+    <p>
+      Avaliação editorial Estrategiaz
+    </p>
+
   </div>
+
+</div>
 
 
   <!-- =====================================================
@@ -2155,42 +2173,52 @@ montarResumoPublico();
   padding: 70px 0 100px;
 }
 
-
 .autor-header {
-
   display: grid;
-
   grid-template-columns:
     minmax(0, 1fr)
     minmax(220px, 280px);
-
   align-items: start;
-
   gap: 40px;
-
   margin-bottom: 35px;
 }
 
+/* FOTO + INFORMAÇÕES */
+.autor-identity {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+}
 
+/* FOTO */
+.autor-photo {
+  width: 180px;
+  height: 180px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.autor-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* INFORMAÇÕES */
 .autor-main h1 {
   font-size: 48px;
-
   line-height: 1.1;
-
   margin: 0 0 25px;
-
   color: #102a43;
 }
 
-
 .autor-info p {
   margin: 8px 0;
-
   font-size: 17px;
-
   line-height: 1.6;
 }
-
 
 /* =========================================
    ESTRATEGIAZ SCORE

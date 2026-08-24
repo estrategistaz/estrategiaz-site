@@ -1,6 +1,7 @@
 ---
 title: Henry Mintzberg
 tipo: autor
+foto: "/images/autores/henry-mintzberg.jpg"
 pais: Canadá
 nascimento: 1939
 
