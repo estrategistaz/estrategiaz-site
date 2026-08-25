@@ -5,6 +5,7 @@ tipo: livro
 autor: Seth Godin
 ano: 2003
 editora: Portfolio
+capa: "/images/livros/vaca-roxa.jpg"
 
 area:
   - Marketing

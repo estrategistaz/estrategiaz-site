@@ -98,7 +98,14 @@ const caseSchema = {
             <span class="case-kicker">
                 CASE ESTRATÉGICO
             </span>
-
+                {caso.data.logo && (
+            <div class="case-logo">
+                <img
+                    src={caso.data.logo}
+                    alt={`Logo da empresa ${caso.data.empresa ?? ""}`}
+                />
+            </div>
+        )}
             <h1>
                 {caso.data.title}
             </h1>
@@ -1279,6 +1286,26 @@ const caseSchema = {
 
     }
 
+}
+
+.case-logo {
+    margin: 10px 0 20px;
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.case-logo img {
+    max-width: 280px;
+    max-height: 120px;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+    display: block;
 }
 
 </style>

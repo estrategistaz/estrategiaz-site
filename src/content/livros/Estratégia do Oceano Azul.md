@@ -5,6 +5,7 @@ tipo: livro
 autor: W. Chan Kim e Renée Mauborgne
 ano: 2005
 editora: Harvard Business Review Press
+capa: "/images/livros/oceano-azul.jpg"
 
 area:
   - Administração

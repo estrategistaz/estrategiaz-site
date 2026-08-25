@@ -19,6 +19,7 @@ frameworks:
   - Estratégia de Plataforma
 
 empresa: Google
+logo: "/images/empresas/google.png"
 setor: Tecnologia e Mapas Digitais
 pais: Estados Unidos
 

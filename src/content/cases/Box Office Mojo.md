@@ -15,6 +15,7 @@ frameworks:
   - Experiência do Usuário
 
 empresa: Box Office Mojo
+logo: "/images/empresas/box-mojo.png"
 setor: Entretenimento, Cinema e Dados
 pais: Estados Unidos
 

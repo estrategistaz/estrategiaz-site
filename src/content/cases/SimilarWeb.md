@@ -15,6 +15,7 @@ frameworks:
   - Recomendação por Similaridade
 
 empresa: SimilarWeb
+logo: "/images/empresas/similarweb.png"
 setor: Tecnologia e Inteligência Digital
 pais: Israel
 

@@ -14,6 +14,7 @@ frameworks:
   - Efeito de Rede
 
 empresa: IMDb
+logo: "/images/empresas/imdb.png"
 setor: Entretenimento e Informação Cinematográfica
 pais: Reino Unido
 

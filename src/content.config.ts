@@ -45,6 +45,7 @@ const livros = defineCollection({
     autor: z.string().optional(),
     ano: z.number().optional(),
     editora: z.string().optional(),
+    capa: z.string().optional(),
 
     area: z.array(z.string()).optional(),
 
@@ -109,6 +110,7 @@ const cases = defineCollection({
     frameworks: z.array(z.string()).optional(),
 
     empresa: z.string().optional(),
+    logo: z.string().optional(),
     setor: z.string().optional(),
     pais: z.string().optional(),
 

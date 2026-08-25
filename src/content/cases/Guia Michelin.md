@@ -1,4 +1,3 @@
-
 ---
 title: Guia Michelin
 tipo: case
@@ -18,6 +17,7 @@ frameworks:
   - Estratégia de Ecossistema
 
 empresa: Michelin
+logo: "/images/empresas/guia-michelin.png"
 setor: Indústria de Pneus e Mobilidade
 pais: França
 

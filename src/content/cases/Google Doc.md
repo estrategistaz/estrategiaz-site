@@ -15,6 +15,7 @@ frameworks:
   - Software como Serviço
 
 empresa: Google
+logo: "/images/empresas/google.png"
 setor: Tecnologia e Software
 pais: Estados Unidos
 

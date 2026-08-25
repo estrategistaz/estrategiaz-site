@@ -20,6 +20,7 @@ frameworks:
   - Vantagem Competitiva
 
 empresa: Shimano
+logo: "/images/empresas/shimano.png"
 setor: Componentes para Bicicletas
 pais: Japão
 

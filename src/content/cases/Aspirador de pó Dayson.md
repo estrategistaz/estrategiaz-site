@@ -16,6 +16,7 @@ frameworks:
   - Melhoria contínua
 
 empresa: Dyson
+logo: "/images/empresas/dyson.png"
 setor: Eletrodomésticos
 pais: Inglaterra
 

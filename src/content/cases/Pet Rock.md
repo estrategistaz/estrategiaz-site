@@ -18,6 +18,7 @@ frameworks:
   - Product-Market Fit
 
 empresa: Pet Rock
+logo: "/images/empresas/pet-rock.png"
 setor: Brinquedos e Produtos de Consumo
 pais: Estados Unidos
 

@@ -24,6 +24,17 @@ const livros = await getCollection("livros");
                 class="card"
                 href={`/livros/${livro.id}`}
             >
+                <!-- CAPA DO LIVRO -->
+
+                    {livro.data.capa && (
+                        <div class="book-cover">
+                            <img
+                                src={livro.data.capa}
+                                alt={`Capa do livro ${livro.data.title}`}
+                                loading="lazy"
+                            />
+                        </div>
+                    )}
 
                 <h2>{livro.data.title}</h2>
 
@@ -64,3 +75,70 @@ const livros = await getCollection("livros");
     </div>
 
 </BaseLayout>
+
+<style>
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 24px 100px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.card {
+    display: block;
+    background: white;
+    padding: 24px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.06);
+    transition: .25s;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.10);
+}
+
+/* CAPA */
+
+.book-cover {
+    width: 100%;
+    height: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 22px;
+}
+
+.book-cover img {
+    max-width: 180px;
+    max-height: 280px;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+    display: block;
+
+    border-radius: 4px;
+}
+
+.card h2 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #64748b;
+}
+
+</style>

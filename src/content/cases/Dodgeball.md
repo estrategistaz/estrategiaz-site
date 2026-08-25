@@ -15,6 +15,7 @@ frameworks:
   - Experiência do Usuário
 
 empresa: Dodgeball
+logo: "/images/empresas/dodgeball.png"
 setor: Tecnologia e Redes Sociais
 pais: Estados Unidos
 

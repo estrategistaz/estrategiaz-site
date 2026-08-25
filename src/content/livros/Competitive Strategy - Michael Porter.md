@@ -5,6 +5,7 @@ tipo: livro
 autor: Michael Porter
 ano: 1980
 editora: Free Press
+capa: "/images/livros/competitive-strategy.jpg"
 
 area:
   - Estratégia

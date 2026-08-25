@@ -16,6 +16,7 @@ frameworks:
   - Customer Journey
 
 empresa: Atlassian
+logo: "/images/empresas/atlassian.png"
 setor: Software e Tecnologia
 pais: Austrália
 

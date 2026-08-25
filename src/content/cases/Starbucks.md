@@ -17,6 +17,7 @@ frameworks:
   - Estratégia de Internacionalização
 
 empresa: Starbucks
+logo: "/images/empresas/starbucks.png"
 setor: Alimentação e Bebidas
 pais: Estados Unidos
 

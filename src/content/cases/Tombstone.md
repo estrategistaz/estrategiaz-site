@@ -18,6 +18,7 @@ frameworks:
   - Diferenciação
 
 empresa: Tombstone Pizza
+logo: "/images/empresas/tombstone.png"
 setor: Alimentos e Bebidas
 pais: Estados Unidos
 

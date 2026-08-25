@@ -19,6 +19,7 @@ frameworks:
   - Análise de Cenários
 
 empresa: Jefferson Ice Company
+logo: "/images/empresas/jefferson-ice.png"
 setor: Produção e Distribuição de Gelo
 pais: Estados Unidos
 
