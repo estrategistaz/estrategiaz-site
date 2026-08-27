@@ -23,7 +23,7 @@ frameworks:
   - Escalabilidade
 
 empresa: Crocs
-logo: "/images/empresas/crocs.png"
+logo: "/images/empresas/crocs1.png"
 setor: Calçados / Moda / Bens de Consumo
 pais: Estados Unidos
 
