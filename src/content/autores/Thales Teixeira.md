@@ -3,7 +3,7 @@ title: Thales Teixeira
 tipo: autor
 foto: "/images/autores/thales-teixeira.jpg"
 pais: Brasil
-nascimento: ""
+nascimento: 1973
 
 universidade:
   - Universidade Federal de Minas Gerais
